@@ -1,0 +1,13 @@
+/* ==========================================================================
+Settings : Variables and other settings
+========================================================================== */
+
+@import './settings/_colors.scss';
+//@import "./settings/_media.scss";
+
+/* ====================================================================================
+// Components : Individual components - layout
+ ==================================================================================== */
+
+@import './components/layout/_fretboard.scss';
+@import './components/layout/_fret.scss';
