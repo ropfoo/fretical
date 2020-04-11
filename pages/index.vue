@@ -1,18 +1,22 @@
 <template>
   <div>
-    <div class="c-fretboard">
-      <div v-for="n in 8" :key="n">
-        <Fret :number="n" />
-      </div>
-    </div>
+    <fretboard :frets="fretCount" />
+    <button @click="fretCount++">+</button>
+    <button @click="fretCount--">-</button>
+    <h1>Tone</h1>
   </div>
 </template>
 
 <script>
-import Fret from '../components/Fret.vue';
+import Fretboard from '../components/Fretboard.vue';
 export default {
   components: {
-    Fret
+    Fretboard
+  },
+  data() {
+    return {
+      fretCount: 7
+    };
   }
 };
 </script>

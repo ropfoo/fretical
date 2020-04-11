@@ -85,6 +85,7 @@ sw.*
 
 # macOS
 .DS_Store
+.icloud
 
 # Vim swap files
 *.swp
