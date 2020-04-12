@@ -6,7 +6,7 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex';
-import * as Tone from 'tone';
+//import * as Tone from 'tone';
 
 export default {
   props: ['tone'],
@@ -20,8 +20,8 @@ export default {
 
       if (this.sound) {
         //create a synth and connect it to the master output (your speakers)
-        const synth = new Tone.Synth().toMaster();
-        synth.triggerAttackRelease(`${this.tone}`, '8n');
+        // const synth = new Tone.Synth().toMaster();
+        // synth.triggerAttackRelease(`${this.tone}`, '8n');
       }
     }
   }
