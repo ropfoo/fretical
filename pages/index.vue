@@ -5,6 +5,7 @@
     <button @click="fretCount--">-</button>
     <h1>{{ activeTone }}</h1>
     <button @click="toggleSound">sound</button>
+    oh nope
   </div>
 </template>
 

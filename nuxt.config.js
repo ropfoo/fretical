@@ -16,6 +16,7 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  router: { base: '/fretical/' },
   /*
    ** Customize the progress-bar color
    */
@@ -42,6 +43,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
   ],
+
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
