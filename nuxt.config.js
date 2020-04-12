@@ -16,7 +16,7 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-  router: { base: '/fretical-frontend/' },
+  router: { base: '/Fretical/' },
   /*
    ** Customize the progress-bar color
    */
