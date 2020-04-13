@@ -1,8 +1,10 @@
 <template>
   <div>
-    <fretboard :frets="fretCount" />
-    <button @click="fretCount++">+</button>
-    <button @click="fretCount--">-</button>
+    <fretboard :firstFret="firstFret" :lastFret="lastFret" />
+    <button @click="lastFret++">last fret +</button>
+    <button @click="lastFret--">last fret -</button>
+    <button @click="firstFret++">first fret +</button>
+    <button @click="firstFret--">first fret -</button>
     <h1>{{ activeTone }}</h1>
     <button @click="toggleSound">sound</button>
     oh nope
@@ -18,7 +20,8 @@ export default {
   },
   data() {
     return {
-      fretCount: 5
+      lastFret: 5,
+      firstFret: 3
     };
   },
   computed: mapGetters({

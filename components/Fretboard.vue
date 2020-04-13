@@ -1,16 +1,31 @@
 <template>
   <div class="c-fretboard">
-    <div v-for="n in frets" :key="n">
-      <fret v-if="n === 1" :isFirst="true" :isLast="false" :number="n" :tones="defaultTones[n-1]" />
+    <template v-for="n in lastFret">
       <fret
-        v-else-if="n === frets"
+        v-if="n === firstFret && n >= firstFret"
+        :isFirst="true"
+        :isLast="false"
+        :number="n"
+        :tones="defaultTones[n - 1]"
+        :key="n"
+      />
+      <fret
+        v-else-if="n === lastFret && n >= firstFret"
         :isFirst="false"
         :isLast="true"
         :number="n"
-        :tones="defaultTones[n-1]"
+        :tones="defaultTones[n - 1]"
+        :key="n"
       />
-      <fret v-else :isFirst="false" :isLast="false" :number="n" :tones="defaultTones[n-1]" />
-    </div>
+      <fret
+        v-else-if="n >= firstFret"
+        :isFirst="false"
+        :isLast="false"
+        :number="n"
+        :tones="defaultTones[n - 1]"
+        :key="n"
+      />
+    </template>
   </div>
 </template>
 
@@ -22,7 +37,7 @@ export default {
   components: {
     Fret
   },
-  props: ['frets'],
+  props: ['firstFret', 'lastFret'],
   computed: mapGetters({
     defaultTones: 'tones/getDefaultTones'
   })

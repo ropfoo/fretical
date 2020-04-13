@@ -33,8 +33,9 @@
 
     &--hidden {
       position: absolute;
+      padding: 0.08rem 0.08rem;
       opacity: 0;
-      transition: 0.3s;
+      transition: 0.2s;
     }
   }
 }
