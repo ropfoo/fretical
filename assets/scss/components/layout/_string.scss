@@ -18,4 +18,23 @@
       border-color: lightgreen;
     }
   }
+
+  &__indicator {
+    position: absolute;
+    background-color: red;
+    color: white;
+    padding: 0.8rem 0.5rem;
+    opacity: 1;
+    transition: 0.3s;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    text-align: center;
+
+    &--hidden {
+      position: absolute;
+      opacity: 0;
+      transition: 0.3s;
+    }
+  }
 }

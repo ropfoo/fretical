@@ -1,6 +1,7 @@
 <template>
   <div @click="returnTone" class="c-string">
     <hr />
+    <div :class="[isClicked ? 'c-string__indicator' : 'c-string__indicator--hidden']">{{tone}}</div>
   </div>
 </template>
 
@@ -10,12 +11,21 @@ import * as Tone from 'tone';
 
 export default {
   props: ['tone'],
+  data() {
+    return {
+      isClicked: false
+    };
+  },
   computed: mapGetters({
     sound: 'tones/getSound'
   }),
   methods: {
     returnTone() {
       console.log(this.tone);
+      this.isClicked = true;
+      setTimeout(() => {
+        this.isClicked = false;
+      }, 6000);
       this.$store.commit('tones/setActiveTone', this.tone);
 
       if (this.sound) {

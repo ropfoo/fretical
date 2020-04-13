@@ -1,5 +1,6 @@
 export const state = () => ({
   sound: true,
+  shownTones: [],
   activeTone: 'some Tone',
   tones: {
     defaultTones: [

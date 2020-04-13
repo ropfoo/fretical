@@ -9,7 +9,7 @@
 no particular order
 
 - [ ] fret start and endpoint marker
-- [ ] propper ui
 - [ ] select fretboard range
-- [ ] chord library mode
+- [ ] propper ui
 - [ ] 'test-your-knowledge' game
+- [ ] chord library mode
