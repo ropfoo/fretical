@@ -38,6 +38,7 @@ export default {
     Fret
   },
   props: ['firstFret', 'lastFret'],
+  watch: {},
   computed: mapGetters({
     defaultTones: 'tones/getDefaultTones'
   })

@@ -8,7 +8,9 @@
         <div class="c-fret__circle-container--circle"></div>
       </div>
     </div>
-    <div v-if="isFirst || isLast">{{number}}</div>
+    <div class="c-fret__number-container" v-if="isFirst || isLast">
+      <div class="c-fret__number-container__number">{{ number }}</div>
+    </div>
   </div>
 </template>
 

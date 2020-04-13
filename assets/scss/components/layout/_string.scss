@@ -8,7 +8,7 @@
   padding: 1rem 0rem;
   z-index: 2;
   hr {
-    border: 0.07rem solid #111;
+    border: 0.07rem solid #fff;
     margin: 0.3rem 0;
     width: 100%;
     transition: 0.3s;
@@ -21,8 +21,10 @@
 
   &__indicator {
     position: absolute;
-    background-color: red;
+    background-color: $color-light-secondary;
     color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
     padding: 0.8rem 0.5rem;
     opacity: 1;
     transition: 0.3s;
