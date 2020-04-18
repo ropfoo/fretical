@@ -5,7 +5,7 @@
         v-if="n === firstFret && n >= firstFret"
         :isFirst="true"
         :isLast="false"
-        :number="n"
+        :number="n -1"
         :tones="defaultTones[n - 1]"
         :key="n"
       />
@@ -13,7 +13,7 @@
         v-else-if="n === lastFret && n >= firstFret"
         :isFirst="false"
         :isLast="true"
-        :number="n"
+        :number="n -1"
         :tones="defaultTones[n - 1]"
         :key="n"
       />
@@ -21,7 +21,7 @@
         v-else-if="n >= firstFret"
         :isFirst="false"
         :isLast="false"
-        :number="n"
+        :number="n -1"
         :tones="defaultTones[n - 1]"
         :key="n"
       />
@@ -38,7 +38,6 @@ export default {
     Fret
   },
   props: ['firstFret', 'lastFret'],
-  watch: {},
   computed: mapGetters({
     defaultTones: 'tones/getDefaultTones'
   })

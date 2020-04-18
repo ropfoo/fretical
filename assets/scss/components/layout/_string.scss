@@ -7,18 +7,34 @@
   align-items: center;
   padding: 1rem 0rem;
   z-index: 2;
-  hr {
-    border: 0.07rem solid #fff;
-    margin: 0.3rem 0;
-    width: 100%;
-    transition: 0.3s;
-  }
+
   &:hover {
-    hr {
+    .line {
       border-color: lightgreen;
     }
   }
 
+  .line {
+    //border: 0.07rem solid #fff;
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    margin: 0.3rem 0;
+    width: 110%;
+    transition: 0.3s;
+    z-index: 0;
+  }
+
+  .line--shadow {
+    position: relative;
+    border: none;
+    border-bottom: 0.1rem solid rgba($color: #000000, $alpha: 0.2);
+    width: 100%;
+    margin-top: -0.25rem;
+    transition: 0.3s;
+    z-index: 0;
+    filter: blur(0.2rem);
+  }
   &__indicator {
     position: absolute;
     background-color: $color-light-secondary;

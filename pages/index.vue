@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      lastFret: 5,
+      lastFret: 6,
       firstFret: 1
     };
   },

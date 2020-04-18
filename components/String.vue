@@ -1,6 +1,7 @@
 <template>
   <div @click="returnTone" class="c-string">
-    <hr />
+    <hr class="line" />
+    <hr class="line--shadow" />
     <div :class="[isClicked ? 'c-string__indicator' : 'c-string__indicator--hidden']">{{tone}}</div>
   </div>
 </template>
