@@ -4,12 +4,12 @@
     <fretboard :firstFret="firstFret" :lastFret="lastFret" />
     <div class="c-fretboard-view__fretboard-adjust">
       <div>
-        <button @click="firstFret++">first fret +</button>
-        <button @click="firstFret--">first fret -</button>
+        <button @click="firstFret++">+</button>
+        <button @click="firstFret--">-</button>
       </div>
       <div>
-        <button @click="lastFret++">last fret +</button>
-        <button @click="lastFret--">last fret -</button>
+        <button @click="lastFret++">+</button>
+        <button @click="lastFret--">-</button>
       </div>
     </div>
 

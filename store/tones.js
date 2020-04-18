@@ -4,7 +4,7 @@ export const state = () => ({
   activeTone: 'tap a string',
   tones: {
     defaultTones: [
-      ['E5', 'B4', 'G4', 'D4', 'A3', 'E3'],
+      ['E4', 'B4', 'G3', 'D3', 'A2', 'E2'],
       ['F4', 'C4', 'G#3', 'D#3', 'A#2', 'F2'],
       ['F#4', 'C#4', 'A3', 'E3', 'B2', 'F#2'],
       ['G4', 'D4', 'A#3', 'F3', 'C3', 'G2'],

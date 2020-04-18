@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="c-fret">
+    <div :class="[number === 0 ? 'c-fret--open' : 'c-fret']">
       <!-- Generate six strings -->
       <template v-for="n in 6">
         <string :tone="tones[n - 1]" :key="n" />
@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     checkTones() {},
+
     checkDot() {
       if (
         this.number === 3 ||

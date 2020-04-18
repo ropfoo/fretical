@@ -5,6 +5,10 @@
   position: relative;
   background-color: $color-fret-primary;
 
+  &--open {
+    background-color: black;
+  }
+
   &__circle-container {
     position: absolute;
     display: flex;

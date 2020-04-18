@@ -2,7 +2,13 @@
   <div @click="returnTone" class="c-string">
     <hr class="line" />
     <hr class="line--shadow" />
-    <div :class="[isClicked ? 'c-string__indicator' : 'c-string__indicator--hidden']">{{tone}}</div>
+    <div
+      :class="[
+        isClicked ? 'c-string__indicator' : 'c-string__indicator--hidden'
+      ]"
+    >
+      {{ tone }}
+    </div>
   </div>
 </template>
 
@@ -22,7 +28,6 @@ export default {
   }),
   methods: {
     returnTone() {
-      console.log(this.tone);
       this.isClicked = true;
       setTimeout(() => {
         this.isClicked = false;
