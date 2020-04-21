@@ -24,12 +24,7 @@ export default {
     String
   },
   props: ['number', 'tones', 'isFirst', 'isLast'],
-  data() {
-    return {};
-  },
   methods: {
-    checkTones() {},
-
     checkDot() {
       if (
         this.number === 3 ||

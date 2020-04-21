@@ -5,8 +5,24 @@
   position: relative;
   background-color: $color-fret-primary;
 
+  @include media-xsmall {
+    border: 0;
+    border-bottom: 0.7rem solid black;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+  }
+
   &--open {
     background-color: black;
+    border-right: 1rem solid rgb(155, 155, 155);
+
+    @include media-xsmall {
+      border: 0;
+      border-bottom: 1rem solid rgb(155, 155, 155);
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 1fr;
+    }
   }
 
   &__circle-container {
