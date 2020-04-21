@@ -1,15 +1,24 @@
 .c-fret {
-  border-right: 0.7rem solid black;
   display: grid;
   grid-template-rows: repeat(6, 1fr);
   position: relative;
-  background-color: $color-fret-primary;
 
   @include media-xsmall {
     border: 0;
-    border-bottom: 0.7rem solid black;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr 1fr);
     grid-template-rows: 1fr;
+  }
+
+  &--style {
+    border-right: 0.7rem solid black;
+    background-color: $color-fret-primary;
+    @include media-xsmall {
+      border: 0;
+      border-bottom: 0.7rem solid black;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 1fr;
+    }
   }
 
   &--open {
@@ -44,15 +53,20 @@
 
   &__number-container {
     display: flex;
+
     justify-content: center;
     color: $color-light-secondary;
     margin: 1rem 0rem;
 
+    @include media-xsmall {
+      margin: 1rem 1rem;
+    }
+
     &__number {
       text-align: center;
       background-color: $color-dark-secondary;
-      width: 40%;
-      padding: 0.3rem;
+      width: 100%;
+      padding: 0.5rem;
       border-radius: 1rem;
     }
   }

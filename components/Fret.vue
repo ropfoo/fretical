@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div :class="[number === 0 ? 'c-fret--open' : 'c-fret']">
+    <div class="c-fret">
       <!-- Generate six strings -->
-      <template v-for="n in 6">
-        <string :tone="tones[n - 1]" :key="n" />
-      </template>
+      <div :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']" v-for="n in 6" :key="n">
+        <string :tone="tones[n - 1]" />
+      </div>
       <!-- Check if there is a fretmarker beneath the string -->
       <div v-if="checkDot()" class="c-fret__circle-container">
         <div class="c-fret__circle-container--circle"></div>
       </div>
-    </div>
-    <!-- Checkes if first or last fret to show range number -->
-    <div class="c-fret__number-container" v-if="isFirst || isLast">
-      <div class="c-fret__number-container__number">{{ number }}</div>
+      <!-- Checkes if first or last fret to show range number -->
+      <div class="c-fret__number-container" :style="{background: 'none'}" v-if="isFirst || isLast">
+        <div class="c-fret__number-container__number">{{ number }}</div>
+      </div>
     </div>
   </div>
 </template>
