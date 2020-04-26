@@ -1,7 +1,16 @@
 .c-fretboard {
-  margin: 0rem 3rem;
   display: grid;
+  grid-auto-flow: column;
   grid-template-columns: repeat(auto, 1fr);
   grid-template-rows: 1;
-  grid-auto-flow: column;
+  grid-row: 2;
+  margin: 0rem 3rem;
+  max-height: 100vh;
+
+  @include media-xsmall {
+    grid-auto-flow: row;
+    grid-template-columns: 1;
+    grid-template-rows: repeat(auto, 1fr);
+    margin: 0rem 0rem 0rem 1rem;
+  }
 }
