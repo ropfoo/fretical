@@ -14,19 +14,17 @@
         <div class="c-fret__circle-container--circle"></div>
       </div>
       <!-- Checkes if first or last fret to show range number -->
-      <template
-        class="c-fret__number-container"
-        :style="{ background: 'none' }"
-        v-if="isFirst || isLast"
-      >
-        <div class="c-fret__number-container__number">{{ number }}</div>
-        <div v-if="isFirst">
-          <button @click="setFirstFret(1)">+</button>
-          <button @click="setFirstFret(-1)">-</button>
-        </div>
-        <div v-else>
-          <button @click="setLastFret(1)">+</button>
-          <button @click="setLastFret(-1)">-</button>
+      <template :style="{ background: 'none' }" v-if="isFirst || isLast">
+        <div class="c-fret__number-container">
+          <div class="c-fret__number-container__number">{{ number }}</div>
+          <div v-if="isFirst">
+            <button @click="setFirstFret(1)">+</button>
+            <button @click="setFirstFret(-1)">-</button>
+          </div>
+          <div v-else>
+            <button @click="setLastFret(1)">+</button>
+            <button @click="setLastFret(-1)">-</button>
+          </div>
         </div>
       </template>
       <template v-else>
