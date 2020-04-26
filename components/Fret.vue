@@ -15,14 +15,19 @@
       </div>
       <!-- Checkes if first or last fret to show range number -->
       <template :style="{ background: 'none' }" v-if="isFirst || isLast">
-        <div class="c-fret__number-container">
-          <div class="c-fret__number-container__number">{{ number }}</div>
+        <div class="c-fret__fret-adjust-wrapper">
           <div v-if="isFirst">
             <button @click="setFirstFret(1)">+</button>
+            <div class="c-fret__number-container">
+              <div class="c-fret__number-container__number">{{ number }}</div>
+            </div>
             <button @click="setFirstFret(-1)">-</button>
           </div>
           <div v-else>
             <button @click="setLastFret(1)">+</button>
+            <div class="c-fret__number-container">
+              <div class="c-fret__number-container__number">{{ number }}</div>
+            </div>
             <button @click="setLastFret(-1)">-</button>
           </div>
         </div>

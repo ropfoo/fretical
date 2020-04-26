@@ -7,7 +7,7 @@
   margin: 0rem 3rem;
   max-height: 100vh;
 
-  @include media-xsmall {
+  @include media-small {
     grid-auto-flow: dense;
     grid-template-columns: 1;
     grid-template-rows: repeat(auto, 1fr);
