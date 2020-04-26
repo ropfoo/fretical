@@ -3,24 +3,32 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   justify-content: center;
-  height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
 
   @include media-xsmall {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1;
     grid-auto-flow: row;
   }
 
   &__active-tone {
+    align-items: flex-end;
     color: $color-light-main;
     display: flex;
-    font-size: 2.5rem;
     justify-content: center;
     margin-bottom: 1rem;
-  }
-  &__fretboard-adjust {
-    display: flex;
-    justify-content: space-between;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    @include media-xsmall {
+      align-items: center;
+      flex-direction: column;
+      grid-column: 3;
+      grid-row: 2;
+    }
   }
 }

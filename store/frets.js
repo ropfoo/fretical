@@ -1,14 +1,18 @@
 export const state = () => ({
-  firstFret: 2,
-  lastFret: 6
+  firstFret: 1,
+  lastFret: 7
 });
 
 export const mutations = {
-  setFirstFret(state, fretNumber) {
-    state.firstFret = fretNumber;
+  setFirstFret(state, amount) {
+    if (Math.sign(amount) === -1 && state.firstFret === 1) {
+      state.firstFret = 1;
+    } else {
+      state.firstFret += amount;
+    }
   },
-  setLastFret(state, fretNumber) {
-    state.lastFret = fretNumber;
+  setLastFret(state, amount) {
+    state.lastFret += amount;
   }
 };
 

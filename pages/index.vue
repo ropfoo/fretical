@@ -1,19 +1,10 @@
 <template>
   <div class="c-fretboard-view">
-    <h1 class="c-fretboard-view__active-tone">{{ activeTone }}</h1>
-    <fretboard :firstFret="firstFret" :lastFret="lastFret" />
-    <div class="c-fretboard-view__fretboard-adjust">
-      <div>
-        <button @click="firstFret++">+</button>
-        <button @click="firstFret--">-</button>
-      </div>
-      <div>
-        <button @click="lastFret++">+</button>
-        <button @click="lastFret--">-</button>
-      </div>
+    <div class="c-fretboard-view__active-tone">
+      <h1>{{ activeTone }}</h1>
+      <button @click="toggleSound">sound</button>
     </div>
-
-    <button @click="toggleSound">sound</button>
+    <fretboard :firstFret="firstFret" :lastFret="lastFret" />
   </div>
 </template>
 
@@ -24,15 +15,11 @@ export default {
   components: {
     Fretboard
   },
-  data() {
-    return {
-      lastFret: 6,
-      firstFret: 1
-    };
-  },
   computed: mapGetters({
     activeTone: 'tones/getActiveTone',
-    sound: 'tones/getSound'
+    sound: 'tones/getSound',
+    firstFret: 'frets/getFirstFret',
+    lastFret: 'frets/getLastFret'
   }),
   methods: {
     toggleSound() {

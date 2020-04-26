@@ -1,3 +1,6 @@
+// Variables
+$fret-thickness: 0.4rem;
+
 .c-fret {
   display: grid;
   grid-template-rows: repeat(6, 1fr);
@@ -10,11 +13,12 @@
   }
 
   &--style {
-    border-right: 0.7rem solid black;
+    border-right: $fret-thickness solid black;
     background-color: $color-fret-primary;
+
     @include media-xsmall {
       border: 0;
-      border-bottom: 0.7rem solid black;
+      border-bottom: $fret-thickness solid black;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       grid-template-rows: 1fr;
@@ -41,6 +45,11 @@
     justify-content: center;
     height: 100%;
     width: 100%;
+    z-index: 0;
+
+    @include media-xsmall {
+      width: 80%;
+    }
 
     &--circle {
       position: relative;
@@ -52,14 +61,18 @@
   }
 
   &__number-container {
-    display: flex;
-
+    align-items: center;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
     color: $color-light-secondary;
     margin: 1rem 0rem;
+    z-index: 2;
+    width: 50%;
 
     @include media-xsmall {
       margin: 1rem 1rem;
+      flex-direction: row;
     }
 
     &__number {
