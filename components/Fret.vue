@@ -2,11 +2,7 @@
   <div>
     <div class="c-fret">
       <!-- Generate six strings -->
-      <div
-        :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']"
-        v-for="n in 6"
-        :key="n"
-      >
+      <div :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']" v-for="n in 6" :key="n">
         <string :tone="tones[n - 1]" />
       </div>
       <!-- Check if there is a fretmarker beneath the string -->
@@ -16,20 +12,24 @@
       <!-- Checkes if first or last fret to show range number -->
       <template :style="{ background: 'none' }" v-if="isFirst || isLast">
         <div class="c-fret__fret-adjust-wrapper">
-          <div v-if="isFirst">
-            <button @click="setFirstFret(1)">+</button>
+          <template v-if="isFirst">
+            <div class="c-fret__buttons">
+              <button @click="setFirstFret(1)">+</button>
+              <button @click="setFirstFret(-1)">-</button>
+            </div>
             <div class="c-fret__number-container">
               <div class="c-fret__number-container__number">{{ number }}</div>
             </div>
-            <button @click="setFirstFret(-1)">-</button>
-          </div>
-          <div v-else>
-            <button @click="setLastFret(1)">+</button>
+          </template>
+          <template v-else>
+            <div class="c-fret__buttons">
+              <button @click="setLastFret(1)">+</button>
+              <button @click="setLastFret(-1)">-</button>
+            </div>
             <div class="c-fret__number-container">
               <div class="c-fret__number-container__number">{{ number }}</div>
             </div>
-            <button @click="setLastFret(-1)">-</button>
-          </div>
+          </template>
         </div>
       </template>
       <template v-else>
