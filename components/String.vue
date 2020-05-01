@@ -20,7 +20,8 @@ export default {
   props: ['tone', 'thickness'],
   data() {
     return {
-      isClicked: false
+      isClicked: false,
+      indicatorDuration: 2500
     };
   },
   computed: mapGetters({
@@ -31,7 +32,7 @@ export default {
       this.isClicked = true;
       setTimeout(() => {
         this.isClicked = false;
-      }, 6000);
+      }, this.indicatorDuration);
       this.$store.commit('tones/setActiveTone', this.tone);
 
       if (this.sound) {

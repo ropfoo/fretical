@@ -5,6 +5,12 @@ $color-dark-secondary: #543864;
 
 $color-white: #ffffff;
 
+// - String -
+$color-string-highlight: lightgreen;
+$color-indicator-text: $color-white;
+$color-indicator-background: $color-light-secondary;
+
+// - Fret -
 $color-fret-primary: #ffdda9;
 $color-fret-secondary: #9a9a9a;
 $color-fret-circle: rgba(0, 0, 0, 0.2);

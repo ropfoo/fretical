@@ -40,8 +40,9 @@ export default {
   props: ['firstFret', 'lastFret'],
   data() {
     return {
+      isMobile: false,
       screenWidth: 0,
-      isMobile: false
+      mediaSmall: 567
     };
   },
   computed: mapGetters({
@@ -61,7 +62,7 @@ export default {
   methods: {
     calcIfMobile() {
       this.screenWidth = window.innerWidth;
-      if (this.screenWidth <= 567) {
+      if (this.screenWidth <= this.mediaSmall) {
         this.isMobile = true;
       } else {
         this.isMobile = false;

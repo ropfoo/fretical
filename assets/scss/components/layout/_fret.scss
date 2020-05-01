@@ -8,15 +8,15 @@ $fret-wideness: 3.5rem;
   position: relative;
 
   @include media-small {
-    width: 70vw;
     border: 0;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: auto;
+    width: 67vw;
   }
 
   &--style {
-    border-right: $fret-thickness solid black;
     background-color: $color-fret-primary;
+    border-right: $fret-thickness solid black;
 
     @include media-small {
       border: 0;
