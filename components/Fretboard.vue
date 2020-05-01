@@ -1,6 +1,5 @@
 <template>
   <div class="c-fretboard">
-    {{ screenWidth }}
     <template v-for="n in lastFret">
       <fret
         v-if="n === firstFret && n >= firstFret"
@@ -49,13 +48,9 @@ export default {
     defaultTones: 'tones/getDefaultTones'
   }),
   mounted() {
+    this.calcIfMobile();
     window.addEventListener('resize', () => {
-      this.screenWidth = window.innerWidth;
-      if (this.screenWidth <= 567) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
+      this.calcIfMobile();
     });
   },
   watch: {
@@ -64,8 +59,13 @@ export default {
     }
   },
   methods: {
-    reverseDefaultTones() {
-      this.$store.commit('tones/reverseDefaultTones', this.defaultTones);
+    calcIfMobile() {
+      this.screenWidth = window.innerWidth;
+      if (this.screenWidth <= 567) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
     }
   }
 };
