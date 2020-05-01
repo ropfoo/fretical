@@ -1,7 +1,7 @@
 .c-fretboard-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.3fr 1fr 0.3fr;
+  grid-template-rows: 1fr 1fr 1fr;
   justify-content: center;
   max-height: 100vh;
   max-width: 100vw;
@@ -9,7 +9,7 @@
   @include media-small {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1;
+    grid-template-rows: 0.2fr 1fr 0.2fr;
     grid-auto-flow: row;
   }
 
@@ -38,6 +38,23 @@
       justify-content: center;
       grid-column: 3;
       grid-row: 2;
+    }
+  }
+
+  &__toggle-sound {
+    @include button-type;
+    svg {
+      fill: $color-white;
+    }
+    &--on {
+      svg:nth-child(1) {
+        display: none;
+      }
+    }
+    &--off {
+      svg:nth-child(2) {
+        display: none;
+      }
     }
   }
 }
