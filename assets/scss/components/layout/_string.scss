@@ -20,6 +20,7 @@
   }
 
   .line {
+    @include generate-string-thicknesses(6, 1, 3px, bottom);
     position: relative;
     border: none;
     margin: 0rem 0.3rem;
@@ -27,50 +28,13 @@
     transition: 0.3s;
     z-index: 0;
 
-    &--string-6 {
-      border-bottom: 3px solid #ffffff;
-    }
-    &--string-5 {
-      border-bottom: 2.5px solid #ffffff;
-    }
-    &--string-4 {
-      border-bottom: 2px solid #ffffff;
-    }
-    &--string-3 {
-      border-bottom: 1.5px solid #ffffff;
-    }
-    &--string-2 {
-      border-bottom: 1.25px solid #ffffff;
-    }
-    &--string-1 {
-      border-bottom: 1px solid #ffffff;
-    }
-
     @include media-small {
+      @include generate-string-thicknesses(1, 6, 3px, left);
       border: none;
       border-left: 0.1rem solid #ffffff;
       height: 115%;
       margin: 0rem 0rem;
       width: 0;
-
-      &--string-1 {
-        border-left: 3px solid #ffffff;
-      }
-      &--string-2 {
-        border-left: 2.5px solid #ffffff;
-      }
-      &--string-3 {
-        border-left: 2px solid #ffffff;
-      }
-      &--string-4 {
-        border-left: 1.5px solid #ffffff;
-      }
-      &--string-5 {
-        border-left: 1.25px solid #ffffff;
-      }
-      &--string-6 {
-        border-left: 1px solid #ffffff;
-      }
     }
   }
 

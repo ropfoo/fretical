@@ -2,3 +2,22 @@
   cursor: pointer;
   border: none;
 }
+
+@mixin generate-string-thicknesses(
+  $strings-start,
+  $strings-end,
+  $thickness,
+  $direction
+) {
+  $thickness-grades: 0.2px, 0.5px, 0.3px, 0.5px, 0.1px, 0.1px;
+  @for $string from $strings-start through $strings-end {
+    &--string-#{$string} {
+      @if $direction == left {
+        border-left: $thickness solid $color-white;
+      } @else {
+        border-bottom: $thickness solid $color-white;
+      }
+      $thickness: $thickness - nth($thickness-grades, $string);
+    }
+  }
+}
