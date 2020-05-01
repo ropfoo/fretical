@@ -7,7 +7,7 @@
         v-for="n in 6"
         :key="n"
       >
-        <string :tone="tones[n - 1]" />
+        <string :tone="tones[n - 1]" :thickness="n" />
       </div>
       <!-- Check if there is a fretmarker beneath the string -->
       <div v-if="checkDot()" class="c-fret__circle-container">

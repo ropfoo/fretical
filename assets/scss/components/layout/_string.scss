@@ -22,11 +22,29 @@
   .line {
     position: relative;
     border: none;
-    border-bottom: 1px solid #ffffff;
     margin: 0rem 0.3rem;
     width: 110%;
     transition: 0.3s;
     z-index: 0;
+
+    &--string-6 {
+      border-bottom: 3px solid #ffffff;
+    }
+    &--string-5 {
+      border-bottom: 2.5px solid #ffffff;
+    }
+    &--string-4 {
+      border-bottom: 2px solid #ffffff;
+    }
+    &--string-3 {
+      border-bottom: 1.5px solid #ffffff;
+    }
+    &--string-2 {
+      border-bottom: 1.25px solid #ffffff;
+    }
+    &--string-1 {
+      border-bottom: 1px solid #ffffff;
+    }
 
     @include media-small {
       border: none;
@@ -34,6 +52,25 @@
       height: 115%;
       margin: 0rem 0rem;
       width: 0;
+
+      &--string-1 {
+        border-left: 3px solid #ffffff;
+      }
+      &--string-2 {
+        border-left: 2.5px solid #ffffff;
+      }
+      &--string-3 {
+        border-left: 2px solid #ffffff;
+      }
+      &--string-4 {
+        border-left: 1.5px solid #ffffff;
+      }
+      &--string-5 {
+        border-left: 1.25px solid #ffffff;
+      }
+      &--string-6 {
+        border-left: 1px solid #ffffff;
+      }
     }
   }
 

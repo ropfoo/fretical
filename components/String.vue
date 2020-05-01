@@ -1,6 +1,6 @@
 <template>
   <div @click="returnTone" class="c-string">
-    <hr class="line" />
+    <hr class="line" :class="'line--string-' + thickness" />
     <hr class="line--shadow" />
     <div
       :class="[
@@ -17,7 +17,7 @@ import { mapMutations, mapGetters } from 'vuex';
 import * as Tone from 'tone';
 
 export default {
-  props: ['tone'],
+  props: ['tone', 'thickness'],
   data() {
     return {
       isClicked: false
