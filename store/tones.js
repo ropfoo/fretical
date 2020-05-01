@@ -1,5 +1,5 @@
 export const state = () => ({
-  sound: true,
+  sound: false,
   shownTones: [],
   activeTone: 'tap a string',
   tones: {
@@ -27,6 +27,11 @@ export const mutations = {
   },
   toggleSound(state, toggle) {
     state.sound = toggle;
+  },
+  reverseDefaultTones(state, tonesArray) {
+    tonesArray.forEach(tones => {
+      state.tones.defaultTones[tones] = tones.reverse();
+    });
   }
 };
 

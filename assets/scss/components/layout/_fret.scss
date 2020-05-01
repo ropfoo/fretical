@@ -96,15 +96,19 @@ $fret-wideness: 3.5rem;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 90%;
     z-index: 2;
     border-radius: 0.5rem;
+    margin-top: 1rem;
 
     @include media-small {
       height: $fret-wideness;
       flex-direction: row;
+      margin-top: 0rem;
+
       grid-column-start: span 3;
       height: 100%;
+      width: 80%;
     }
   }
 
@@ -115,7 +119,6 @@ $fret-wideness: 3.5rem;
     flex-direction: column;
     justify-content: center;
     margin: 1rem 0rem;
-    width: 100%;
 
     @include media-small {
       flex-direction: row;
@@ -129,7 +132,6 @@ $fret-wideness: 3.5rem;
     &__number {
       padding: 0.2rem;
       text-align: center;
-      width: 100%;
       font-weight: bold;
     }
   }
