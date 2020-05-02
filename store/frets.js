@@ -1,6 +1,6 @@
 export const state = () => ({
   firstFret: 1,
-  lastFret: 7
+  lastFret: 11
 });
 
 export const mutations = {
