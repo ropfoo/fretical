@@ -2,6 +2,7 @@ export const state = () => ({
   sound: false,
   shownTones: [],
   activeTone: 'tap a string',
+  prevTone: '',
   tones: {
     defaultTones: [
       ['E4', 'B3', 'G3', 'D3', 'A2', 'E2'],
@@ -25,6 +26,9 @@ export const mutations = {
   setActiveTone(state, tone) {
     state.activeTone = tone;
   },
+  addToShownTones(state, tone) {
+    state.shownTones.push(tone);
+  },
   toggleSound(state, toggle) {
     state.sound = toggle;
   },
@@ -41,6 +45,9 @@ export const getters = {
   },
   getActiveTone(state) {
     return state.activeTone;
+  },
+  getShownTones(state) {
+    return state.shownTones;
   },
   getSound(state) {
     return state.sound;

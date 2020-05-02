@@ -3,9 +3,7 @@
     <hr class="line" :class="'line--string-' + thickness" />
     <hr class="line--shadow" />
     <div
-      :class="[
-        isClicked ? 'c-string__indicator' : 'c-string__indicator--hidden'
-      ]"
+      :class="[active ? 'c-string__indicator' : 'c-string__indicator--hidden']"
     >
       {{ tone }}
     </div>
@@ -17,7 +15,7 @@ import { mapMutations, mapGetters } from 'vuex';
 import * as Tone from 'tone';
 
 export default {
-  props: ['tone', 'thickness'],
+  props: ['tone', 'thickness', 'active'],
   data() {
     return {
       isClicked: false,
@@ -25,14 +23,19 @@ export default {
     };
   },
   computed: mapGetters({
-    sound: 'tones/getSound'
+    sound: 'tones/getSound',
+    activeTone: 'tones/getActiveTone',
+    shownTones: 'tones/getShownTones'
   }),
+
   methods: {
     returnTone() {
-      this.isClicked = true;
+      /*
       setTimeout(() => {
         this.isClicked = false;
       }, this.indicatorDuration);
+      */
+
       this.$store.commit('tones/setActiveTone', this.tone);
 
       if (this.sound) {

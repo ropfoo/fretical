@@ -1,5 +1,7 @@
 <template>
-  <nuxt-link class="c-home" to="explore">
-    <div><h1>Explore</h1></div>
-  </nuxt-link>
+  <div class="c-home">
+    <nuxt-link to="explore">
+      <h1>Explore</h1>
+    </nuxt-link>
+  </div>
 </template>

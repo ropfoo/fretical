@@ -7,7 +7,12 @@
         v-for="n in 6"
         :key="n"
       >
-        <string :tone="tones[n - 1]" :thickness="n" />
+        <template v-if="activeTone === tones[n - 1]">
+          <string :tone="tones[n - 1]" :thickness="n" :active="true" />
+        </template>
+        <template v-else>
+          <string :tone="tones[n - 1]" :thickness="n" :active="false" />
+        </template>
       </div>
       <!-- Check if there is a fretmarker beneath the string -->
       <div v-if="checkDot()" class="c-fret__circle-container">
@@ -45,12 +50,16 @@
 
 <script>
 import String from '../components/String.vue';
-import { mapMutations } from '../store/frets';
+import { mapMutations, mapGetters } from 'vuex';
 export default {
   components: {
     String
   },
   props: ['number', 'tones', 'isFirst', 'isLast'],
+  computed: mapGetters({
+    activeTone: 'tones/getActiveTone',
+    shownTones: 'tones/getShownTones'
+  }),
   methods: {
     setFirstFret(amount) {
       console.log('first');
