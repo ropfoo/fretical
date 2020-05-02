@@ -47,27 +47,6 @@ export default {
   },
   computed: mapGetters({
     defaultTones: 'tones/getDefaultTones'
-  }),
-  mounted() {
-    this.calcIfMobile();
-    window.addEventListener('resize', () => {
-      this.calcIfMobile();
-    });
-  },
-  watch: {
-    isMobile: function() {
-      this.$store.commit('tones/reverseDefaultTones', this.defaultTones);
-    }
-  },
-  methods: {
-    calcIfMobile() {
-      this.screenWidth = window.innerWidth;
-      if (this.screenWidth <= this.mediaSmall) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    }
-  }
+  })
 };
 </script>
