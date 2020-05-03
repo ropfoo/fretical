@@ -7,6 +7,9 @@
         <h1>Explore</h1>
       </nuxt-link>
       <nuxt-link to="/" class="c-main-menu__chords">
+        <div class="c-main-menu__chords__image-container">
+          <img src="../assets/img/svg/chords-icon.svg" alt="" />
+        </div>
         <h1>Chords</h1>
       </nuxt-link>
       <nuxt-link to="/" class="c-main-menu__learn">
