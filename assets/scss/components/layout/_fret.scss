@@ -85,7 +85,7 @@ $fret-wideness: 3.5rem;
     button {
       @include button-type;
       border-radius: 100%;
-      color: $color-dark-main;
+      color: $color-light-secondary;
       font-size: 1rem;
       font-weight: bold;
       padding: 0.25rem;
