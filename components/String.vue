@@ -16,28 +16,14 @@ import * as Tone from 'tone';
 
 export default {
   props: ['tone', 'thickness', 'active'],
-  data() {
-    return {
-      isClicked: false,
-      indicatorDuration: 2500
-    };
-  },
   computed: mapGetters({
     sound: 'tones/getSound',
     activeTone: 'tones/getActiveTone',
     shownTones: 'tones/getShownTones'
   }),
-
   methods: {
     returnTone() {
-      /*
-      setTimeout(() => {
-        this.isClicked = false;
-      }, this.indicatorDuration);
-      */
-
       this.$store.commit('tones/setActiveTone', this.tone);
-
       if (this.sound) {
         //create a synth and connect it to the master output (your speakers)
         const synth = new Tone.Synth().toMaster();

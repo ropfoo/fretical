@@ -1,0 +1,40 @@
+@mixin main-menu-item($background-color, $font-color) {
+  background-color: $background-color;
+  height: 11rem;
+  h1 {
+    font-size: 1.7rem;
+    color: $font-color;
+    padding: 1rem 0 1rem 1rem;
+  }
+}
+
+.c-main-menu {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1rem;
+  margin-top: 10rem;
+
+  &__explore {
+    @include main-menu-item($color-light-main, $color-dark-secondary);
+    grid-column: 1 / span 5;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+
+    img {
+      padding-left: 40%;
+    }
+  }
+  &__chords {
+    @include main-menu-item($color-dark-secondary, $color-light-secondary);
+    grid-column: 6 / span 8;
+  }
+  &__learn {
+    @include main-menu-item($color-light-secondary, $color-dark-secondary);
+    grid-column: 1 / span 8;
+
+    img {
+      padding-top: 2rem;
+    }
+  }
+}

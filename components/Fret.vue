@@ -7,12 +7,11 @@
         v-for="n in 6"
         :key="n"
       >
-        <template v-if="activeTone === tones[n - 1]">
-          <string :tone="tones[n - 1]" :thickness="n" :active="true" />
-        </template>
-        <template v-else>
-          <string :tone="tones[n - 1]" :thickness="n" :active="false" />
-        </template>
+        <string
+          :tone="tones[n - 1]"
+          :thickness="n"
+          :active="checkActive(tones[n - 1])"
+        />
       </div>
       <!-- Check if there is a fretmarker beneath the string -->
       <div v-if="checkDot()" class="c-fret__circle-container">
@@ -61,6 +60,13 @@ export default {
     shownTones: 'tones/getShownTones'
   }),
   methods: {
+    checkActive(tone) {
+      if (this.activeTone === tone) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     setFirstFret(amount) {
       console.log('first');
       this.$store.commit('frets/setFirstFret', amount);

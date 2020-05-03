@@ -16,6 +16,8 @@ Settings : Variables and other settings
 // Components : Individual components - layout
  ==================================================================================== */
 
+@import './components/layout/_home.scss';
+@import './components/layout/_main-menu.scss';
 @import './components/layout/_fretboard-view.scss';
 @import './components/layout/_fretboard.scss';
 @import './components/layout/_fret.scss';

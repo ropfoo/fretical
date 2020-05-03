@@ -1,9 +1,9 @@
 $color-light-main: #589aeb;
-$color-light-secondary: #ff6363;
+$color-light-secondary: #e43f5a;
 $color-dark-main: #1b1b2f;
-$color-dark-secondary: #543864;
+$color-dark-secondary: #162447;
 
-$color-white: #ffffff;
+$color-white: #f1f1f1;
 
 // - String -
 $color-string-highlight: lightgreen;
@@ -11,6 +11,6 @@ $color-indicator-text: $color-white;
 $color-indicator-background: $color-light-main;
 
 // - Fret -
-$color-fret-primary: #ffdda9;
-$color-fret-secondary: #9a9a9a;
-$color-fret-circle: rgba(0, 0, 0, 0.2);
+$color-fret-primary: #eec595;
+$color-fret-secondary: $color-dark-secondary;
+$color-fret-circle: $color-dark-secondary;
