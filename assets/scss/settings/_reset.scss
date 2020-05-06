@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap');
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body,
@@ -15,6 +15,21 @@ html {
 body {
   background-color: $color-dark-main;
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+button {
+  background-color: $color-dark-secondary;
+  border: 0;
+  border-radius: 0.5rem;
+  color: $color-dark-main;
+  cursor: pointer;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: $color-light-main;
+  }
 }
 
 a {
