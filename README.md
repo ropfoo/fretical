@@ -8,8 +8,6 @@
 
 no particular order
 
-- [x] fret start and endpoint marker
-- [x] select fretboard range
-- [ ] propper ui
+- [x] fretboard explore mode
 - [ ] 'test-your-knowledge' game
 - [ ] chord library mode
