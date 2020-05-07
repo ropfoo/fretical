@@ -91,4 +91,4 @@ sw.*
 *.swp
 
 # SVG's
-svg/
+assets/img/svg/
