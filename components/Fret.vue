@@ -2,16 +2,8 @@
   <div>
     <div class="c-fret">
       <!-- Generate six strings -->
-      <div
-        :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']"
-        v-for="n in 6"
-        :key="n"
-      >
-        <string
-          :tone="tones[n - 1]"
-          :thickness="n"
-          :active="checkActive(tones[n - 1])"
-        />
+      <div :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']" v-for="n in 6" :key="n">
+        <string :tone="tones[n - 1]" :thickness="n" :active="checkActive(tones[n - 1])" />
       </div>
       <!-- Check if there is a fretmarker beneath the string -->
       <div v-if="checkDot()" class="c-fret__circle-container">
@@ -57,14 +49,23 @@ export default {
   props: ['number', 'tones', 'isFirst', 'isLast'],
   computed: mapGetters({
     activeTone: 'tones/getActiveTone',
-    shownTones: 'tones/getShownTones'
+    shownTones: 'tones/getShownTones',
+    showAllTones: 'explore/getShowAllTones'
   }),
   methods: {
     checkActive(tone) {
-      if (this.activeTone === tone) {
-        return true;
+      if (this.showAllTones) {
+        if (this.activeTone.name === tone.name) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        return false;
+        if (this.activeTone === tone) {
+          return true;
+        } else {
+          return false;
+        }
       }
     },
     setFirstFret(amount) {

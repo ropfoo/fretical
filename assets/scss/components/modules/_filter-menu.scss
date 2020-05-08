@@ -1,0 +1,16 @@
+.c-filter-menu {
+  position: absolute;
+  background-color: $color-white;
+  z-index: 10;
+  bottom: 10rem;
+  right: 8rem;
+  padding: 2rem;
+
+  &__button {
+    @include button-type;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 12;
+  }
+}

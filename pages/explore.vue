@@ -15,7 +15,7 @@
       </svg>
     </nuxt-link>
     <div class="c-fretboard-view__active-tone">
-      <h1>{{ activeTone }}</h1>
+      <h1>{{ activeTone.name }}</h1>
       <div
         @click="toggleSound"
         class="c-fretboard-view__toggle-sound"
@@ -53,6 +53,22 @@
         </svg>
       </div>
     </div>
+    <div @click="toggleFilterMenu" class="c-filter-menu__button">
+      <svg
+        width="50"
+        height="26"
+        viewBox="0 0 50 26"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="50" height="4" rx="2" fill="#E43F5A" />
+        <rect x="8" y="11" width="35" height="4" rx="2" fill="#E43F5A" />
+        <rect x="15" y="22" width="20" height="4" rx="2" fill="#E43F5A" />
+      </svg>
+    </div>
+    <div v-if="filterMenu" class="c-filter-menu">
+      <p @click="toggleShowAllTones">show all tones</p>
+    </div>
     <fretboard :firstFret="firstFret" :lastFret="lastFret" />
   </div>
 </template>
@@ -68,11 +84,19 @@ export default {
     activeTone: 'tones/getActiveTone',
     sound: 'tones/getSound',
     firstFret: 'frets/getFirstFret',
-    lastFret: 'frets/getLastFret'
+    lastFret: 'frets/getLastFret',
+    filterMenu: 'explore/getFilterMenu',
+    showAllTones: 'explore/getShowAllTones'
   }),
   methods: {
+    toggleShowAllTones() {
+      this.$store.commit('explore/toggleShowAllTones', !this.showAllTones);
+    },
     toggleSound() {
       this.$store.commit('tones/toggleSound', !this.sound);
+    },
+    toggleFilterMenu() {
+      this.$store.commit('explore/toggleFilterMenu', !this.filterMenu);
     }
   }
 };
