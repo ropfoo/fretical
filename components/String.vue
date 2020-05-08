@@ -40,7 +40,10 @@ export default {
       this.$store.commit('tones/setActiveTone', this.tone);
       if (this.tone.name === this.askedTone.name) {
         console.log('YAAAAY');
-        this.$store.commit('manager/setScore', 10);
+        setTimeout(() => {
+          this.$store.commit('manager/setScore', 10);
+          this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
+        }, 1500);
       } else {
         console.log('oh no!');
       }
