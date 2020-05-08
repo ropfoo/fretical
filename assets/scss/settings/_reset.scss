@@ -24,10 +24,10 @@ button {
   color: $color-white;
   cursor: pointer;
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.3rem;
   font-weight: bold;
   transition: 0.3s;
   padding: 1rem;
-  font-size: 1.3rem;
 
   &:hover {
     background-color: $color-light-main;

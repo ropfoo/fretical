@@ -1,3 +1,27 @@
+@mixin indicator {
+  border-radius: 100%;
+  color: $color-indicator-text;
+  font-size: 1.2rem;
+  font-weight: bold;
+  height: 3rem;
+  opacity: 1;
+  padding: 0.8rem 0.5rem;
+  position: absolute;
+  text-align: center;
+  transition: 0.3s;
+  width: 3rem;
+  z-index: 3;
+
+  @include media-small {
+    font-size: 0.9rem;
+    height: 2.2rem;
+    margin-right: 1rem;
+    padding: 0.5rem 0.4rem;
+    transition: opacity 0.4s;
+    width: 2.2rem;
+  }
+}
+
 .c-string {
   @include button-type;
   align-items: center;
@@ -57,28 +81,8 @@
     }
   }
   &__indicator {
+    @include indicator;
     background-color: $color-indicator-background;
-    border-radius: 100%;
-    color: $color-indicator-text;
-    font-size: 1.2rem;
-    font-weight: bold;
-    height: 3rem;
-    opacity: 1;
-    padding: 0.8rem 0.5rem;
-    position: absolute;
-    text-align: center;
-    transition: 0.3s;
-    width: 3rem;
-    z-index: 3;
-
-    @include media-small {
-      font-size: 0.9rem;
-      height: 2.2rem;
-      margin-right: 1rem;
-      padding: 0.5rem 0.4rem;
-      transition: opacity 0.4s;
-      width: 2.2rem;
-    }
 
     &--hidden {
       opacity: 0;
@@ -89,6 +93,18 @@
       @include media-small {
         padding: 0.05rem 0.04rem;
       }
+    }
+
+    &--success {
+      @include indicator;
+
+      background-color: lightgreen;
+    }
+
+    &--fail {
+      @include indicator;
+
+      background-color: coral;
     }
   }
 }

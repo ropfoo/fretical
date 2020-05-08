@@ -2,7 +2,19 @@
   <div @click="returnTone" class="c-string">
     <hr class="line" :class="'line--string-' + thickness" />
     <hr class="line--shadow" />
-    <div :class="[active ? 'c-string__indicator' : 'c-string__indicator--hidden']">{{ tone.name }}</div>
+    <div
+      :class="[
+        active
+          ? [
+              activeTone === askedTone
+                ? 'c-string__indicator--success'
+                : 'c-string__indicator--fail'
+            ]
+          : 'c-string__indicator--hidden'
+      ]"
+    >
+      {{ tone.name }}
+    </div>
   </div>
 </template>
 
@@ -15,7 +27,8 @@ export default {
   computed: mapGetters({
     sound: 'tones/getSound',
     activeTone: 'tones/getActiveTone',
-    shownTones: 'tones/getShownTones'
+    shownTones: 'tones/getShownTones',
+    askedTone: 'tones/getAskedTone'
   }),
   methods: {
     returnTone() {
