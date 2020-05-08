@@ -1,10 +1,15 @@
 <template>
   <div>
     <div v-if="settings" class="game-settings">
-      <button @click="determineAskedTone">Let's go!</button>
+      <h1>Learn Mode</h1>
+      <button @click="startGame">Let's go!</button>
     </div>
     <div v-else class="c-fretboard-view">
-      <nuxt-link class="c-fretboard-view__back-button" to="/">
+      <nuxt-link
+        @click.native="disablePlayMode"
+        class="c-fretboard-view__back-button"
+        to="/"
+      >
         <svg
           width="21"
           height="16"
@@ -53,6 +58,16 @@ export default {
   }),
 
   methods: {
+    startGame() {
+      this.enablePlayMode();
+      this.determineAskedTone();
+    },
+    enablePlayMode() {
+      this.$store.commit('manager/setPlayMode', true);
+    },
+    disablePlayMode() {
+      this.$store.commit('manager/setPlayMode', false);
+    },
     determineAskedTone() {
       this.$store.commit('tones/determineAskedTone', [
         this.firstFret,

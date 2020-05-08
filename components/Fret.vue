@@ -58,7 +58,7 @@ export default {
   computed: mapGetters({
     activeTone: 'tones/getActiveTone',
     shownTones: 'tones/getShownTones',
-    showAllTones: 'explore/getShowAllTones'
+    showAllTones: 'manager/getShowAllTones'
   }),
   methods: {
     checkActive(tone) {

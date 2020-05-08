@@ -89,18 +89,18 @@ export default {
     sound: 'tones/getSound',
     firstFret: 'frets/getFirstFret',
     lastFret: 'frets/getLastFret',
-    filterMenu: 'explore/getFilterMenu',
-    showAllTones: 'explore/getShowAllTones'
+    filterMenu: 'manager/getFilterMenu',
+    showAllTones: 'manager/getShowAllTones'
   }),
   methods: {
     toggleShowAllTones() {
-      this.$store.commit('explore/toggleShowAllTones', !this.showAllTones);
+      this.$store.commit('manager/toggleShowAllTones', !this.showAllTones);
     },
     toggleSound() {
       this.$store.commit('tones/toggleSound', !this.sound);
     },
     toggleFilterMenu() {
-      this.$store.commit('explore/toggleFilterMenu', !this.filterMenu);
+      this.$store.commit('manager/toggleFilterMenu', !this.filterMenu);
     }
   }
 };

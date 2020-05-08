@@ -6,9 +6,13 @@
       :class="[
         active
           ? [
-              activeTone === askedTone
-                ? 'c-string__indicator--success'
-                : 'c-string__indicator--fail'
+              playMode
+                ? [
+                    activeTone.name === askedTone.name
+                      ? 'c-string__indicator--success'
+                      : 'c-string__indicator--fail'
+                  ]
+                : 'c-string__indicator'
             ]
           : 'c-string__indicator--hidden'
       ]"
@@ -28,7 +32,8 @@ export default {
     sound: 'tones/getSound',
     activeTone: 'tones/getActiveTone',
     shownTones: 'tones/getShownTones',
-    askedTone: 'tones/getAskedTone'
+    askedTone: 'tones/getAskedTone',
+    playMode: 'manager/getPlayMode'
   }),
   methods: {
     returnTone() {

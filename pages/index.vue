@@ -51,7 +51,7 @@
     </div>
     <div class="c-main-menu">
       <nuxt-link
-        @click="toggleShowAllTones(true)"
+        @click.native="toggleShowAllTones(true)"
         to="explore"
         class="c-main-menu__explore"
       >
@@ -65,7 +65,7 @@
         <h1>Chords</h1>
       </nuxt-link>
       <nuxt-link
-        @click="toggleShowAllTones(false)"
+        @click.native="toggleShowAllTones(false)"
         to="play"
         class="c-main-menu__learn"
       >
@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     toggleShowAllTones(status) {
-      this.$store.commit('explore/toggleShowAllTones', status);
+      this.$store.commit('manager/toggleShowAllTones', status);
     }
   }
 };
