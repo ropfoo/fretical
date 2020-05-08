@@ -2,8 +2,16 @@
   <div>
     <div class="c-fret">
       <!-- Generate six strings -->
-      <div :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']" v-for="n in 6" :key="n">
-        <string :tone="tones[n - 1]" :thickness="n" :active="checkActive(tones[n - 1])" />
+      <div
+        :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']"
+        v-for="n in 6"
+        :key="n"
+      >
+        <string
+          :tone="tones[n - 1]"
+          :thickness="n"
+          :active="checkActive(tones[n - 1])"
+        />
       </div>
       <!-- Check if there is a fretmarker beneath the string -->
       <div v-if="checkDot()" class="c-fret__circle-container">
@@ -13,7 +21,7 @@
       <template :style="{ background: 'none' }" v-if="isFirst || isLast">
         <div class="c-fret__fret-adjust-wrapper">
           <template v-if="isFirst">
-            <div class="c-fret__buttons">
+            <div v-if="buttons" class="c-fret__buttons">
               <button @click="setFirstFret(1)">+</button>
               <button v-if="number >= 1" @click="setFirstFret(-1)">-</button>
             </div>
@@ -22,7 +30,7 @@
             </div>
           </template>
           <template v-else>
-            <div class="c-fret__buttons">
+            <div v-if="buttons" class="c-fret__buttons">
               <button v-if="number < 12" @click="setLastFret(1)">+</button>
               <button @click="setLastFret(-1)">-</button>
             </div>
@@ -46,7 +54,7 @@ export default {
   components: {
     String
   },
-  props: ['number', 'tones', 'isFirst', 'isLast'],
+  props: ['number', 'tones', 'isFirst', 'isLast', 'buttons'],
   computed: mapGetters({
     activeTone: 'tones/getActiveTone',
     shownTones: 'tones/getShownTones',

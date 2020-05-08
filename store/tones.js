@@ -1,7 +1,8 @@
 export const state = () => ({
   sound: false,
   shownTones: [],
-  activeTone: 'tap a string',
+  activeTone: { name: 'tap a string', string: 0 },
+  askedTone: { name: 'test', string: 0 },
   tones: {
     defaultTones: [
       [
@@ -126,6 +127,12 @@ export const mutations = {
     tonesArray.forEach(tones => {
       state.tones.defaultTones[tones] = tones.reverse();
     });
+  },
+  determineAskedTone(state, [firstFret, lastFret]) {
+    const determinedTones = state.tones.defaultTones.slice(firstFret, lastFret);
+    const randomFret = Math.floor(Math.random() * determinedTones.length + 0);
+    const randomTone = Math.floor(Math.random() * (6 - 1) + 1);
+    state.askedTone = determinedTones[randomFret][randomTone];
   }
 };
 
@@ -141,5 +148,8 @@ export const getters = {
   },
   getSound(state) {
     return state.sound;
+  },
+  getAskedTone(state) {
+    return state.askedTone;
   }
 };

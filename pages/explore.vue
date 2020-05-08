@@ -69,7 +69,11 @@
     <div v-if="filterMenu" class="c-filter-menu">
       <p @click="toggleShowAllTones">show all tones</p>
     </div>
-    <fretboard :firstFret="firstFret" :lastFret="lastFret" />
+    <fretboard
+      :firstFret="firstFret"
+      :lastFret="lastFret"
+      :showButtons="true"
+    />
   </div>
 </template>
 

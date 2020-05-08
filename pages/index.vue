@@ -12,7 +12,10 @@
           d="M14.8794 6.31899L37 6.31899V3.21959e-06L5.55006e-07 0L0 6.31899L8.53083 6.31899V14.6127H14.8794L14.8794 6.31899Z"
           fill="#E43F5A"
         />
-        <path d="M14.8794 21.3266H8.53083V17.7722H14.8794V21.3266Z" fill="#E43F5A" />
+        <path
+          d="M14.8794 21.3266H8.53083V17.7722H14.8794V21.3266Z"
+          fill="#E43F5A"
+        />
         <path
           d="M14.8794 32.681H20.5335V39H3.17426L3.17426 32.681H8.53083V24.4861H14.8794V32.681Z"
           fill="#E43F5A"
@@ -47,7 +50,11 @@
       <button>Login to use Stats</button>
     </div>
     <div class="c-main-menu">
-      <nuxt-link to="explore" class="c-main-menu__explore">
+      <nuxt-link
+        @click="toggleShowAllTones(true)"
+        to="explore"
+        class="c-main-menu__explore"
+      >
         <img src="../assets/img/svg/explore-icon.svg" alt />
         <h1>Explore</h1>
       </nuxt-link>
@@ -57,7 +64,11 @@
         </div>
         <h1>Chords</h1>
       </nuxt-link>
-      <nuxt-link to="/" class="c-main-menu__learn">
+      <nuxt-link
+        @click="toggleShowAllTones(false)"
+        to="play"
+        class="c-main-menu__learn"
+      >
         <img src="../assets/img/svg/learn-icon.svg" alt />
         <h1>Learn</h1>
       </nuxt-link>
@@ -65,13 +76,18 @@
   </div>
 </template>
 
-
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 export default {
   data() {
     return {
       loggedIn: false
     };
+  },
+  methods: {
+    toggleShowAllTones(status) {
+      this.$store.commit('explore/toggleShowAllTones', status);
+    }
   }
 };
 </script>

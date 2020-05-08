@@ -8,6 +8,7 @@
         :number="n - 1"
         :tones="defaultTones[n - 1]"
         :key="n"
+        :buttons="showButtons"
       />
       <fret
         v-else-if="n === lastFret && n >= firstFret"
@@ -16,6 +17,7 @@
         :number="n - 1"
         :tones="defaultTones[n - 1]"
         :key="n"
+        :buttons="showButtons"
       />
       <fret
         v-else-if="n >= firstFret"
@@ -24,6 +26,7 @@
         :number="n - 1"
         :tones="defaultTones[n - 1]"
         :key="n"
+        :buttons="showButtons"
       />
     </template>
   </div>
@@ -37,7 +40,7 @@ export default {
   components: {
     Fret
   },
-  props: ['firstFret', 'lastFret'],
+  props: ['firstFret', 'lastFret', 'showButtons'],
   data() {
     return {
       isMobile: false,

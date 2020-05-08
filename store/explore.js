@@ -1,6 +1,6 @@
 export const state = () => ({
   filterMenu: false,
-  showAllTones: true
+  showAllTones: false
 });
 
 export const mutations = {
