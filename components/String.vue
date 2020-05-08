@@ -38,6 +38,12 @@ export default {
   methods: {
     returnTone() {
       this.$store.commit('tones/setActiveTone', this.tone);
+      if (this.tone.name === this.askedTone.name) {
+        console.log('YAAAAY');
+        this.$store.commit('manager/setScore', 10);
+      } else {
+        console.log('oh no!');
+      }
       if (this.sound) {
         //create a synth and connect it to the master output (your speakers)
         const synth = new Tone.Synth().toMaster();

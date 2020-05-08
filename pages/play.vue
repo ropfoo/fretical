@@ -26,6 +26,7 @@
       <div class="c-fretboard-view__active-tone">
         <h1>{{ askedTone.name }}</h1>
         <h1>{{ activeTone.name }}</h1>
+        <h1>{{ score }}</h1>
       </div>
 
       <fretboard
@@ -54,9 +55,14 @@ export default {
   computed: mapGetters({
     activeTone: 'tones/getActiveTone',
     askedTone: 'tones/getAskedTone',
-    tones: 'tones/getDefaultTones'
+    tones: 'tones/getDefaultTones',
+    score: 'manager/getScore'
   }),
-
+  watch: {
+    score: function() {
+      this.determineAskedTone();
+    }
+  },
   methods: {
     startGame() {
       this.enablePlayMode();

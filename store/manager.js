@@ -1,7 +1,8 @@
 export const state = () => ({
   playMode: false,
   filterMenu: false,
-  showAllTones: false
+  showAllTones: false,
+  score: 0
 });
 
 export const mutations = {
@@ -13,6 +14,9 @@ export const mutations = {
   },
   setPlayMode(state, status) {
     state.playMode = status;
+  },
+  setScore(state, points) {
+    state.score += points;
   }
 };
 
@@ -25,5 +29,8 @@ export const getters = {
   },
   getPlayMode(state) {
     return state.playMode;
+  },
+  getScore(state) {
+    return state.score;
   }
 };
