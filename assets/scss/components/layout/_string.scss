@@ -97,12 +97,12 @@
 
     &--success {
       @include indicator;
-      background-color: lightgreen;
+      background-color: $color-success;
     }
 
     &--fail {
       @include indicator;
-      background-color: $color-light-secondary;
+      background-color: $color-fail;
     }
   }
 }

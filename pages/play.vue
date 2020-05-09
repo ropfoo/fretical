@@ -28,15 +28,16 @@
           />
         </svg>
       </nuxt-link>
-      <div class="c-fretboard-view__active-tone">
+      <div
+        class="c-fretboard-view__active-tone"
+        :class="[
+          askedTone.name === activeTone.name
+            ? 'c-fretboard-view__active-tone--success'
+            : 'c-fretboard-view__active-tone--fail'
+        ]"
+      >
         <h1>{{ askedTone.name }}</h1>
-        <h1
-          :style="[
-            askedTone.name === activeTone.name
-              ? { color: 'green' }
-              : { color: 'red' }
-          ]"
-        >
+        <h1>
           {{ activeTone.name }}
         </h1>
         <h1>{{ score }}</h1>
@@ -121,6 +122,7 @@ export default {
     newRound() {
       if (this.round < this.rounds) {
         if (!this.paused) {
+          this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
           this.determineAskedTone();
           this.round++;
           console.log(this.round);
