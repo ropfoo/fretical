@@ -1,10 +1,15 @@
 <template>
   <div>
+    <div v-if="gameOver" class="game-settings">
+      <h1>Game Over</h1>
+      <h1>Score: {{ score }}</h1>
+      <button @click="startGame">Let's go!</button>
+    </div>
     <div v-if="settings" class="game-settings">
       <h1>Learn Mode</h1>
       <button @click="startGame">Let's go!</button>
     </div>
-    <div v-else class="c-fretboard-view">
+    <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
       <nuxt-link
         @click.native="disablePlayMode"
         class="c-fretboard-view__back-button"
@@ -25,7 +30,15 @@
       </nuxt-link>
       <div class="c-fretboard-view__active-tone">
         <h1>{{ askedTone.name }}</h1>
-        <h1>{{ activeTone.name }}</h1>
+        <h1
+          :style="[
+            askedTone.name === activeTone.name
+              ? { color: 'green' }
+              : { color: 'red' }
+          ]"
+        >
+          {{ activeTone.name }}
+        </h1>
         <h1>{{ score }}</h1>
       </div>
 
@@ -44,9 +57,10 @@ import { mapGetters, mapMutations } from 'vuex';
 export default {
   data() {
     return {
+      gameOver: false,
       settings: true,
       firstFret: 1,
-      lastFret: 2,
+      lastFret: 6,
       round: 0,
       rounds: 7,
       firsTone: true,
@@ -68,10 +82,16 @@ export default {
       if (this.paused) {
         clearInterval(this.interval);
         setTimeout(() => {
-          this.$store.commit('manager/setPaused', false);
-          this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
-          this.determineAskedTone();
-          this.startGameLoop();
+          if (this.round < this.rounds) {
+            this.$store.commit('manager/setPaused', false);
+            this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
+            this.determineAskedTone();
+            this.round++;
+            console.log(this.round);
+            this.startGameLoop();
+          } else {
+            this.isGameOver();
+          }
         }, 2000);
       }
     }
@@ -104,15 +124,18 @@ export default {
           this.determineAskedTone();
           this.round++;
           console.log(this.round);
-        } else {
-          // console.log('else') clearInterval(this.interval);
         }
       } else {
-        this.settings = true;
+        this.isGameOver();
       }
     },
     startGameLoop() {
       this.interval = setInterval(this.newRound, 10000);
+    },
+    isGameOver() {
+      this.gameOver = true;
+      clearInterval(this.interval);
+      this.round = 0;
     }
   }
 };
