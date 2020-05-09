@@ -39,15 +39,12 @@ export default {
     returnTone() {
       this.$store.commit('tones/setActiveTone', this.tone);
       if (this.tone.name === this.askedTone.name) {
-        console.log('YAAAAY');
         this.$store.commit('manager/setPaused', true);
         this.$store.commit('manager/setScore', 10);
-        setTimeout(() => {
-          this.$store.commit('manager/setPaused', false);
-          this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
-        }, 2000);
-      } else {
-        console.log('oh no!');
+        // setTimeout(() => {
+        //   this.$store.commit('manager/setPaused', false);
+        // this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
+        // }, 2000);
       }
       if (this.sound) {
         //create a synth and connect it to the master output (your speakers)

@@ -46,9 +46,11 @@ export default {
     return {
       settings: true,
       firstFret: 1,
-      lastFret: 3,
+      lastFret: 2,
       round: 0,
-      firsTone: true
+      rounds: 7,
+      firsTone: true,
+      interval: ''
     };
   },
   components: {
@@ -63,8 +65,12 @@ export default {
   }),
   watch: {
     paused: function() {
-      if (this.paused === true) {
+      if (this.paused) {
+        clearInterval(this.interval);
         setTimeout(() => {
+          this.$store.commit('manager/setPaused', false);
+          this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
+          this.determineAskedTone();
           this.startGameLoop();
         }, 2000);
       }
@@ -73,6 +79,7 @@ export default {
   methods: {
     startGame() {
       this.enablePlayMode();
+      this.determineAskedTone();
       this.startGameLoop();
     },
     enablePlayMode() {
@@ -82,27 +89,30 @@ export default {
       this.$store.commit('manager/setPlayMode', false);
     },
     determineAskedTone() {
-      this.$store.commit('tones/determineAskedTone', [
-        this.firstFret,
-        this.lastFret
-      ]);
-      this.settings = false;
-    },
-    startGameLoop() {
       if (!this.paused) {
-        this.determineAskedTone();
-
-        if (this.round < 5) {
-          setTimeout(() => {
-            this.determineAskedTone();
-            this.round++;
-            this.startGameLoop();
-          }, 15000);
+        this.$store.commit('tones/determineAskedTone', [
+          this.firstFret,
+          this.lastFret
+        ]);
+        this.settings = false;
+        console.log('new tone');
+      }
+    },
+    newRound() {
+      if (this.round < this.rounds) {
+        if (!this.paused) {
+          this.determineAskedTone();
+          this.round++;
           console.log(this.round);
         } else {
-          this.settings = true;
+          // console.log('else') clearInterval(this.interval);
         }
+      } else {
+        this.settings = true;
       }
+    },
+    startGameLoop() {
+      this.interval = setInterval(this.newRound, 10000);
     }
   }
 };
