@@ -2,6 +2,7 @@ export const state = () => ({
   playMode: false,
   filterMenu: false,
   showAllTones: false,
+  paused: false,
   score: 0
 });
 
@@ -17,6 +18,9 @@ export const mutations = {
   },
   setScore(state, points) {
     state.score += points;
+  },
+  setPaused(state, status) {
+    state.paused = status;
   }
 };
 
@@ -32,5 +36,8 @@ export const getters = {
   },
   getScore(state) {
     return state.score;
+  },
+  getPaused(state) {
+    return state.paused;
   }
 };

@@ -46,7 +46,9 @@ export default {
     return {
       settings: true,
       firstFret: 1,
-      lastFret: 6
+      lastFret: 3,
+      round: 0,
+      firsTone: true
     };
   },
   components: {
@@ -56,17 +58,22 @@ export default {
     activeTone: 'tones/getActiveTone',
     askedTone: 'tones/getAskedTone',
     tones: 'tones/getDefaultTones',
-    score: 'manager/getScore'
+    score: 'manager/getScore',
+    paused: 'manager/getPaused'
   }),
   watch: {
-    score: function() {
-      this.determineAskedTone();
+    paused: function() {
+      if (this.paused === true) {
+        setTimeout(() => {
+          this.startGameLoop();
+        }, 2000);
+      }
     }
   },
   methods: {
     startGame() {
       this.enablePlayMode();
-      this.determineAskedTone();
+      this.startGameLoop();
     },
     enablePlayMode() {
       this.$store.commit('manager/setPlayMode', true);
@@ -80,6 +87,22 @@ export default {
         this.lastFret
       ]);
       this.settings = false;
+    },
+    startGameLoop() {
+      if (!this.paused) {
+        this.determineAskedTone();
+
+        if (this.round < 5) {
+          setTimeout(() => {
+            this.determineAskedTone();
+            this.round++;
+            this.startGameLoop();
+          }, 15000);
+          console.log(this.round);
+        } else {
+          this.settings = true;
+        }
+      }
     }
   }
 };
