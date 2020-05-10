@@ -75,6 +75,15 @@
     }
   }
 
+  &__time-bar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1rem;
+    background-color: orange;
+    transition: 0.3s;
+  }
+
   &__back-button {
     @include button-type;
     align-items: flex-end;

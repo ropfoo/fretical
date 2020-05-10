@@ -42,6 +42,10 @@
         </h1>
         <h1>{{ score }}</h1>
       </div>
+      <div
+        class="c-fretboard-view__time-bar"
+        :style="{ height: timeBar + 'rem' }"
+      ></div>
 
       <fretboard
         :firstFret="firstFret"
@@ -65,7 +69,10 @@ export default {
       round: 0,
       rounds: 7,
       firsTone: true,
-      interval: ''
+      interval: '',
+      questionTime: 10000,
+      timeBar: 10,
+      timeBarInterval: ''
     };
   },
   components: {
@@ -82,6 +89,7 @@ export default {
     paused: function() {
       if (this.paused) {
         clearInterval(this.interval);
+        clearInterval(this.timeBarInterval);
         setTimeout(() => {
           if (this.round < this.rounds) {
             this.$store.commit('manager/setPaused', false);
@@ -100,6 +108,8 @@ export default {
   methods: {
     startGame() {
       this.enablePlayMode();
+      this.reduceTimeBar();
+
       this.determineAskedTone();
       this.startGameLoop();
     },
@@ -115,6 +125,7 @@ export default {
           this.firstFret,
           this.lastFret
         ]);
+        this.timeBar = 10;
         this.settings = false;
         console.log('new tone');
       }
@@ -131,12 +142,20 @@ export default {
         this.isGameOver();
       }
     },
+    reduceTimeBar() {
+      if (this.timeBar > 0) {
+        this.timeBar -= 0.5;
+        console.log('reduce');
+      }
+    },
     startGameLoop() {
-      this.interval = setInterval(this.newRound, 10000);
+      this.timeBarInterval = setInterval(this.reduceTimeBar, 500);
+      this.interval = setInterval(this.newRound, this.questionTime);
     },
     isGameOver() {
       this.gameOver = true;
       clearInterval(this.interval);
+      clearInterval(this.timeBarInterval);
       this.round = 0;
     }
   }
