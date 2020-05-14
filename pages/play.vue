@@ -10,11 +10,7 @@
       <button @click="startGame">Let's go!</button>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
-      <nuxt-link
-        @click.native="disablePlayMode"
-        class="c-fretboard-view__back-button"
-        to="/"
-      >
+      <nuxt-link @click.native="disablePlayMode" class="c-fretboard-view__back-button" to="/">
         <svg
           width="21"
           height="16"
@@ -37,21 +33,13 @@
         ]"
       >
         <h1>{{ askedTone.name }}</h1>
-        <h1>
-          {{ activeTone.name }}
-        </h1>
+        <h1>{{ activeTone.name }}</h1>
         <h1>{{ score }}</h1>
       </div>
-      <div
-        class="c-fretboard-view__time-bar"
-        :style="{ height: timeBar + 'rem' }"
-      ></div>
-
-      <fretboard
-        :firstFret="firstFret"
-        :lastFret="lastFret"
-        :showButtons="false"
-      />
+      <div class="c-time-bar__container">
+        <div class="c-time-bar__progress" :style="{ height: timeBar + '%'}"></div>
+      </div>
+      <fretboard :firstFret="firstFret" :lastFret="lastFret" :showButtons="false" />
     </div>
   </div>
 </template>
@@ -71,7 +59,7 @@ export default {
       firsTone: true,
       interval: '',
       questionTime: 10000,
-      timeBar: 10,
+      timeBar: 0,
       timeBarInterval: ''
     };
   },
@@ -108,8 +96,6 @@ export default {
   methods: {
     startGame() {
       this.enablePlayMode();
-      this.reduceTimeBar();
-
       this.determineAskedTone();
       this.startGameLoop();
     },
@@ -125,7 +111,8 @@ export default {
           this.firstFret,
           this.lastFret
         ]);
-        this.timeBar = 10;
+        this.timeBarReady = !this.timeBarReady;
+        this.timeBar = 0;
         this.settings = false;
         console.log('new tone');
       }
@@ -143,13 +130,12 @@ export default {
       }
     },
     reduceTimeBar() {
-      if (this.timeBar > 0) {
-        this.timeBar -= 0.5;
-        console.log('reduce');
+      if (this.timeBar < 100) {
+        this.timeBar += 0.12;
       }
     },
     startGameLoop() {
-      this.timeBarInterval = setInterval(this.reduceTimeBar, 500);
+      this.timeBarInterval = setInterval(this.reduceTimeBar, 10);
       this.interval = setInterval(this.newRound, this.questionTime);
     },
     isGameOver() {

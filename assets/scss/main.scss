@@ -11,6 +11,7 @@ Settings : Variables and other settings
  ==================================================================================== */
 
 @import './tools/_mixins.scss';
+@import './tools/_animations.scss';
 
 /* ====================================================================================
 // Components : Individual components - layout
@@ -23,3 +24,4 @@ Settings : Variables and other settings
 @import './components/layout/_fret.scss';
 @import './components/layout/_string.scss';
 @import './components/modules/_filter-menu.scss';
+@import './components/modules/_time-bar.scss';

@@ -1,0 +1,23 @@
+.c-time-bar {
+  &__container {
+    border-radius: 1rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 3rem;
+    width: 1.5rem;
+    height: 10rem;
+    background-color: orange;
+    transform-origin: bottom center;
+    z-index: 5;
+  }
+
+  &__progress {
+    //border-radius: 0;
+    position: relative;
+    width: 100%;
+    background-color: black;
+    transform-origin: top center;
+    animation-direction: normal;
+    z-index: 10;
+  }
+}
