@@ -1,0 +1,20 @@
+.c-game-ui {
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  background-color: $color-game-ui;
+  padding: 0rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: hidden;
+
+  &__score {
+    font-size: 0.7rem;
+    padding-top: 1rem;
+    color: $color-yellow;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}

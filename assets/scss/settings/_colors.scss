@@ -1,6 +1,7 @@
 $color-white: #f1f1f1;
 $color-green: #7eeb58;
 $color-red: #e43f5a;
+$color-yellow: #ebd358;
 
 $color-light-main: #589aeb;
 $color-light-secondary: $color-red;
@@ -18,5 +19,9 @@ $color-fret-secondary: $color-dark-secondary;
 $color-fret-circle: $color-dark-secondary;
 
 // - Game -
+$color-game-ui: $color-dark-secondary;
 $color-success: $color-green;
 $color-fail: $color-red;
+$color-score: $color-yellow;
+$color-timebar: $color-yellow;
+$color-timebar-background: $color-dark-main;

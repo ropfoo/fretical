@@ -34,11 +34,16 @@
       >
         <h1>{{ askedTone.name }}</h1>
         <h1>{{ activeTone.name }}</h1>
-        <h1>{{ score }}</h1>
       </div>
-      <div class="c-time-bar__container">
-        <div class="c-time-bar__progress" :style="{ height: timeBar + '%'}"></div>
+      <div class="c-game-ui">
+        <div class="c-game-ui__score">
+          <h1>{{ score }}</h1>
+        </div>
+        <div class="c-time-bar__container">
+          <div class="c-time-bar__progress" :style="{ transform: 'scaleY('+timeBar+')'}"></div>
+        </div>
       </div>
+
       <fretboard :firstFret="firstFret" :lastFret="lastFret" :showButtons="false" />
     </div>
   </div>
@@ -55,7 +60,7 @@ export default {
       firstFret: 1,
       lastFret: 6,
       round: 0,
-      rounds: 7,
+      rounds: 3,
       firsTone: true,
       interval: '',
       questionTime: 10000,
@@ -95,6 +100,7 @@ export default {
   },
   methods: {
     startGame() {
+      this.gameOver = false;
       this.enablePlayMode();
       this.determineAskedTone();
       this.startGameLoop();
@@ -130,19 +136,26 @@ export default {
       }
     },
     reduceTimeBar() {
-      if (this.timeBar < 100) {
-        this.timeBar += 0.12;
+      if (this.timeBar < 1) {
+        this.timeBar += 0.00115;
       }
     },
     startGameLoop() {
       this.timeBarInterval = setInterval(this.reduceTimeBar, 10);
       this.interval = setInterval(this.newRound, this.questionTime);
     },
-    isGameOver() {
-      this.gameOver = true;
+    resetAll() {
       clearInterval(this.interval);
       clearInterval(this.timeBarInterval);
+      this.timeBarInterval = '';
+      this.interval = '';
       this.round = 0;
+      this.round = 0;
+    },
+    isGameOver() {
+      this.gameOver = true;
+      this.resetAll();
+      this.disablePlayMode();
     }
   }
 };
