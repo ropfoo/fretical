@@ -1,12 +1,33 @@
 <template>
   <div>
-    <div v-if="gameOver" class="game-settings">
+    <div v-if="gameOver" class="c-game-ui__settings">
       <h1>Game Over</h1>
       <h1>Score: {{ score }}</h1>
       <button @click="startGame">Let's go!</button>
     </div>
-    <div v-if="settings" class="game-settings">
+    <div v-if="settings" class="c-game-ui__settings">
       <h1>Learn Mode</h1>
+      <div class="c-game-ui__settings__config">
+        <div class="c-game-ui__settings__config__section">
+          <p>Frets</p>
+          <div>
+            <select name="firstFretSelector" v-model="firstFretInput">
+              <option :key="0" :value="0">0</option>
+              <template v-for="n in 12">
+                <option :key="n" :value="n + 1">{{n}}</option>
+              </template>
+            </select>
+          </div>
+          <div>
+            <select name="lastFretSelector" v-model="lastFretInput">
+              <template v-for="n  in 11">
+                <option :key="n" :value="n + 1">{{n}}</option>
+              </template>
+              <option :key="13" :value="12">12</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <button @click="startGame">Let's go!</button>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
@@ -35,8 +56,8 @@
         <h1>{{ askedTone.name }}</h1>
         <h1>{{ activeTone.name }}</h1>
       </div>
-      <div class="c-game-ui">
-        <div class="c-game-ui__score">
+      <div class="c-game-ui__score-ui">
+        <div class="c-game-ui__score-ui__score">
           <h1>{{ score }}</h1>
         </div>
         <div class="c-time-bar__container">
@@ -44,7 +65,7 @@
         </div>
       </div>
 
-      <fretboard :firstFret="firstFret" :lastFret="lastFret" :showButtons="false" />
+      <fretboard :firstFret="firstFretInput" :lastFret="lastFretInput" :showButtons="false" />
     </div>
   </div>
 </template>
@@ -57,8 +78,8 @@ export default {
     return {
       gameOver: false,
       settings: true,
-      firstFret: 1,
-      lastFret: 6,
+      firstFretInput: 0,
+      lastFretInput: 12,
       round: 0,
       rounds: 3,
       firsTone: true,
@@ -150,12 +171,19 @@ export default {
       this.timeBarInterval = '';
       this.interval = '';
       this.round = 0;
-      this.round = 0;
     },
     isGameOver() {
       this.gameOver = true;
       this.resetAll();
       this.disablePlayMode();
+    },
+    detFirstFret() {
+      this.firsFret = this.firstFretInput;
+      console.log(this.firstFret);
+      console.log(this.firstFretInput);
+    },
+    detLastFret() {
+      this.lastFret = this.lastFretInput;
     }
   }
 };
