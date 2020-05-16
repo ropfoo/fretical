@@ -37,9 +37,23 @@
         <div class="c-game-ui__settings__config__section">
           <p>Rounds</p>
           <div class="c-game-ui__settings__config__section__selection">
-            <button @click="rounds > 1 ? rounds-- : (rounds = 1)">-</button>
+            <button
+              :style="[
+                rounds > 1 ? { opacity: 1 } : { opacity: 0, cursor: 'auto' }
+              ]"
+              @click="rounds > 1 ? rounds-- : (rounds = 1)"
+            >
+              -
+            </button>
             <div>{{ rounds }}</div>
-            <button @click="rounds < 15 ? rounds++ : (rounds = 15)">+</button>
+            <button
+              :style="[
+                rounds < 15 ? { opacity: 1 } : { opacity: 0, cursor: 'auto' }
+              ]"
+              @click="rounds < 15 ? rounds++ : (rounds = 15)"
+            >
+              +
+            </button>
           </div>
         </div>
         <div class="c-game-ui__settings__config__section">
