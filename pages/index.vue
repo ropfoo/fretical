@@ -84,6 +84,7 @@ export default {
       loggedIn: false
     };
   },
+
   methods: {
     toggleShowAllTones(status) {
       this.$store.commit('manager/toggleShowAllTones', status);

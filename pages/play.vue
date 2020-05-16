@@ -29,24 +29,28 @@
         <div class="c-game-ui__settings__config__section">
           <p>Rounds</p>
           <div class="c-game-ui__settings__config__section__selection">
-            <button @click="rounds > 1 ? rounds-- : rounds = 1">-</button>
-            <div>{{rounds}}</div>
-            <button @click="rounds < 15 ? rounds++ : rounds = 15">+</button>
+            <button @click="rounds > 1 ? rounds-- : (rounds = 1)">-</button>
+            <div>{{ rounds }}</div>
+            <button @click="rounds < 15 ? rounds++ : (rounds = 15)">+</button>
           </div>
         </div>
         <div class="c-game-ui__settings__config__section">
           <p>Difficulty</p>
           <div class="c-game-ui__settings__config__section__selection">
-            <button @click="rounds > 1 ? rounds-- : rounds = 1">-</button>
-            <div>{{difficulty}}</div>
-            <button @click="rounds < 15 ? rounds++ : rounds = 15">+</button>
+            <button @click="rounds > 1 ? rounds-- : (rounds = 1)">-</button>
+            <div>{{ difficulty }}</div>
+            <button @click="rounds < 15 ? rounds++ : (rounds = 15)">+</button>
           </div>
         </div>
       </div>
       <button @click="startGame">Let's go!</button>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
-      <nuxt-link @click.native="disablePlayMode" class="c-fretboard-view__back-button" to="/">
+      <nuxt-link
+        @click.native="disablePlayMode"
+        class="c-fretboard-view__back-button"
+        to="/"
+      >
         <svg
           width="21"
           height="16"
@@ -76,11 +80,18 @@
           <h1>{{ score }}</h1>
         </div>
         <div class="c-time-bar__container">
-          <div class="c-time-bar__progress" :style="{ transform: 'scaleY(' + timeBar + ')' }"></div>
+          <div
+            class="c-time-bar__progress"
+            :style="{ transform: 'scaleY(' + timeBar + ')' }"
+          ></div>
         </div>
       </div>
 
-      <fretboard :firstFret="firstFretInput" :lastFret="lastFretInput" :showButtons="false" />
+      <fretboard
+        :firstFret="firstFretInput"
+        :lastFret="lastFretInput"
+        :showButtons="false"
+      />
     </div>
   </div>
 </template>
@@ -115,6 +126,9 @@ export default {
     score: 'manager/getScore',
     paused: 'manager/getPaused'
   }),
+  beforeDestroy: function() {
+    this.isGameOver();
+  },
   watch: {
     paused: function() {
       if (this.paused) {
@@ -132,6 +146,7 @@ export default {
       }
     }
   },
+
   methods: {
     startGame() {
       this.gameOver = false;
