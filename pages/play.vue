@@ -3,7 +3,7 @@
     <div v-if="gameOver" class="c-game-ui__settings">
       <h1>Game Over</h1>
       <h1>Score: {{ score }}</h1>
-      <button @click="startGame">Let's go!</button>
+      <button @click="startGame">Again!</button>
     </div>
     <div v-if="settings" class="c-game-ui__settings">
       <h1>Learn Mode</h1>
@@ -14,17 +14,24 @@
             <select name="firstFretSelector" v-model="firstFretInput">
               <option :key="0" :value="0">0</option>
               <template v-for="n in 12">
-                <option :key="n" :value="n + 1">{{n}}</option>
+                <option :key="n" :value="n + 1">{{ n }}</option>
               </template>
             </select>
           </div>
           <div>
             <select name="lastFretSelector" v-model="lastFretInput">
-              <template v-for="n  in 11">
-                <option :key="n" :value="n + 1">{{n}}</option>
+              <template v-for="n in 11">
+                <option :key="n" :value="n + 1">{{ n }}</option>
               </template>
               <option :key="13" :value="12">12</option>
             </select>
+          </div>
+        </div>
+        <div class="c-game-ui__settings__config__section">
+          <p>Rounds</p>
+          <div>
+            <button>-</button>3
+            <button>+</button>
           </div>
         </div>
       </div>
@@ -61,7 +68,7 @@
           <h1>{{ score }}</h1>
         </div>
         <div class="c-time-bar__container">
-          <div class="c-time-bar__progress" :style="{ transform: 'scaleY('+timeBar+')'}"></div>
+          <div class="c-time-bar__progress" :style="{ transform: 'scaleY(' + timeBar + ')' }"></div>
         </div>
       </div>
 
@@ -81,7 +88,7 @@ export default {
       firstFretInput: 0,
       lastFretInput: 12,
       round: 0,
-      rounds: 3,
+      rounds: 1,
       firsTone: true,
       interval: '',
       questionTime: 10000,
@@ -107,10 +114,7 @@ export default {
         setTimeout(() => {
           if (this.round < this.rounds) {
             this.$store.commit('manager/setPaused', false);
-            this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
-            this.determineAskedTone();
-            this.round++;
-            console.log(this.round);
+            this.newRound();
             this.startGameLoop();
           } else {
             this.isGameOver();
@@ -122,6 +126,9 @@ export default {
   methods: {
     startGame() {
       this.gameOver = false;
+      this.settings = false;
+      this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
+      this.$store.commit('manager/setPaused', false);
       this.enablePlayMode();
       this.determineAskedTone();
       this.startGameLoop();
@@ -135,12 +142,11 @@ export default {
     determineAskedTone() {
       if (!this.paused) {
         this.$store.commit('tones/determineAskedTone', [
-          this.firstFret,
-          this.lastFret
+          this.firstFretInput,
+          this.lastFretInput
         ]);
         this.timeBarReady = !this.timeBarReady;
         this.timeBar = 0;
-        this.settings = false;
         console.log('new tone');
       }
     },
@@ -166,6 +172,7 @@ export default {
       this.interval = setInterval(this.newRound, this.questionTime);
     },
     resetAll() {
+      this.disablePlayMode();
       clearInterval(this.interval);
       clearInterval(this.timeBarInterval);
       this.timeBarInterval = '';
@@ -175,15 +182,6 @@ export default {
     isGameOver() {
       this.gameOver = true;
       this.resetAll();
-      this.disablePlayMode();
-    },
-    detFirstFret() {
-      this.firsFret = this.firstFretInput;
-      console.log(this.firstFret);
-      console.log(this.firstFretInput);
-    },
-    detLastFret() {
-      this.lastFret = this.lastFretInput;
     }
   }
 };
