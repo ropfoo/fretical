@@ -45,9 +45,35 @@
         <div class="c-game-ui__settings__config__section">
           <p>Difficulty</p>
           <div class="c-game-ui__settings__config__section__selection">
-            <button @click="rounds > 1 ? rounds-- : (rounds = 1)">-</button>
-            <div>{{ difficulty }}</div>
-            <button @click="rounds < 15 ? rounds++ : (rounds = 15)">+</button>
+            <button
+              :style="[
+                difficultySelector >= 1
+                  ? { opacity: 1 }
+                  : { opacity: 0, cursor: 'auto' }
+              ]"
+              @click="
+                difficultySelector >= 1
+                  ? difficultySelector--
+                  : (difficultySelector = 0)
+              "
+            >
+              -
+            </button>
+            <div>{{ difficulty[difficultySelector] }}</div>
+            <button
+              :style="[
+                difficultySelector <= 1
+                  ? { opacity: 1 }
+                  : { opacity: 0, cursor: 'auto' }
+              ]"
+              @click="
+                difficultySelector <= 1
+                  ? difficultySelector++
+                  : (difficultySelector = 2)
+              "
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
@@ -116,7 +142,8 @@ export default {
       lastFretInput: 12,
       round: 0,
       rounds: 5,
-      difficulty: 'normal',
+      difficulty: ['easy', 'normal', 'hard'],
+      difficultySelector: 1,
       firsTone: true,
       interval: '',
       questionTime: 10000,
