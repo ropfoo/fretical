@@ -1,6 +1,6 @@
 // Variables
-$fret-thickness: 0.4rem;
-$fret-wideness: 3.5rem;
+$fret-thickness: 0.3rem;
+$fret-wideness: 2.7rem;
 
 .c-fret {
   display: grid;
@@ -66,8 +66,8 @@ $fret-wideness: 3.5rem;
       @include media-small {
         margin-left: 16%;
         margin-bottom: 2%;
-        height: 1.5rem;
-        width: 1.5rem;
+        height: 1.1rem;
+        width: 1.1rem;
       }
     }
   }
