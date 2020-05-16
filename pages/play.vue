@@ -29,9 +29,10 @@
         </div>
         <div class="c-game-ui__settings__config__section">
           <p>Rounds</p>
-          <div>
-            <button>-</button>3
-            <button>+</button>
+          <div class="c-game-ui__settings__config__section__selection">
+            <button @click="rounds > 1 ? rounds-- : rounds = 1">-</button>
+            <div>{{rounds}}</div>
+            <button @click="rounds < 15 ? rounds++ : rounds = 15">+</button>
           </div>
         </div>
       </div>
@@ -88,7 +89,7 @@ export default {
       firstFretInput: 0,
       lastFretInput: 12,
       round: 0,
-      rounds: 1,
+      rounds: 5,
       firsTone: true,
       interval: '',
       questionTime: 10000,
