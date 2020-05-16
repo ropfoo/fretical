@@ -12,13 +12,21 @@
         <div class="c-game-ui__settings__config__section">
           <p>Frets</p>
           <div class="c-game-ui__settings__config__section__selection">
-            <select name="firstFretSelector" v-model="firstFretInput">
+            <select
+              name="firstFretSelector"
+              class="c-selector"
+              v-model="firstFretInput"
+            >
               <option :key="0" :value="0">0</option>
               <template v-for="n in 12">
                 <option :key="n" :value="n + 1">{{ n }}</option>
               </template>
             </select>
-            <select name="lastFretSelector" v-model="lastFretInput">
+            <select
+              name="lastFretSelector"
+              class="c-selector"
+              v-model="lastFretInput"
+            >
               <template v-for="n in 11">
                 <option :key="n" :value="n + 1">{{ n }}</option>
               </template>
