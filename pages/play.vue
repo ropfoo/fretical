@@ -4,21 +4,20 @@
       <h1>Game Over</h1>
       <h1>Score: {{ score }}</h1>
       <button @click="startGame">Again!</button>
+      <button @click="quitGame">Quit</button>
     </div>
     <div v-if="settings" class="c-game-ui__settings">
       <h1>Learn Mode</h1>
       <div class="c-game-ui__settings__config">
         <div class="c-game-ui__settings__config__section">
           <p>Frets</p>
-          <div>
+          <div class="c-game-ui__settings__config__section__selection">
             <select name="firstFretSelector" v-model="firstFretInput">
               <option :key="0" :value="0">0</option>
               <template v-for="n in 12">
                 <option :key="n" :value="n + 1">{{ n }}</option>
               </template>
             </select>
-          </div>
-          <div>
             <select name="lastFretSelector" v-model="lastFretInput">
               <template v-for="n in 11">
                 <option :key="n" :value="n + 1">{{ n }}</option>
@@ -32,6 +31,14 @@
           <div class="c-game-ui__settings__config__section__selection">
             <button @click="rounds > 1 ? rounds-- : rounds = 1">-</button>
             <div>{{rounds}}</div>
+            <button @click="rounds < 15 ? rounds++ : rounds = 15">+</button>
+          </div>
+        </div>
+        <div class="c-game-ui__settings__config__section">
+          <p>Difficulty</p>
+          <div class="c-game-ui__settings__config__section__selection">
+            <button @click="rounds > 1 ? rounds-- : rounds = 1">-</button>
+            <div>{{difficulty}}</div>
             <button @click="rounds < 15 ? rounds++ : rounds = 15">+</button>
           </div>
         </div>
@@ -90,6 +97,7 @@ export default {
       lastFretInput: 12,
       round: 0,
       rounds: 5,
+      difficulty: 'normal',
       firsTone: true,
       interval: '',
       questionTime: 10000,
@@ -183,6 +191,9 @@ export default {
     isGameOver() {
       this.gameOver = true;
       this.resetAll();
+    },
+    quitGame() {
+      this.$router.push('/');
     }
   }
 };
