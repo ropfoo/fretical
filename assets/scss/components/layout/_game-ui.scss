@@ -6,7 +6,7 @@
     button {
       background-color: $color-red;
       color: $color-dark-main;
-      margin-top: 3rem;
+      margin-top: 2rem;
       width: 100%;
     }
 
@@ -54,24 +54,5 @@
       text-align: center;
       margin-bottom: 2rem;
     }
-  }
-}
-
-.c-selector {
-  border-radius: 0.3rem;
-  padding: 0.3rem;
-  background-color: $color-dark-main;
-  color: $color-red;
-  border: none;
-  font-weight: bold;
-  font-size: 0.8rem;
-  width: auto;
-  text-align: center;
-
-  &:focus {
-  }
-
-  select {
-    background: none;
   }
 }

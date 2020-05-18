@@ -6,10 +6,15 @@
       <button @click="startGame">Again!</button>
       <button @click="quitGame">Quit</button>
     </div>
-    <template v-if="settings" class="c-game-ui__settings">
+    <div v-if="settings">
       <Settings />
-      <button @click="startGame">Let's go!</button>
-    </template>
+      <div
+        class="c-game-ui__settings"
+        :style="{ padding: '0 2rem', margin: 0 }"
+      >
+        <button @click="startGame">Let's go!</button>
+      </div>
+    </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
       <nuxt-link
         @click.native="disablePlayMode"
