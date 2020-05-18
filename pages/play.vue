@@ -6,93 +6,10 @@
       <button @click="startGame">Again!</button>
       <button @click="quitGame">Quit</button>
     </div>
-    <div v-if="settings" class="c-game-ui__settings">
-      <h1>Learn Mode</h1>
-      <div class="c-game-ui__settings__config">
-        <div class="c-game-ui__settings__config__section">
-          <p>Frets</p>
-          <div class="c-game-ui__settings__config__section__selection">
-            <select
-              name="firstFretSelector"
-              class="c-selector"
-              v-model="firstFretInput"
-            >
-              <option :key="0" :value="0">0</option>
-              <template v-for="n in 12">
-                <option :key="n" :value="n + 1">{{ n }}</option>
-              </template>
-            </select>
-            <select
-              name="lastFretSelector"
-              class="c-selector"
-              v-model="lastFretInput"
-            >
-              <template v-for="n in 11">
-                <option :key="n" :value="n + 1">{{ n }}</option>
-              </template>
-              <option :key="13" :value="12">12</option>
-            </select>
-          </div>
-        </div>
-        <div class="c-game-ui__settings__config__section">
-          <p>Rounds</p>
-          <div class="c-game-ui__settings__config__section__selection">
-            <button
-              :style="[
-                rounds > 1 ? { opacity: 1 } : { opacity: 0, cursor: 'auto' }
-              ]"
-              @click="rounds > 1 ? rounds-- : (rounds = 1)"
-            >
-              -
-            </button>
-            <div>{{ rounds }}</div>
-            <button
-              :style="[
-                rounds < 15 ? { opacity: 1 } : { opacity: 0, cursor: 'auto' }
-              ]"
-              @click="rounds < 15 ? rounds++ : (rounds = 15)"
-            >
-              +
-            </button>
-          </div>
-        </div>
-        <div class="c-game-ui__settings__config__section">
-          <p>Difficulty</p>
-          <div class="c-game-ui__settings__config__section__selection">
-            <button
-              :style="[
-                difficultySelector >= 1
-                  ? { opacity: 1 }
-                  : { opacity: 0, cursor: 'auto' }
-              ]"
-              @click="
-                difficultySelector >= 1
-                  ? difficultySelector--
-                  : (difficultySelector = 0)
-              "
-            >
-              -
-            </button>
-            <div>{{ difficulty[difficultySelector] }}</div>
-            <button
-              :style="[
-                difficultySelector <= 1
-                  ? { opacity: 1 }
-                  : { opacity: 0, cursor: 'auto' }
-              ]"
-              @click="
-                difficultySelector <= 1
-                  ? difficultySelector++
-                  : (difficultySelector = 2)
-              "
-            >
-              +
-            </button>
-          </div>
-        </div>
-      </div>
+    <template v-if="settings" class="c-game-ui__settings">
+      <Settings />
       <button @click="startGame">Let's go!</button>
-    </div>
+    </template>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
       <nuxt-link
         @click.native="disablePlayMode"
@@ -146,6 +63,7 @@
 
 <script>
 import Fretboard from '../components/Fretboard.vue';
+import Settings from '../components/Settings.vue';
 import { mapGetters, mapMutations } from 'vuex';
 export default {
   data() {
@@ -166,6 +84,7 @@ export default {
     };
   },
   components: {
+    Settings,
     Fretboard
   },
   computed: mapGetters({
@@ -195,7 +114,6 @@ export default {
       }
     }
   },
-
   methods: {
     startGame() {
       this.gameOver = false;
