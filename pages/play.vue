@@ -70,12 +70,7 @@ export default {
     return {
       gameOver: false,
       settings: true,
-      firstFretInput: 0,
-      lastFretInput: 12,
       round: 0,
-      rounds: 5,
-      difficulty: ['easy', 'normal', 'hard'],
-      difficultySelector: 1,
       firsTone: true,
       interval: '',
       questionTime: 10000,
@@ -88,6 +83,10 @@ export default {
     Fretboard
   },
   computed: mapGetters({
+    firstFretInput: 'settings/getFirstFretInput',
+    lastFretInput: 'settings/getLastFretInput',
+    rounds: 'settings/getRounds',
+    difficulty: 'settings/getDifficulty',
     activeTone: 'tones/getActiveTone',
     askedTone: 'tones/getAskedTone',
     tones: 'tones/getDefaultTones',
