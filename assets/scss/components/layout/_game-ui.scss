@@ -15,6 +15,20 @@
       margin-top: 3rem;
       padding: 2rem 1.5rem;
       background-color: $color-dark-secondary;
+
+      &__fret-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 65%;
+      }
+
+      &__fret-selection {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-content: space-between;
+      }
+
       &__section {
         font-weight: bold;
         display: flex;
@@ -55,4 +69,7 @@
       margin-bottom: 2rem;
     }
   }
+}
+
+.c-arrow-up {
 }

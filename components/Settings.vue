@@ -4,71 +4,77 @@
     <div class="c-game-ui__settings__config">
       <div class="c-game-ui__settings__config__section">
         <p>Frets</p>
-        <div class="c-game-ui__settings__config__section__selection">
-          <button
-            :style="toggleButton(firstFretInput, true, 1)"
-            @click="setSetting(firstFretInput, 'setFirstFretInput', 1, 11, -1)"
-          >
-            -
-          </button>
-          <div>{{ firstFretInput }}</div>
-          <button
-            :style="toggleButton(firstFretInput, false, 11)"
-            @click="setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1)"
-          >
-            +
-          </button>
-        </div>
-        <div class="c-game-ui__settings__config__section__selection">
-          <button
-            :style="toggleButton(lastFretInput, true, 1)"
-            @click="setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1)"
-          >
-            -
-          </button>
-          <div>{{ lastFretInput }}</div>
-          <button
-            :style="toggleButton(lastFretInput, false, 12)"
-            @click="setSetting(lastFretInput, 'setLastFretInput', 1, 12, 1)"
-          >
-            +
-          </button>
+        <div class="c-game-ui__settings__config__fret-wrapper">
+          <div class="c-game-ui__settings__config__fret-selection">
+            <div
+              class="c-arrow-up-btn"
+              :style="toggleButton(firstFretInput, false, 11)"
+              @click="setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1)"
+            >
+              <img src="../assets/img/svg/arrow-up.svg" alt />
+            </div>
+            <div>{{ firstFretInput }}</div>
+            <div
+              class="c-arrow-down-btn"
+              :style="toggleButton(firstFretInput, true, 0)"
+              @click="setSetting(firstFretInput, 'setFirstFretInput', 0, 11, -1)"
+            >
+              <img src="../assets/img/svg/arrow-down.svg" alt />
+            </div>
+          </div>
+          <div class="c-game-ui__settings__config__fret-selection">
+            <div
+              class="c-arrow-up-btn"
+              :style="toggleButton(lastFretInput, false, 12)"
+              @click="setSetting(lastFretInput, 'setLastFretInput', 1, 12, 1)"
+            >
+              <img src="../assets/img/svg/arrow-up.svg" alt />
+            </div>
+            <div>{{ lastFretInput }}</div>
+            <div
+              class="c-arrow-down-btn"
+              :style="toggleButton(lastFretInput, true, 1)"
+              @click="setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1)"
+            >
+              <img src="../assets/img/svg/arrow-down.svg" alt />
+            </div>
+          </div>
         </div>
       </div>
       <div class="c-game-ui__settings__config__section">
         <p>Rounds</p>
         <div class="c-game-ui__settings__config__section__selection">
-          <button
+          <div
             :style="toggleButton(rounds, true, 1)"
             @click="setSetting(rounds, 'setRounds', 1, 15, -1)"
           >
-            -
-          </button>
+            <img src="../assets/img/svg/arrow-left.svg" alt />
+          </div>
           <div>{{ rounds }}</div>
-          <button
+          <div
             :style="toggleButton(rounds, false, 15)"
             @click="setSetting(rounds, 'setRounds', 1, 15, 1)"
           >
-            +
-          </button>
+            <img src="../assets/img/svg/arrow-right.svg" alt />
+          </div>
         </div>
       </div>
       <div class="c-game-ui__settings__config__section">
         <p>Difficulty</p>
         <div class="c-game-ui__settings__config__section__selection">
-          <button
+          <div
             :style="toggleButton(selectedDifficulty, true, 0)"
             @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, -1)"
           >
-            -
-          </button>
+            <img src="../assets/img/svg/arrow-left.svg" alt />
+          </div>
           <div>{{ difficulty }}</div>
-          <button
+          <div
             :style="toggleButton(selectedDifficulty, false, 2)"
             @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, 1)"
           >
-            +
-          </button>
+            <img src="../assets/img/svg/arrow-right.svg" alt />
+          </div>
         </div>
       </div>
     </div>
