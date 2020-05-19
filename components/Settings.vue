@@ -11,15 +11,17 @@
               :style="toggleButton(firstFretInput, false, 11)"
               @click="setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1)"
             >
-              <img src="../assets/img/svg/arrow-up.svg" alt />
+              <Arrow :direction="'up'" />
             </div>
             <div>{{ firstFretInput }}</div>
             <div
               class="c-arrow-down-btn"
               :style="toggleButton(firstFretInput, true, 0)"
-              @click="setSetting(firstFretInput, 'setFirstFretInput', 0, 11, -1)"
+              @click="
+                setSetting(firstFretInput, 'setFirstFretInput', 0, 11, -1)
+              "
             >
-              <img src="../assets/img/svg/arrow-down.svg" alt />
+              <Arrow :direction="'down'" />
             </div>
           </div>
           <div class="c-game-ui__settings__config__fret-selection">
@@ -28,7 +30,7 @@
               :style="toggleButton(lastFretInput, false, 12)"
               @click="setSetting(lastFretInput, 'setLastFretInput', 1, 12, 1)"
             >
-              <img src="../assets/img/svg/arrow-up.svg" alt />
+              <Arrow :direction="'up'" />
             </div>
             <div>{{ lastFretInput }}</div>
             <div
@@ -36,7 +38,7 @@
               :style="toggleButton(lastFretInput, true, 1)"
               @click="setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1)"
             >
-              <img src="../assets/img/svg/arrow-down.svg" alt />
+              <Arrow :direction="'down'" />
             </div>
           </div>
         </div>
@@ -48,14 +50,14 @@
             :style="toggleButton(rounds, true, 1)"
             @click="setSetting(rounds, 'setRounds', 1, 15, -1)"
           >
-            <img src="../assets/img/svg/arrow-left.svg" alt />
+            <Arrow :direction="'left'" />
           </div>
           <div>{{ rounds }}</div>
           <div
             :style="toggleButton(rounds, false, 15)"
             @click="setSetting(rounds, 'setRounds', 1, 15, 1)"
           >
-            <img src="../assets/img/svg/arrow-right.svg" alt />
+            <Arrow :direction="'right'" />
           </div>
         </div>
       </div>
@@ -66,14 +68,14 @@
             :style="toggleButton(selectedDifficulty, true, 0)"
             @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, -1)"
           >
-            <img src="../assets/img/svg/arrow-left.svg" alt />
+            <Arrow :direction="'left'" />
           </div>
           <div>{{ difficulty }}</div>
           <div
             :style="toggleButton(selectedDifficulty, false, 2)"
             @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, 1)"
           >
-            <img src="../assets/img/svg/arrow-right.svg" alt />
+            <Arrow :direction="'right'" />
           </div>
         </div>
       </div>
@@ -83,7 +85,11 @@
 
 <script>
 import { mapGetters, mapSetter } from 'vuex';
+import Arrow from '../components/Arrow.vue';
 export default {
+  components: {
+    Arrow
+  },
   computed: mapGetters({
     firstFretInput: 'settings/getFirstFretInput',
     lastFretInput: 'settings/getLastFretInput',
