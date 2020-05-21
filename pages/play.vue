@@ -13,7 +13,11 @@
       </div>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
-      <nuxt-link @click.native="disablePlayMode" class="c-fretboard-view__back-button" to="/">
+      <nuxt-link
+        @click.native="disablePlayMode"
+        class="c-fretboard-view__back-button"
+        to="/"
+      >
         <svg
           width="21"
           height="16"
@@ -43,11 +47,18 @@
           <h1>{{ round }}</h1>
         </div>
         <div class="c-time-bar__container">
-          <div class="c-time-bar__progress" :style="{ transform: 'scaleY(' + timeBar + ')' }"></div>
+          <div
+            class="c-time-bar__progress"
+            :style="{ transform: 'scaleY(' + timeBar + ')' }"
+          ></div>
         </div>
       </div>
 
-      <fretboard :firstFret="firstFretInput" :lastFret="lastFretInput" :showButtons="false" />
+      <fretboard
+        :firstFret="firstFretInput + 1"
+        :lastFret="lastFretInput + 1"
+        :showButtons="false"
+      />
     </div>
   </div>
 </template>
