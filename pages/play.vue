@@ -127,6 +127,7 @@ export default {
   },
   methods: {
     startGame() {
+      this.$store.commit('manager/resetScore');
       this.gameOver = false;
       this.settings = false;
       this.$store.commit('tones/setActiveTone', { name: '-' });
@@ -183,6 +184,7 @@ export default {
       this.round = 0;
     },
     isGameOver() {
+      this.$store.commit('manager/setTotalScore', this.score);
       this.gameOver = true;
       this.resetAll();
     },

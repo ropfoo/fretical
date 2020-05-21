@@ -4,7 +4,8 @@ export const state = () => ({
   showAllTones: false,
   paused: true,
   toneTriggered: false,
-  score: 0
+  score: 0,
+  totalScore: 0
 });
 
 export const mutations = {
@@ -20,11 +21,17 @@ export const mutations = {
   setScore(state, points) {
     state.score += points;
   },
+  resetScore(state) {
+    state.score = 0;
+  },
   setPaused(state, status) {
     state.paused = status;
   },
   setToneTriggered(state, status) {
     state.toneTriggered = status;
+  },
+  setTotalScore(state, score) {
+    state.totalScore += score;
   }
 };
 
