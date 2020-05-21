@@ -1,82 +1,82 @@
 <template>
-  <div class="c-game-ui__settings">
+  <div class="c-game-settings">
     <h1>Settings</h1>
-    <div class="c-game-ui__settings__config">
-      <div class="c-game-ui__settings__config__section">
+    <div class="c-game-settings__config">
+      <div class="c-game-settings__config__section">
         <p>Frets</p>
-        <div class="c-game-ui__settings__config__fret-wrapper">
-          <div class="c-game-ui__settings__config__fret-selection">
-            <div
-              class="c-arrow-up-btn"
-              :style="toggleButton(firstFretInput, false, 11)"
-              @click="setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1)"
-            >
-              <Arrow :direction="'up'" />
-            </div>
-            <div>{{ firstFretInput }}</div>
-            <div
-              class="c-arrow-down-btn"
-              :style="toggleButton(firstFretInput, true, 0)"
-              @click="
+      </div>
+      <div class="c-game-settings__config__fret-wrapper">
+        <div class="c-game-settings__config__fret-selection">
+          <div
+            class="c-arrow-up-btn"
+            :style="toggleButton(firstFretInput, false, 11)"
+            @click="setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1)"
+          >
+            <Arrow :direction="'up'" />
+          </div>
+          <p>{{ firstFretInput }}</p>
+          <div
+            class="c-arrow-down-btn"
+            :style="toggleButton(firstFretInput, true, 0)"
+            @click="
                 setSetting(firstFretInput, 'setFirstFretInput', 0, 11, -1)
               "
-            >
-              <Arrow :direction="'down'" />
-            </div>
+          >
+            <Arrow :direction="'down'" />
           </div>
-          <div class="c-game-ui__settings__config__fret-selection">
-            <div
-              class="c-arrow-up-btn"
-              :style="toggleButton(lastFretInput, false, 12)"
-              @click="setSetting(lastFretInput, 'setLastFretInput', 1, 12, 1)"
-            >
-              <Arrow :direction="'up'" />
-            </div>
-            <div>{{ lastFretInput }}</div>
-            <div
-              class="c-arrow-down-btn"
-              :style="toggleButton(lastFretInput, true, 1)"
-              @click="setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1)"
-            >
-              <Arrow :direction="'down'" />
-            </div>
+        </div>
+        <div class="c-game-settings__config__fret-selection">
+          <div
+            class="c-arrow-up-btn"
+            :style="toggleButton(lastFretInput, false, 12)"
+            @click="setSetting(lastFretInput, 'setLastFretInput', 1, 12, 1)"
+          >
+            <Arrow :direction="'up'" />
+          </div>
+          <p>{{ lastFretInput }}</p>
+          <div
+            class="c-arrow-down-btn"
+            :style="toggleButton(lastFretInput, true, 1)"
+            @click="setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1)"
+          >
+            <Arrow :direction="'down'" />
           </div>
         </div>
       </div>
-      <div class="c-game-ui__settings__config__section">
+      <div class="c-game-settings__config__section">
         <p>Rounds</p>
-        <div class="c-game-ui__settings__config__section__selection">
-          <div
-            :style="toggleButton(rounds, true, 1)"
-            @click="setSetting(rounds, 'setRounds', 1, 15, -1)"
-          >
-            <Arrow :direction="'left'" />
-          </div>
-          <div>{{ rounds }}</div>
-          <div
-            :style="toggleButton(rounds, false, 15)"
-            @click="setSetting(rounds, 'setRounds', 1, 15, 1)"
-          >
-            <Arrow :direction="'right'" />
-          </div>
+      </div>
+      <div class="c-game-settings__config__section__selection">
+        <div
+          :style="toggleButton(rounds, true, 1)"
+          @click="setSetting(rounds, 'setRounds', 1, 15, -1)"
+        >
+          <Arrow :direction="'left'" />
+        </div>
+        <div>{{ rounds }}</div>
+        <div
+          :style="toggleButton(rounds, false, 15)"
+          @click="setSetting(rounds, 'setRounds', 1, 15, 1)"
+        >
+          <Arrow :direction="'right'" />
         </div>
       </div>
-      <div class="c-game-ui__settings__config__section">
+      <div class="c-game-settings__config__section">
         <p>Difficulty</p>
-        <div class="c-game-ui__settings__config__section__selection">
-          <div
-            :style="toggleButton(selectedDifficulty, true, 0)"
-            @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, -1)"
-          >
-            <Arrow :direction="'left'" />
-          </div>
-          <div>{{ difficulty }}</div>
-          <div
-            :style="toggleButton(selectedDifficulty, false, 2)"
-            @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, 1)"
-          >
-            <Arrow :direction="'right'" />
-          </div>
+      </div>
+      <div class="c-game-settings__config__section__selection">
+        <div
+          :style="toggleButton(selectedDifficulty, true, 0)"
+          @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, -1)"
+        >
+          <Arrow :direction="'left'" />
+        </div>
+        <div>{{ difficulty }}</div>
+        <div
+          :style="toggleButton(selectedDifficulty, false, 2)"
+          @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, 1)"
+        >
+          <Arrow :direction="'right'" />
         </div>
       </div>
     </div>

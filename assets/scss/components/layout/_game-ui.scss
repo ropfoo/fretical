@@ -1,54 +1,4 @@
 .c-game-ui {
-  &__settings {
-    padding: 5rem 2rem 2rem 2rem;
-    color: white;
-
-    button {
-      background-color: $color-red;
-      color: $color-dark-main;
-      margin-top: 2rem;
-      width: 100%;
-    }
-
-    &__config {
-      border-radius: 0.5rem;
-      margin-top: 3rem;
-      padding: 2rem 1.5rem;
-      background-color: $color-dark-secondary;
-
-      &__fret-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        width: 65%;
-      }
-
-      &__fret-selection {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        justify-content: space-between;
-      }
-
-      &__section {
-        font-weight: bold;
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: 1.5rem;
-        button {
-          padding: 0.1rem;
-          font-size: 1rem;
-          width: 1.5rem;
-          margin: 0;
-        }
-        &__selection {
-          display: flex;
-          justify-content: space-between;
-          width: 65%;
-        }
-      }
-    }
-  }
-
   &__score-ui {
     position: absolute;
     bottom: 1rem;
@@ -69,7 +19,4 @@
       margin-bottom: 2rem;
     }
   }
-}
-
-.c-arrow-up {
 }

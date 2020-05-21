@@ -8,7 +8,7 @@
     </div>
     <div v-if="settings">
       <Settings />
-      <div class="c-game-ui__settings" :style="{ padding: '0 2rem', margin: 0 }">
+      <div class="c-game-settings" :style="{ padding: '0 2rem', margin: 0 }">
         <button @click="startGame">Let's go!</button>
       </div>
     </div>

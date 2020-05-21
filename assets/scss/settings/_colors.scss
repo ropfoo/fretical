@@ -2,11 +2,13 @@ $color-white: #f1f1f1;
 $color-green: #7eeb58;
 $color-red: #e43f5a;
 $color-yellow: #ebd358;
+$color-light-blue: #589aeb;
+$color-dark-blue: #162447;
 
-$color-light-main: #589aeb;
+$color-light-main: $color-light-blue;
 $color-light-secondary: $color-red;
 $color-dark-main: #1b1b2f;
-$color-dark-secondary: #162447;
+$color-dark-secondary: $color-dark-blue;
 
 // - String -
 $color-string-highlight: lightgreen;
