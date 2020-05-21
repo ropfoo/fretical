@@ -20,9 +20,6 @@
 @import './components/layout/_home.scss';
 @import './components/layout/_main-menu.scss';
 @import './components/layout/_fretboard-view.scss';
-@import './components/layout/_fretboard.scss';
-@import './components/layout/_fret.scss';
-@import './components/layout/_string.scss';
 @import './components/layout/_game-ui.scss';
 @import './components/layout/_game-settings.scss';
 
@@ -30,5 +27,8 @@
 // Components : Modules
 // ====================================================================================
 
+@import './components/modules/_fret.scss';
+@import './components/modules/_string.scss';
+@import './components/modules/_fretboard.scss';
 @import './components/modules/_filter-menu.scss';
 @import './components/modules/_time-bar.scss';
