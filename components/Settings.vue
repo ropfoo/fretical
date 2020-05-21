@@ -10,7 +10,7 @@
           <div
             class="c-arrow-up-btn"
             :style="toggleButton(firstFretInput, false, 11)"
-            @click="setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1)"
+            @click="[lastFretInput -1 > firstFretInput ? setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1) :'']"
           >
             <Arrow :direction="'up'" />
           </div>
@@ -37,7 +37,7 @@
           <div
             class="c-arrow-down-btn"
             :style="toggleButton(lastFretInput, true, 1)"
-            @click="setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1)"
+            @click="[lastFretInput-1 > firstFretInput ? setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1) : '']"
           >
             <Arrow :direction="'down'" />
           </div>
@@ -98,6 +98,11 @@ export default {
     selectedDifficulty: 'settings/getSelectedDifficulty'
   }),
   methods: {
+    setFret(isFirst) {
+      if (isFirst) {
+        lastFretInput > firstFretInput ? true : false;
+      }
+    },
     setSetting(type, mutation, min, max, value) {
       if (Math.sign(value) === -1) {
         type > min ? this.$store.commit(`settings/${mutation}`, value) : '';

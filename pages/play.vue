@@ -40,7 +40,7 @@
       </div>
       <div class="c-game-ui__score-ui">
         <div class="c-game-ui__score-ui__score">
-          <h1>{{ score }}</h1>
+          <h1>{{ round }}</h1>
         </div>
         <div class="c-time-bar__container">
           <div class="c-time-bar__progress" :style="{ transform: 'scaleY(' + timeBar + ')' }"></div>
