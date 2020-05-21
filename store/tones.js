@@ -1,7 +1,7 @@
 export const state = () => ({
   sound: false,
   shownTones: [],
-  activeTone: { name: 'tap a string', string: 0 },
+  activeTone: { name: '-', string: 0 },
   askedTone: { name: 'test', string: 0 },
   tones: {
     defaultTones: [

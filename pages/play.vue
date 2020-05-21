@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="gameOver" class="c-game-ui__settings">
+    <div v-if="gameOver" class="c-game-settings">
       <h1>Game Over</h1>
       <h1>Score: {{ score }}</h1>
       <button @click="startGame">Again!</button>
@@ -31,26 +31,36 @@
           />
         </svg>
       </nuxt-link>
-      <div
-        class="c-fretboard-view__active-tone"
-        :class="[
-          askedTone.name === activeTone.name
-            ? 'c-fretboard-view__active-tone--success'
-            : 'c-fretboard-view__active-tone--fail'
-        ]"
-      >
-        <h1>{{ askedTone.name }}</h1>
-        <h1>{{ activeTone.name }}</h1>
-      </div>
-      <div class="c-game-ui__score-ui">
-        <div class="c-game-ui__score-ui__score">
-          <h1>{{ round }}</h1>
+
+      <div class="c-game-ui">
+        <div class="c-game-ui__tone">
+          <h1
+            class="c-game-ui__tone__active"
+            :class="[
+              activeTone.name === askedTone.name
+                ? 'c-game-ui__tone__active--success'
+                : 'c-game-ui__tone__active--fail'
+            ]"
+          >
+            {{ activeTone.name }}
+          </h1>
+          <h1 class="c-game-ui__tone__asked">{{ askedTone.name }}</h1>
         </div>
-        <div class="c-time-bar__container">
-          <div
-            class="c-time-bar__progress"
-            :style="{ transform: 'scaleY(' + timeBar + ')' }"
-          ></div>
+        <div class="c-game-ui__progress-ui">
+          <div class="c-time-bar__container">
+            <div
+              class="c-time-bar__progress"
+              :style="{ transform: 'scaleY(' + timeBar + ')' }"
+            ></div>
+          </div>
+          <div class="c-game-ui__progress-ui__progress">
+            <h1>{{ round }}</h1>
+            <hr />
+            <h3>{{ rounds }}</h3>
+          </div>
+        </div>
+        <div class="c-game-ui__score">
+          <h1>{{ score }}</h1>
         </div>
       </div>
 
@@ -119,7 +129,7 @@ export default {
     startGame() {
       this.gameOver = false;
       this.settings = false;
-      this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
+      this.$store.commit('tones/setActiveTone', { name: '-' });
       this.$store.commit('manager/setPaused', false);
       this.enablePlayMode();
       this.determineAskedTone();
@@ -146,7 +156,7 @@ export default {
       if (this.round < this.rounds - 1) {
         this.$store.commit('manager/setToneTriggered', false);
         if (!this.paused) {
-          this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
+          this.$store.commit('tones/setActiveTone', { name: '-' });
           this.determineAskedTone();
           this.round++;
           console.log(this.round);

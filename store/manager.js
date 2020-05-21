@@ -2,7 +2,7 @@ export const state = () => ({
   playMode: false,
   filterMenu: false,
   showAllTones: false,
-  paused: false,
+  paused: true,
   toneTriggered: false,
   score: 0
 });

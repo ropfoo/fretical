@@ -1,22 +1,54 @@
 .c-game-ui {
-  &__score-ui {
-    position: absolute;
-    bottom: 1rem;
-    right: 2rem;
-    background-color: $color-game-ui;
-    padding: 0rem 1rem;
-    border-radius: 2rem;
+  bottom: 1rem;
+  height: 75vh;
+  position: absolute;
+  right: 2rem;
+
+  &__tone {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    overflow-y: hidden;
-
-    &__score {
-      font-size: 0.7rem;
-      padding-top: 1rem;
-      color: $color-yellow;
-      text-align: center;
-      margin-bottom: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    &__active {
+      color: $color-white;
+      margin-bottom: 1rem;
+      &--success {
+        color: $color-success;
+      }
+      &--fail {
+        color: $color-fail;
+      }
     }
+    &__asked {
+      color: $color-light-blue;
+    }
+  }
+
+  &__progress-ui {
+    align-items: center;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    padding: 0rem 1rem;
+
+    &__progress {
+      color: $color-light-blue;
+      font-size: 0.7rem;
+      padding-left: 1rem;
+      text-align: center;
+    }
+  }
+
+  &__score {
+    align-items: center;
+    border-radius: 50%;
+    border: solid $color-light-blue 0.5rem;
+    color: $color-yellow;
+    display: flex;
+    height: 5rem;
+    justify-content: center;
+    margin-top: 3rem;
+    width: 5rem;
   }
 }
