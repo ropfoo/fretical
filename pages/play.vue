@@ -8,19 +8,12 @@
     </div>
     <div v-if="settings">
       <Settings />
-      <div
-        class="c-game-ui__settings"
-        :style="{ padding: '0 2rem', margin: 0 }"
-      >
+      <div class="c-game-ui__settings" :style="{ padding: '0 2rem', margin: 0 }">
         <button @click="startGame">Let's go!</button>
       </div>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
-      <nuxt-link
-        @click.native="disablePlayMode"
-        class="c-fretboard-view__back-button"
-        to="/"
-      >
+      <nuxt-link @click.native="disablePlayMode" class="c-fretboard-view__back-button" to="/">
         <svg
           width="21"
           height="16"
@@ -50,18 +43,11 @@
           <h1>{{ score }}</h1>
         </div>
         <div class="c-time-bar__container">
-          <div
-            class="c-time-bar__progress"
-            :style="{ transform: 'scaleY(' + timeBar + ')' }"
-          ></div>
+          <div class="c-time-bar__progress" :style="{ transform: 'scaleY(' + timeBar + ')' }"></div>
         </div>
       </div>
 
-      <fretboard
-        :firstFret="firstFretInput"
-        :lastFret="lastFretInput"
-        :showButtons="false"
-      />
+      <fretboard :firstFret="firstFretInput" :lastFret="lastFretInput" :showButtons="false" />
     </div>
   </div>
 </template>
@@ -147,6 +133,7 @@ export default {
     },
     newRound() {
       if (this.round < this.rounds) {
+        this.$store.commit('manager/setToneTriggered', false);
         if (!this.paused) {
           this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
           this.determineAskedTone();

@@ -16,9 +16,7 @@
             ]
           : 'c-string__indicator--hidden'
       ]"
-    >
-      {{ tone.name }}
-    </div>
+    >{{ tone.name }}</div>
   </div>
 </template>
 
@@ -33,14 +31,18 @@ export default {
     activeTone: 'tones/getActiveTone',
     shownTones: 'tones/getShownTones',
     askedTone: 'tones/getAskedTone',
-    playMode: 'manager/getPlayMode'
+    playMode: 'manager/getPlayMode',
+    toneTriggered: 'manager/getToneTriggered'
   }),
   methods: {
     returnTone() {
       this.$store.commit('tones/setActiveTone', this.tone);
       if (this.tone.name === this.askedTone.name) {
         this.$store.commit('manager/setPaused', true);
-        this.$store.commit('manager/setScore', 10);
+        if (!this.toneTriggered) {
+          this.$store.commit('manager/setScore', 10);
+          this.$store.commit('manager/setToneTriggered', true);
+        }
       }
       if (this.sound) {
         //create a synth and connect it to the master output (your speakers)

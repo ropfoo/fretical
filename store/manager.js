@@ -3,6 +3,7 @@ export const state = () => ({
   filterMenu: false,
   showAllTones: false,
   paused: false,
+  toneTriggered: false,
   score: 0
 });
 
@@ -21,6 +22,9 @@ export const mutations = {
   },
   setPaused(state, status) {
     state.paused = status;
+  },
+  setToneTriggered(state, status) {
+    state.toneTriggered = status;
   }
 };
 
@@ -39,5 +43,8 @@ export const getters = {
   },
   getPaused(state) {
     return state.paused;
+  },
+  getToneTriggered(state) {
+    return state.toneTriggered;
   }
 };
