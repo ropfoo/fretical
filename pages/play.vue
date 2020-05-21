@@ -104,7 +104,7 @@ export default {
         clearInterval(this.interval);
         clearInterval(this.timeBarInterval);
         setTimeout(() => {
-          if (this.round < this.rounds) {
+          if (this.round < this.rounds - 1) {
             this.$store.commit('manager/setPaused', false);
             this.newRound();
             this.startGameLoop();
@@ -143,7 +143,7 @@ export default {
       }
     },
     newRound() {
-      if (this.round < this.rounds) {
+      if (this.round < this.rounds - 1) {
         this.$store.commit('manager/setToneTriggered', false);
         if (!this.paused) {
           this.$store.commit('tones/setActiveTone', { name: 'tap a string' });
