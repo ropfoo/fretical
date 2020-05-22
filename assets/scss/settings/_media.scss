@@ -7,13 +7,13 @@ $breakpoint-xsmall: 400px;
 //Media Queries
 
 @mixin media-medium {
-  @media (max-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium) {
     @content;
   }
 }
 
 @mixin media-small {
-  @media (max-width: $breakpoint-small) {
+  @media (min-width: $breakpoint-small) {
     @content;
   }
 }

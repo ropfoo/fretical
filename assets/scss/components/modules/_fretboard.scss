@@ -1,16 +1,17 @@
 .c-fretboard {
+  grid-auto-flow: dense;
+  grid-template-columns: 1;
+  grid-template-rows: repeat(auto, 1fr);
+  margin: 0rem 0rem 0rem 1rem;
+
   display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: repeat(auto, 1fr);
-  grid-template-rows: 1;
   grid-row: 2;
-  margin: 0rem 3rem;
   max-height: 100vh;
 
-  @include media-small {
-    grid-auto-flow: dense;
-    grid-template-columns: 1;
-    grid-template-rows: repeat(auto, 1fr);
-    margin: 0rem 0rem 0rem 1rem;
+  @include media-medium {
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto, 1fr);
+    grid-template-rows: unset;
+    margin: 0rem 3rem;
   }
 }

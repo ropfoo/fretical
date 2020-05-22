@@ -1,7 +1,7 @@
 <template>
   <div @click="returnTone" class="c-string">
     <hr class="line" :class="'line--string-' + thickness" />
-    <hr class="line--shadow" />
+    <!-- <hr class="line--shadow" /> -->
     <div
       :class="[
         active
@@ -16,7 +16,9 @@
             ]
           : 'c-string__indicator--hidden'
       ]"
-    >{{ tone.name }}</div>
+    >
+      {{ tone.name }}
+    </div>
   </div>
 </template>
 
