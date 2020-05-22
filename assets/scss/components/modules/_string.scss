@@ -93,10 +93,6 @@
       opacity: 0;
       position: absolute;
       transition: opacity 0.15s;
-
-      @include media-medium {
-        padding: 0.08rem 0.08rem;
-      }
     }
 
     &--success {

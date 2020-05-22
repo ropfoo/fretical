@@ -13,7 +13,7 @@ $fret-wideness: 2.8rem;
 
   @include media-medium {
     grid-template-columns: unset;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     //grid-template-rows: unset;
     width: auto;
   }
@@ -71,7 +71,8 @@ $fret-wideness: 2.8rem;
     transform: translateX(39vw);
 
     @include media-medium {
-      transform: translateY(5.25rem);
+      transform: translateX(3.25vw);
+      height: 96%;
     }
 
     &--circle {
@@ -129,11 +130,13 @@ $fret-wideness: 2.8rem;
     border-radius: 0.5rem;
 
     @include media-medium {
+      grid-column-start: unset;
+
       flex-direction: column;
-      height: 90%;
+      height: 100%;
       width: 100%;
-      display: none;
       margin-top: 1rem;
+      order: 3;
     }
   }
 
@@ -150,8 +153,9 @@ $fret-wideness: 2.8rem;
     justify-content: center;
 
     @include media-medium {
+      grid-column-start: unset;
+      order: 3;
       flex-direction: column;
-      display: none;
     }
 
     &__number {
