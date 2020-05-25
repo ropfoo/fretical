@@ -32,7 +32,7 @@
   position: relative;
   z-index: 2;
 
-  @include media-medium {
+  @include media-small {
     flex-direction: column;
     padding: 1rem 0rem;
   }
@@ -55,7 +55,7 @@
     transition: 0.3s;
     z-index: 0;
 
-    @include media-medium {
+    @include media-small {
       border: none;
       @include generate-string-thicknesses(6, 1, 3px, bottom);
       margin: 0rem 0.3rem;

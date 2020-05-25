@@ -11,7 +11,7 @@ $fret-wideness: 2.8rem;
   width: 65vw;
   display: grid;
 
-  @include media-medium {
+  @include media-small {
     grid-template-columns: unset;
     grid-template-rows: repeat(6, 1fr);
     //grid-template-rows: unset;
@@ -27,11 +27,11 @@ $fret-wideness: 2.8rem;
     height: $fret-wideness;
     order: 2;
 
-    @include media-medium {
+    @include media-small {
       border: 0;
       display: initial;
       border-right: $fret-thickness solid black;
-      height: $fret-wideness;
+      height: $fret-wideness - 0.4rem;
     }
   }
 
@@ -43,7 +43,7 @@ $fret-wideness: 2.8rem;
     height: $fret-wideness;
     order: 2;
 
-    @include media-medium {
+    @include media-small {
       border: 0;
 
       border: 0;
@@ -56,7 +56,7 @@ $fret-wideness: 2.8rem;
       border: 0;
       display: initial;
       border-right: $fret-thickness solid black;
-      height: $fret-wideness;
+      height: $fret-wideness - 0.4rem;
     }
   }
 
@@ -70,7 +70,7 @@ $fret-wideness: 2.8rem;
     transform: translateY(0rem);
     transform: translateX(39vw);
 
-    @include media-medium {
+    @include media-small {
       transform: translateX(3.25vw);
       height: 96%;
     }
@@ -86,7 +86,7 @@ $fret-wideness: 2.8rem;
       border-radius: 50%;
       position: absolute;
 
-      @include media-medium {
+      @include media-small {
         height: 1.8rem;
         width: 1.8rem;
       }
@@ -101,7 +101,7 @@ $fret-wideness: 2.8rem;
     width: 100%;
     background-color: none;
 
-    @include media-medium {
+    @include media-small {
       flex-direction: unset;
     }
 
@@ -129,7 +129,7 @@ $fret-wideness: 2.8rem;
     z-index: 2;
     border-radius: 0.5rem;
 
-    @include media-medium {
+    @include media-small {
       grid-column-start: unset;
 
       flex-direction: column;
@@ -152,7 +152,7 @@ $fret-wideness: 2.8rem;
     display: flex;
     justify-content: center;
 
-    @include media-medium {
+    @include media-small {
       grid-column-start: unset;
       order: 3;
       flex-direction: column;

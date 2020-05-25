@@ -7,7 +7,7 @@
   max-width: 100vw;
   justify-content: center;
 
-  @include media-medium {
+  @include media-small {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-auto-flow: unset;
@@ -27,7 +27,7 @@
     color: $color-light-main;
     height: 100%;
 
-    @include media-medium {
+    @include media-small {
       position: relative;
       display: flex;
       grid-column: 1;
@@ -43,7 +43,7 @@
       justify-content: flex-start;
       text-align: center;
 
-      @include media-medium {
+      @include media-small {
         font-size: 2.5rem;
       }
     }

@@ -1,16 +1,9 @@
-// Breakpoints
+// - Breakpoints -
 
-$breakpoint-medium: 1100px;
-$breakpoint-small: 567px;
+$breakpoint-small: 900px;
 $breakpoint-xsmall: 400px;
 
-//Media Queries
-
-@mixin media-medium {
-  @media (min-width: $breakpoint-medium) {
-    @content;
-  }
-}
+// - Media Queries -
 
 @mixin media-small {
   @media (min-width: $breakpoint-small) {
