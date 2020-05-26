@@ -8,6 +8,10 @@
     transform-origin: bottom center;
     width: 1rem;
     z-index: 5;
+    @include media-small {
+      height: 1rem;
+      width: 50vw;
+    }
   }
 
   &__progress {
@@ -18,5 +22,8 @@
     transform-origin: bottom center;
     width: 100%;
     z-index: 3;
+    @include media-small {
+      transform-origin: left center;
+    }
   }
 }

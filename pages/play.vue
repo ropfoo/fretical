@@ -13,11 +13,7 @@
       </div>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
-      <nuxt-link
-        @click.native="disablePlayMode"
-        class="c-fretboard-view__back-button"
-        to="/"
-      >
+      <nuxt-link @click.native="disablePlayMode" class="c-fretboard-view__back-button" to="/">
         <svg
           width="21"
           height="16"
@@ -41,16 +37,14 @@
                 ? 'c-game-ui__tone__active--success'
                 : 'c-game-ui__tone__active--fail'
             ]"
-          >
-            {{ activeTone.name }}
-          </h1>
+          >{{ activeTone.name }}</h1>
           <h1 class="c-game-ui__tone__asked">{{ askedTone.name }}</h1>
         </div>
         <div class="c-game-ui__progress-ui">
           <div class="c-time-bar__container">
             <div
               class="c-time-bar__progress"
-              :style="{ transform: 'scaleY(' + timeBar + ')' }"
+              :style="[isMobile ?{ transform: 'scaleY(' + timeBar + ')' }:{ transform: 'scaleX(' + timeBar + ')' }]"
             ></div>
           </div>
           <div class="c-game-ui__progress-ui__progress">
@@ -80,6 +74,7 @@ import { mapGetters, mapMutations } from 'vuex';
 export default {
   data() {
     return {
+      isMobile: Boolean,
       gameOver: false,
       settings: true,
       round: 0,
@@ -105,6 +100,9 @@ export default {
     score: 'manager/getScore',
     paused: 'manager/getPaused'
   }),
+  mounted() {
+    window.innerWidth > 900 ? (this.isMobile = false) : (this.isMobile = true);
+  },
   beforeDestroy: function() {
     this.isGameOver();
   },
