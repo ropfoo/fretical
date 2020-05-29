@@ -11,6 +11,10 @@ $fret-wideness: 2.8rem;
   width: 65vw;
   display: grid;
 
+  @include media-mobile {
+    width: 40vw;
+  }
+
   @include media-small {
     grid-template-columns: unset;
     grid-template-rows: repeat(6, 1fr);
@@ -26,6 +30,10 @@ $fret-wideness: 2.8rem;
 
     height: $fret-wideness;
     order: 2;
+
+    @include media-mobile {
+      height: $fret-wideness + 1rem;
+    }
 
     @include media-small {
       border: 0;
@@ -69,6 +77,10 @@ $fret-wideness: 2.8rem;
     height: 100%;
     transform: translateY(0rem);
     transform: translateX(39vw);
+
+    @include media-mobile {
+      transform: translateX(29vw - 5vw);
+    }
 
     @include media-small {
       transform: translateX(3.25vw);

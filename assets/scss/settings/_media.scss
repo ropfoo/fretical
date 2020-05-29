@@ -1,9 +1,23 @@
 // - Breakpoints -
 
+$breakpoint-medium: 1200px;
 $breakpoint-small: 900px;
-$breakpoint-xsmall: 400px;
+$breakpoint-mobile: 550px;
+$breakpoint-xsmall: 300px;
 
 // - Media Queries -
+
+@mixin media-xsmall {
+  @media (max-width: $breakpoint-xsmall) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (min-width: $breakpoint-mobile) {
+    @content;
+  }
+}
 
 @mixin media-small {
   @media (min-width: $breakpoint-small) {
@@ -11,8 +25,8 @@ $breakpoint-xsmall: 400px;
   }
 }
 
-@mixin media-xsmall {
-  @media (max-width: $breakpoint-xsmall) {
+@mixin media-medium {
+  @media (min-width: $breakpoint-medium) {
     @content;
   }
 }

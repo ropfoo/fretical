@@ -8,7 +8,7 @@
     </div>
     <div v-if="settings">
       <Settings />
-      <div class="c-game-settings" :style="{ padding: '0 2rem', margin: 0 }">
+      <div class="c-game-settings" :style="{ margin: 0 }">
         <button @click="startGame">Let's go!</button>
       </div>
     </div>
@@ -44,7 +44,11 @@
           <div class="c-time-bar__container">
             <div
               class="c-time-bar__progress"
-              :style="[isMobile ?{ transform: 'scaleY(' + timeBar + ')' }:{ transform: 'scaleX(' + timeBar + ')' }]"
+              :style="[
+                isMobile
+                  ? { transform: 'scaleY(' + timeBar + ')' }
+                  : { transform: 'scaleX(' + timeBar + ')' }
+              ]"
             ></div>
           </div>
           <div class="c-game-ui__progress-ui__progress">

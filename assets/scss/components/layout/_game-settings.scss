@@ -1,6 +1,19 @@
 .c-game-settings {
   padding: 5rem 2rem 2rem 2rem;
   color: white;
+  transition: 0.5s;
+
+  @include media-mobile {
+    padding: 5rem 5rem 2rem 5rem;
+  }
+
+  @include media-small {
+    padding: 5rem 15rem 2rem 15rem;
+  }
+
+  @include media-medium {
+    padding: 5rem 20rem 2rem 20rem;
+  }
 
   button {
     background-color: $color-red;

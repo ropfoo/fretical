@@ -6,6 +6,10 @@ $padding-mobile: 2rem;
   height: 70vh;
   flex-direction: column;
 
+  @include media-mobile {
+    padding: $padding-small;
+  }
+
   @include media-small {
     padding: $padding-small;
     flex-direction: row-reverse;
@@ -20,9 +24,13 @@ $padding-mobile: 2rem;
 
   &__menu-bar {
     padding: $padding-mobile;
-
     display: flex;
     justify-content: space-between;
+
+    @include media-mobile {
+      padding: $padding-small;
+    }
+
     @include media-small {
       padding: $padding-small;
     }
