@@ -9,7 +9,7 @@
 
   @include media-small {
     flex-direction: row;
-    height: 30vh;
+    height: 20vh;
     width: 100vw;
   }
 
@@ -22,6 +22,7 @@
 
     @include media-small {
       flex-direction: row;
+      margin-bottom: 0;
     }
     &__active {
       color: $color-white;
