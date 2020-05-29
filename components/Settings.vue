@@ -1,5 +1,6 @@
 <template>
   <div class="c-game-settings">
+    <back-arrow :destination="'/'" />
     <h1>Settings</h1>
     <div class="c-game-settings__config">
       <div class="c-game-settings__config__section">
@@ -8,7 +9,7 @@
       <div class="c-game-settings__config__fret-wrapper">
         <div class="c-game-settings__config__fret-selection">
           <div
-            class="c-arrow-up-btn"
+            class="c-SettingsArrow-up-btn"
             :style="toggleButton(firstFretInput, false, 11)"
             @click="
               [
@@ -18,28 +19,28 @@
               ]
             "
           >
-            <arrow :direction="'up'" />
+            <SettingsArrow :direction="'up'" />
           </div>
           <p>{{ firstFretInput }}</p>
           <div
-            class="c-arrow-down-btn"
+            class="c-SettingsArrow-down-btn"
             :style="toggleButton(firstFretInput, true, 0)"
             @click="setSetting(firstFretInput, 'setFirstFretInput', 0, 11, -1)"
           >
-            <arrow :direction="'down'" />
+            <SettingsArrow :direction="'down'" />
           </div>
         </div>
         <div class="c-game-settings__config__fret-selection">
           <div
-            class="c-arrow-up-btn"
+            class="c-SettingsArrow-up-btn"
             :style="toggleButton(lastFretInput, false, 12)"
             @click="setSetting(lastFretInput, 'setLastFretInput', 1, 12, 1)"
           >
-            <arrow :direction="'up'" />
+            <SettingsArrow :direction="'up'" />
           </div>
           <p>{{ lastFretInput }}</p>
           <div
-            class="c-arrow-down-btn"
+            class="c-SettingsArrow-down-btn"
             :style="toggleButton(lastFretInput, true, 1)"
             @click="
               [
@@ -49,7 +50,7 @@
               ]
             "
           >
-            <Arrow :direction="'down'" />
+            <SettingsArrow :direction="'down'" />
           </div>
         </div>
       </div>
@@ -61,14 +62,14 @@
           :style="toggleButton(rounds, true, 1)"
           @click="setSetting(rounds, 'setRounds', 1, 15, -1)"
         >
-          <arrow :direction="'left'" />
+          <SettingsArrow :direction="'left'" />
         </div>
         <div>{{ rounds }}</div>
         <div
           :style="toggleButton(rounds, false, 15)"
           @click="setSetting(rounds, 'setRounds', 1, 15, 1)"
         >
-          <arrow :direction="'right'" />
+          <SettingsArrow :direction="'right'" />
         </div>
       </div>
       <div class="c-game-settings__config__section">
@@ -79,14 +80,14 @@
           :style="toggleButton(selectedDifficulty, true, 0)"
           @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, -1)"
         >
-          <arrow :direction="'left'" />
+          <SettingsArrow :direction="'left'" />
         </div>
         <div>{{ difficulty }}</div>
         <div
           :style="toggleButton(selectedDifficulty, false, 2)"
           @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, 1)"
         >
-          <arrow :direction="'right'" />
+          <SettingsArrow :direction="'right'" />
         </div>
       </div>
     </div>
@@ -95,10 +96,12 @@
 
 <script>
 import { mapGetters, mapSetter } from 'vuex';
-import Arrow from '../components/Arrow.vue';
+import SettingsArrow from '../components/util/SettingsArrow.vue';
+import BackArrow from '../components/util/BackArrow.vue';
 export default {
   components: {
-    Arrow
+    SettingsArrow,
+    BackArrow
   },
   computed: mapGetters({
     firstFretInput: 'settings/getFirstFretInput',
