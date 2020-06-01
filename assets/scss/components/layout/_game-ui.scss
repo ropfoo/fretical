@@ -7,9 +7,16 @@
   position: absolute;
   right: 2rem;
 
+  @include media-mobile {
+    right: 10rem;
+  }
+
   @include media-small {
+    right: 1rem;
+
     flex-direction: row;
-    height: 20vh;
+    height: 0;
+    top: 10rem;
     width: 100vw;
   }
 
@@ -23,12 +30,15 @@
     @include media-small {
       flex-direction: row;
       margin-bottom: 0;
+      margin-top: 3rem;
+      font-size: 1.6rem;
     }
     &__active {
       color: $color-white;
       margin-bottom: 1rem;
       @include media-small {
         margin-bottom: 0;
+        margin-right: 2rem;
       }
       &--success {
         color: $color-success;
@@ -55,7 +65,7 @@
 
     &__progress {
       color: $color-light-blue;
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       padding-left: 1rem;
       text-align: center;
     }

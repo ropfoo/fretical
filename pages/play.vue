@@ -8,7 +8,7 @@
     </div>
     <div v-if="settings">
       <Settings />
-      <div class="c-game-settings" :style="{ margin: 0 }">
+      <div class="c-game-settings" :style="{ margin: 0, 'padding-top': 0 }">
         <button @click="startGame">Let's go!</button>
       </div>
     </div>
@@ -24,7 +24,9 @@
                 ? 'c-game-ui__tone__active--success'
                 : 'c-game-ui__tone__active--fail'
             ]"
-          >{{ activeTone.name }}</h1>
+          >
+            {{ activeTone.name }}
+          </h1>
           <h1 class="c-game-ui__tone__asked">{{ askedTone.name }}</h1>
         </div>
         <div class="c-game-ui__progress-ui">

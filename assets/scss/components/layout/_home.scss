@@ -17,6 +17,11 @@ $padding-mobile: 2rem;
     width: 100%;
   }
 
+  @include media-medium {
+    padding: 2rem 5rem;
+    height: 80vh;
+  }
+
   h1 {
     font-size: 2.25rem;
     color: $color-white;
@@ -33,6 +38,10 @@ $padding-mobile: 2rem;
 
     @include media-small {
       padding: $padding-small;
+    }
+
+    @include media-medium {
+      padding: 4rem 6rem 0rem 6rem;
     }
   }
 
