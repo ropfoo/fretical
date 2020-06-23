@@ -6,10 +6,10 @@
 
 > Web app to help getting more confident with the fretboard.
 
-## TODO
+## Features
 
 no particular order
 
 - [x] fretboard explore mode
-- [ ] 'test-your-knowledge' game
+- [x] 'test-your-knowledge' game
 - [ ] chord library mode
