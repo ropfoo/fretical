@@ -1,5 +1,5 @@
 {
-  "name": "fretical",
+  "name": "fretical-frontend",
   "version": "1.0.0",
   "description": "Web app to help getting more confident with the fretboard.",
   "author": "Robert Pasdziernik",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "push-dir": "^0.4.1",
     "sass-loader": "^8.0.2"
   }
