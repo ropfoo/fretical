@@ -1,7 +1,7 @@
 {
-  "name": "fretical-frontend",
+  "name": "fretical",
   "version": "1.0.0",
-  "description": "My first-class Nuxt.js project",
+  "description": "Web app to help getting more confident with the fretboard.",
   "author": "Robert Pasdziernik",
   "private": true,
   "scripts": {

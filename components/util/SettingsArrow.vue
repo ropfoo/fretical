@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="c-arrow-btn">
     <svg
       v-if="direction === 'up'"
       width="25"
@@ -8,7 +8,12 @@
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M23 14L12.5 3L2.00002 14" stroke="#E43F5A" stroke-width="5" stroke-linejoin="round" />
+      <path
+        d="M23 14L12.5 3L2.00002 14"
+        stroke="#E43F5A"
+        stroke-width="5"
+        stroke-linejoin="round"
+      />
     </svg>
     <svg
       v-if="direction === 'down'"
@@ -18,7 +23,12 @@
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M1.99999 2L12.5 13L23 2" stroke="#E43F5A" stroke-width="5" stroke-linejoin="round" />
+      <path
+        d="M1.99999 2L12.5 13L23 2"
+        stroke="#E43F5A"
+        stroke-width="5"
+        stroke-linejoin="round"
+      />
     </svg>
 
     <svg
@@ -29,7 +39,12 @@
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M14 2L3.00002 12.5L14 23" stroke="#E43F5A" stroke-width="5" stroke-linejoin="round" />
+      <path
+        d="M14 2L3.00002 12.5L14 23"
+        stroke="#E43F5A"
+        stroke-width="5"
+        stroke-linejoin="round"
+      />
     </svg>
     <svg
       v-if="direction === 'right'"

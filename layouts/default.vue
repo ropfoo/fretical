@@ -12,7 +12,7 @@ export default {
     return {
       isMobile: false,
       screenWidth: 0,
-      mediaSmall: 567
+      mediaSmall: 550
     };
   },
   computed: mapGetters({
