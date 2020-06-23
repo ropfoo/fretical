@@ -5,13 +5,14 @@
 @import './settings/_colors.scss';
 @import './settings/_reset.scss';
 @import './settings/_media.scss';
+@import './settings/_mixins.scss';
 
 // ====================================================================================
-// Tools : Mixins
+// Animations :
 // ====================================================================================
 
-@import './tools/_mixins.scss';
-@import './tools/_animations.scss';
+@import './animations/_animation-time-bar.scss';
+@import './animations/_animation-settings-text.scss';
 
 // ====================================================================================
 // Components : Layout

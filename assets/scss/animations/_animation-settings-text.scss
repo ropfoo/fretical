@@ -1,0 +1,24 @@
+.textScale-enter-active {
+  animation: text-scaling 0.3s;
+}
+.textScale-leave-active {
+  animation: text-scaling 0.3s;
+}
+.textScale-enter,
+.textScale-leave-to {
+  display: none;
+}
+
+@keyframes text-scaling {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

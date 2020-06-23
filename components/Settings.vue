@@ -21,7 +21,10 @@
           >
             <SettingsArrow :direction="'up'" />
           </div>
-          <p>{{ firstFretInput }}</p>
+          <transition name="textScale">
+            <p :key="firstFretInput">{{ firstFretInput }}</p>
+          </transition>
+
           <div
             class="c-SettingsArrow-down-btn"
             :style="toggleButton(firstFretInput, true, 0)"
@@ -38,7 +41,10 @@
           >
             <SettingsArrow :direction="'up'" />
           </div>
-          <p>{{ lastFretInput }}</p>
+          <transition name="textScale">
+            <p :key="lastFretInput">{{ lastFretInput }}</p>
+          </transition>
+
           <div
             class="c-SettingsArrow-down-btn"
             :style="toggleButton(lastFretInput, true, 1)"
@@ -64,7 +70,9 @@
         >
           <SettingsArrow :direction="'left'" />
         </div>
-        <div>{{ rounds }}</div>
+        <transition name="textScale">
+          <div :key="rounds">{{ rounds }}</div>
+        </transition>
         <div
           :style="toggleButton(rounds, false, 15)"
           @click="setSetting(rounds, 'setRounds', 1, 15, 1)"
@@ -82,7 +90,9 @@
         >
           <SettingsArrow :direction="'left'" />
         </div>
-        <div>{{ difficulty }}</div>
+        <transition name="textScale">
+          <div :key="difficulty">{{ difficulty }}</div>
+        </transition>
         <div
           :style="toggleButton(selectedDifficulty, false, 2)"
           @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, 1)"
