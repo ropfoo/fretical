@@ -49,7 +49,7 @@ export default {
       if (this.sound) {
         //create a synth and connect it to the master output (your speakers)
         const synth = new Tone.Synth().toMaster();
-        synth.triggerAttackRelease(`${this.tone}`, '8n');
+        synth.triggerAttackRelease(`${this.tone.name}`, '8n');
       }
     }
   }
