@@ -8,8 +8,6 @@
 
 ## Features
 
-no particular order
-
 - [x] fretboard explore mode
 - [x] 'test-your-knowledge' game
 - [ ] chord library mode
