@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link class="c-fretboard-view__back-button" :to="destination">
+  <NuxtLink class="c-fretboard-view__back-button" :to="destination">
     <svg
       width="21"
       height="16"
@@ -12,7 +12,7 @@
         fill="#E43F5A"
       />
     </svg>
-  </nuxt-link>
+  </NuxtLink>
 </template>
 
 <script>

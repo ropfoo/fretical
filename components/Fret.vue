@@ -49,7 +49,7 @@
 
 <script>
 import String from '../components/String.vue';
-import { mapMutations, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
   components: {
     String

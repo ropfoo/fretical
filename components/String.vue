@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex';
-import * as Tone from 'tone';
+import { mapGetters } from 'vuex';
 
 export default {
   props: ['tone', 'thickness', 'active'],
@@ -37,7 +36,7 @@ export default {
     toneTriggered: 'manager/getToneTriggered'
   }),
   methods: {
-    returnTone() {
+    async returnTone() {
       this.$store.commit('tones/setActiveTone', this.tone);
       if (this.tone.name === this.askedTone.name) {
         this.$store.commit('manager/setPaused', true);
@@ -46,9 +45,14 @@ export default {
           this.$store.commit('manager/setToneTriggered', true);
         }
       }
-      if (this.sound) {
-        //create a synth and connect it to the master output (your speakers)
-        const synth = new Tone.Synth().toMaster();
+      if (this.sound && import.meta.client) {
+        const Tone = await import('tone');
+        const synth = new Tone.Synth();
+        if (typeof synth.toDestination === 'function') {
+          synth.toDestination();
+        } else {
+          synth.toMaster();
+        }
         synth.triggerAttackRelease(`${this.tone.name}`, '8n');
       }
     }

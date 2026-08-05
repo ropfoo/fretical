@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   computed: mapGetters({
@@ -51,4 +51,3 @@ export default {
   }
 };
 </script>
-
