@@ -1,11 +1,11 @@
 <template>
   <div>
-    <nuxt />
+    <slot />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {

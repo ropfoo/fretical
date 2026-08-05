@@ -15,7 +15,7 @@ import Fretboard from '../components/Fretboard.vue';
 import BackArrow from '../components/util/BackArrow.vue';
 import SoundToggle from '../components/util/SoundToggle.vue';
 import FilterToggle from '../components/util/FilterToggle.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
   components: {
     Fretboard,

@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { mapGetters, mapSetter } from 'vuex';
+import { mapGetters } from 'vuex';
 import SettingsArrow from '../components/util/SettingsArrow.vue';
 import BackArrow from '../components/util/BackArrow.vue';
 export default {

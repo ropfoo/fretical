@@ -2,25 +2,23 @@
   "name": "fretical",
   "version": "1.0.0",
   "description": "Web app to help getting more confident with the fretboard.",
-  "author": "Robert Pasdziernik",
+  "author": "ropfoo",
   "private": true,
+  "packageManager": "pnpm@11.1.1",
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "nuxt preview",
     "generate": "nuxt generate",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "gh-pages -d .output/public"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "nuxt": "^2.0.0",
-    "tone": "^13.8.25"
+    "nuxt": "4.5.1",
+    "tone": "^13.8.25",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@nuxtjs/style-resources": "^1.0.0",
-    "node-sass": "^4.14.1",
-    "push-dir": "^0.4.1",
-    "sass-loader": "^8.0.2"
+    "gh-pages": "^6.3.0",
+    "sass": "^1.90.0"
   }
 }

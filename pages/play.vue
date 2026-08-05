@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
-      <back-arrow @click.native="disablePlayMode" :destination="'/'" />
+      <back-arrow @click="disablePlayMode" :destination="'/'" />
 
       <div class="c-game-ui">
         <div class="c-game-ui__tone">
@@ -64,7 +64,7 @@
 import Fretboard from '../components/Fretboard.vue';
 import Settings from '../components/Settings.vue';
 import BackArrow from '../components/util/BackArrow.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
   components: {
     Settings,
@@ -98,7 +98,7 @@ export default {
   mounted() {
     window.innerWidth > 900 ? (this.isMobile = false) : (this.isMobile = true);
   },
-  beforeDestroy: function() {
+  beforeUnmount: function() {
     this.isGameOver();
   },
   watch: {

@@ -1,31 +1,12 @@
 <template>
   <div class="c-fretboard">
-    <template v-for="n in lastFret">
+    <template v-for="n in lastFret" :key="n">
       <fret
-        v-if="n === firstFret && n >= firstFret"
-        :isFirst="true"
-        :isLast="false"
+        v-if="n >= firstFret"
+        :isFirst="n === firstFret"
+        :isLast="n === lastFret"
         :number="n - 1"
         :tones="defaultTones[n - 1]"
-        :key="n"
-        :buttons="showButtons"
-      />
-      <fret
-        v-else-if="n === lastFret && n >= firstFret"
-        :isFirst="false"
-        :isLast="true"
-        :number="n - 1"
-        :tones="defaultTones[n - 1]"
-        :key="n"
-        :buttons="showButtons"
-      />
-      <fret
-        v-else-if="n >= firstFret"
-        :isFirst="false"
-        :isLast="false"
-        :number="n - 1"
-        :tones="defaultTones[n - 1]"
-        :key="n"
         :buttons="showButtons"
       />
     </template>
@@ -34,7 +15,7 @@
 
 <script>
 import Fret from '../components/Fret.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
