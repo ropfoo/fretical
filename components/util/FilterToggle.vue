@@ -19,21 +19,19 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useManagerStore } from '../../stores/manager';
 
-export default {
-  computed: mapGetters({
-    filterMenu: 'manager/getFilterMenu',
-    showAllTones: 'manager/getShowAllTones'
-  }),
-  methods: {
-    toggleShowAllTones() {
-      this.$store.commit('manager/toggleShowAllTones', !this.showAllTones);
-    },
-    toggleFilterMenu() {
-      this.$store.commit('manager/toggleFilterMenu', !this.filterMenu);
-    }
-  }
-};
+const { $pinia } = useNuxtApp();
+const managerStore = useManagerStore($pinia);
+const { filterMenu, showAllTones } = storeToRefs(managerStore);
+
+function toggleShowAllTones(): void {
+  managerStore.toggleShowAllTones(!showAllTones.value);
+}
+
+function toggleFilterMenu(): void {
+  managerStore.toggleFilterMenu(!filterMenu.value);
+}
 </script>

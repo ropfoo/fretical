@@ -22,40 +22,41 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useManagerStore } from '../stores/manager';
+import { useTonesStore } from '../stores/tones';
+import type { Tone } from '../types/app';
 
-export default {
-  props: ['tone', 'thickness', 'active'],
-  computed: mapGetters({
-    sound: 'tones/getSound',
-    activeTone: 'tones/getActiveTone',
-    shownTones: 'tones/getShownTones',
-    askedTone: 'tones/getAskedTone',
-    playMode: 'manager/getPlayMode',
-    toneTriggered: 'manager/getToneTriggered'
-  }),
-  methods: {
-    async returnTone() {
-      this.$store.commit('tones/setActiveTone', this.tone);
-      if (this.tone.name === this.askedTone.name) {
-        this.$store.commit('manager/setPaused', true);
-        if (!this.toneTriggered) {
-          this.$store.commit('manager/setScore', 10);
-          this.$store.commit('manager/setToneTriggered', true);
-        }
-      }
-      if (this.sound && import.meta.client) {
-        const Tone = await import('tone');
-        const synth = new Tone.Synth();
-        if (typeof synth.toDestination === 'function') {
-          synth.toDestination();
-        } else {
-          synth.toMaster();
-        }
-        synth.triggerAttackRelease(`${this.tone.name}`, '8n');
-      }
+const props = defineProps<{
+  tone: Tone;
+  thickness: number;
+  active: boolean;
+}>();
+const { $pinia } = useNuxtApp();
+const managerStore = useManagerStore($pinia);
+const tonesStore = useTonesStore($pinia);
+const { playMode, toneTriggered } = storeToRefs(managerStore);
+const { activeTone, askedTone, sound } = storeToRefs(tonesStore);
+
+async function returnTone(): Promise<void> {
+  tonesStore.setActiveTone(props.tone);
+  if (props.tone.name === askedTone.value.name) {
+    managerStore.setPaused(true);
+    if (!toneTriggered.value) {
+      managerStore.setScore(10);
+      managerStore.setToneTriggered(true);
     }
   }
-};
+  if (sound.value && import.meta.client) {
+    const Tone = await import('tone');
+    const synth = new Tone.Synth();
+    if (typeof synth.toDestination === 'function') {
+      synth.toDestination();
+    } else {
+      synth.toMaster();
+    }
+    synth.triggerAttackRelease(`${props.tone.name}`, '8n');
+  }
+}
 </script>

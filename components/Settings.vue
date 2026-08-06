@@ -11,13 +11,17 @@
           <div
             class="c-SettingsArrow-up-btn"
             :style="toggleButton(firstFretInput, false, 11)"
-            @click="
-              [
-                lastFretInput - 1 > firstFretInput
-                  ? setSetting(firstFretInput, 'setFirstFretInput', 1, 11, 1)
-                  : ''
-              ]
-            "
+            @click="[
+              lastFretInput - 1 > firstFretInput
+                ? setSetting(
+                    firstFretInput,
+                    settingsStore.setFirstFretInput,
+                    1,
+                    11,
+                    1
+                  )
+                : ''
+            ]"
           >
             <SettingsArrow :direction="'up'" />
           </div>
@@ -28,7 +32,15 @@
           <div
             class="c-SettingsArrow-down-btn"
             :style="toggleButton(firstFretInput, true, 0)"
-            @click="setSetting(firstFretInput, 'setFirstFretInput', 0, 11, -1)"
+            @click="
+              setSetting(
+                firstFretInput,
+                settingsStore.setFirstFretInput,
+                0,
+                11,
+                -1
+              )
+            "
           >
             <SettingsArrow :direction="'down'" />
           </div>
@@ -37,7 +49,15 @@
           <div
             class="c-SettingsArrow-up-btn"
             :style="toggleButton(lastFretInput, false, 12)"
-            @click="setSetting(lastFretInput, 'setLastFretInput', 1, 12, 1)"
+            @click="
+              setSetting(
+                lastFretInput,
+                settingsStore.setLastFretInput,
+                1,
+                12,
+                1
+              )
+            "
           >
             <SettingsArrow :direction="'up'" />
           </div>
@@ -48,13 +68,17 @@
           <div
             class="c-SettingsArrow-down-btn"
             :style="toggleButton(lastFretInput, true, 1)"
-            @click="
-              [
-                lastFretInput - 1 > firstFretInput
-                  ? setSetting(lastFretInput, 'setLastFretInput', 1, 11, -1)
-                  : ''
-              ]
-            "
+            @click="[
+              lastFretInput - 1 > firstFretInput
+                ? setSetting(
+                    lastFretInput,
+                    settingsStore.setLastFretInput,
+                    1,
+                    11,
+                    -1
+                  )
+                : ''
+            ]"
           >
             <SettingsArrow :direction="'down'" />
           </div>
@@ -66,7 +90,7 @@
       <div class="c-game-settings__config__section__selection">
         <div
           :style="toggleButton(rounds, true, 1)"
-          @click="setSetting(rounds, 'setRounds', 1, 15, -1)"
+          @click="setSetting(rounds, settingsStore.setRounds, 1, 15, -1)"
         >
           <SettingsArrow :direction="'left'" />
         </div>
@@ -75,7 +99,7 @@
         </transition>
         <div
           :style="toggleButton(rounds, false, 15)"
-          @click="setSetting(rounds, 'setRounds', 1, 15, 1)"
+          @click="setSetting(rounds, settingsStore.setRounds, 1, 15, 1)"
         >
           <SettingsArrow :direction="'right'" />
         </div>
@@ -86,7 +110,15 @@
       <div class="c-game-settings__config__section__selection">
         <div
           :style="toggleButton(selectedDifficulty, true, 0)"
-          @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, -1)"
+          @click="
+            setSetting(
+              selectedDifficulty,
+              settingsStore.setDifficulty,
+              0,
+              2,
+              -1
+            )
+          "
         >
           <SettingsArrow :direction="'left'" />
         </div>
@@ -95,7 +127,9 @@
         </transition>
         <div
           :style="toggleButton(selectedDifficulty, false, 2)"
-          @click="setSetting(selectedDifficulty, 'setDifficulty', 0, 2, 1)"
+          @click="
+            setSetting(selectedDifficulty, settingsStore.setDifficulty, 0, 2, 1)
+          "
         >
           <SettingsArrow :direction="'right'" />
         </div>
@@ -104,42 +138,51 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import type { CSSProperties } from 'vue';
 import SettingsArrow from '../components/util/SettingsArrow.vue';
 import BackArrow from '../components/util/BackArrow.vue';
-export default {
-  components: {
-    SettingsArrow,
-    BackArrow
-  },
-  computed: mapGetters({
-    firstFretInput: 'settings/getFirstFretInput',
-    lastFretInput: 'settings/getLastFretInput',
-    rounds: 'settings/getRounds',
-    difficulty: 'settings/getDifficulty',
-    selectedDifficulty: 'settings/getSelectedDifficulty'
-  }),
-  methods: {
-    setFret(isFirst) {
-      if (isFirst) {
-        lastFretInput > firstFretInput ? true : false;
-      }
-    },
-    setSetting(type, mutation, min, max, value) {
-      if (Math.sign(value) === -1) {
-        type > min ? this.$store.commit(`settings/${mutation}`, value) : '';
-      } else {
-        type < max ? this.$store.commit(`settings/${mutation}`, value) : '';
-      }
-    },
-    toggleButton(type, isMax, value) {
-      if (isMax) {
-        return type > value ? { opacity: 1 } : { opacity: 0, cursor: 'auto' };
-      } else {
-        return type < value ? { opacity: 1 } : { opacity: 0, cursor: 'auto' };
-      }
+import { useSettingsStore } from '../stores/settings';
+import type { FretStep } from '../types/app';
+
+const { $pinia } = useNuxtApp();
+const settingsStore = useSettingsStore($pinia);
+const {
+  firstFretInput,
+  lastFretInput,
+  rounds,
+  difficulty,
+  selectedDifficulty
+} = storeToRefs(settingsStore);
+
+function setSetting(
+  current: number,
+  update: (value: FretStep) => void,
+  min: number,
+  max: number,
+  value: FretStep
+) {
+  if (Math.sign(value) === -1) {
+    if (current > min) {
+      update(value);
+    }
+  } else {
+    if (current < max) {
+      update(value);
     }
   }
-};
+}
+
+function toggleButton(
+  type: number,
+  isMax: boolean,
+  value: number
+): CSSProperties {
+  if (isMax) {
+    return type > value ? { opacity: 1 } : { opacity: 0, cursor: 'auto' };
+  }
+
+  return type < value ? { opacity: 1 } : { opacity: 0, cursor: 'auto' };
+}
 </script>

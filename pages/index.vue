@@ -31,7 +31,11 @@
           </div>
           <h1>Chords</h1>
         </NuxtLink>
-        <NuxtLink @click="toggleShowAllTones(false)" to="/play" class="c-main-menu__learn">
+        <NuxtLink
+          @click="toggleShowAllTones(false)"
+          to="/play"
+          class="c-main-menu__learn"
+        >
           <img src="../assets/img/svg/learn-icon.svg" alt />
           <h1>Learn</h1>
         </NuxtLink>
@@ -40,25 +44,17 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Logo from '../components/util/Logo.vue';
 import Menu from '../components/util/Menu.vue';
+import { ref } from 'vue';
+import { useManagerStore } from '../stores/manager';
 
-export default {
-  components: {
-    Logo,
-    Menu
-  },
-  data() {
-    return {
-      loggedIn: false
-    };
-  },
+const { $pinia } = useNuxtApp();
+const managerStore = useManagerStore($pinia);
+const loggedIn = ref(false);
 
-  methods: {
-    toggleShowAllTones(status) {
-      this.$store.commit('manager/toggleShowAllTones', status);
-    }
-  }
-};
+function toggleShowAllTones(status: boolean): void {
+  managerStore.toggleShowAllTones(status);
+}
 </script>

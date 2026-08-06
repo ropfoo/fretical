@@ -64,8 +64,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ['direction']
-};
+<script setup lang="ts">
+import type { Direction } from '../../types/app';
+
+defineProps<{
+  direction: Direction;
+}>();
 </script>

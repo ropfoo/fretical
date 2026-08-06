@@ -8,17 +8,24 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
+    "typecheck": "nuxt typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "start": "nuxt preview",
     "generate": "nuxt generate",
     "deploy": "gh-pages -d .output/public"
   },
   "dependencies": {
     "nuxt": "4.5.1",
-    "tone": "^13.8.25",
-    "vuex": "^4.1.0"
+    "pinia": "^4.0.2",
+    "tone": "^13.8.25"
   },
   "devDependencies": {
+    "@types/node": "^26.1.2",
     "gh-pages": "^6.3.0",
-    "sass": "^1.90.0"
+    "prettier": "^3.9.6",
+    "sass": "^1.90.0",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.3.9"
   }
 }

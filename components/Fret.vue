@@ -4,13 +4,13 @@
       <!-- Generate six strings -->
       <div
         :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']"
-        v-for="n in 6"
-        :key="n"
+        v-for="(tone, index) in tones"
+        :key="tone.name + tone.string"
       >
-        <string
-          :tone="tones[n - 1]"
-          :thickness="n"
-          :active="checkActive(tones[n - 1])"
+        <StringComponent
+          :tone="tone"
+          :thickness="index + 1"
+          :active="checkActive(tone)"
         />
       </div>
       <!-- Check if there is a fretmarker beneath the string -->
@@ -47,55 +47,50 @@
   </div>
 </template>
 
-<script>
-import String from '../components/String.vue';
-import { mapGetters } from 'vuex';
-export default {
-  components: {
-    String
-  },
-  props: ['number', 'tones', 'isFirst', 'isLast', 'buttons'],
-  computed: mapGetters({
-    activeTone: 'tones/getActiveTone',
-    shownTones: 'tones/getShownTones',
-    showAllTones: 'manager/getShowAllTones'
-  }),
-  methods: {
-    checkActive(tone) {
-      if (this.showAllTones) {
-        if (this.activeTone.name === tone.name) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        if (this.activeTone === tone) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    },
-    setFirstFret(amount) {
-      console.log('first');
-      this.$store.commit('frets/setFirstFret', amount);
-    },
-    setLastFret(amount) {
-      console.log('last');
-      this.$store.commit('frets/setLastFret', amount);
-    },
-    checkDot() {
-      if (
-        this.number === 3 ||
-        this.number === 5 ||
-        this.number === 7 ||
-        this.number === 9
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import StringComponent from '../components/String.vue';
+import { useFretsStore } from '../stores/frets';
+import { useManagerStore } from '../stores/manager';
+import { useTonesStore } from '../stores/tones';
+import type { FretStep, Tone } from '../types/app';
+
+const props = defineProps<{
+  number: number;
+  tones: ReadonlyArray<Tone>;
+  isFirst: boolean;
+  isLast: boolean;
+  buttons: boolean;
+}>();
+const { $pinia } = useNuxtApp();
+const fretsStore = useFretsStore($pinia);
+const { showAllTones } = storeToRefs(useManagerStore($pinia));
+const { activeTone } = storeToRefs(useTonesStore($pinia));
+
+function checkActive(tone: Tone): boolean {
+  if (showAllTones.value) {
+    return activeTone.value.name === tone.name;
   }
-};
+
+  return activeTone.value === tone;
+}
+
+function setFirstFret(amount: FretStep): void {
+  console.log('first');
+  fretsStore.setFirstFret(amount);
+}
+
+function setLastFret(amount: FretStep): void {
+  console.log('last');
+  fretsStore.setLastFret(amount);
+}
+
+function checkDot(): boolean {
+  return (
+    props.number === 3 ||
+    props.number === 5 ||
+    props.number === 7 ||
+    props.number === 9
+  );
+}
 </script>

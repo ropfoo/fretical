@@ -60,130 +60,137 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 import Fretboard from '../components/Fretboard.vue';
 import Settings from '../components/Settings.vue';
 import BackArrow from '../components/util/BackArrow.vue';
-import { mapGetters } from 'vuex';
-export default {
-  components: {
-    Settings,
-    Fretboard,
-    BackArrow
-  },
-  data() {
-    return {
-      isMobile: Boolean,
-      gameOver: false,
-      settings: true,
-      round: 0,
-      firsTone: true,
-      interval: '',
-      questionTime: 10000,
-      timeBar: 0,
-      timeBarInterval: ''
-    };
-  },
-  computed: mapGetters({
-    firstFretInput: 'settings/getFirstFretInput',
-    lastFretInput: 'settings/getLastFretInput',
-    rounds: 'settings/getRounds',
-    difficulty: 'settings/getDifficulty',
-    activeTone: 'tones/getActiveTone',
-    askedTone: 'tones/getAskedTone',
-    tones: 'tones/getDefaultTones',
-    score: 'manager/getScore',
-    paused: 'manager/getPaused'
-  }),
-  mounted() {
-    window.innerWidth > 900 ? (this.isMobile = false) : (this.isMobile = true);
-  },
-  beforeUnmount: function() {
-    this.isGameOver();
-  },
-  watch: {
-    paused: function() {
-      if (this.paused) {
-        clearInterval(this.interval);
-        clearInterval(this.timeBarInterval);
-        setTimeout(() => {
-          if (this.round < this.rounds - 1) {
-            this.$store.commit('manager/setPaused', false);
-            this.newRound();
-            this.startGameLoop();
-          } else {
-            this.isGameOver();
-          }
-        }, 2000);
-      }
-    }
-  },
-  methods: {
-    startGame() {
-      this.$store.commit('manager/resetScore');
-      this.gameOver = false;
-      this.settings = false;
-      this.$store.commit('tones/setActiveTone', { name: '-' });
-      this.$store.commit('manager/setPaused', false);
-      this.enablePlayMode();
-      this.determineAskedTone();
-      this.startGameLoop();
-    },
-    enablePlayMode() {
-      this.$store.commit('manager/setPlayMode', true);
-    },
-    disablePlayMode() {
-      this.$store.commit('manager/setPlayMode', false);
-    },
-    determineAskedTone() {
-      if (!this.paused) {
-        this.$store.commit('tones/determineAskedTone', [
-          this.firstFretInput,
-          this.lastFretInput
-        ]);
-        this.timeBarReady = !this.timeBarReady;
-        this.timeBar = 0;
-        console.log('new tone');
-      }
-    },
-    newRound() {
-      if (this.round < this.rounds - 1) {
-        this.$store.commit('manager/setToneTriggered', false);
-        if (!this.paused) {
-          this.$store.commit('tones/setActiveTone', { name: '-' });
-          this.determineAskedTone();
-          this.round++;
-          console.log(this.round);
-        }
-      } else {
-        this.isGameOver();
-      }
-    },
-    reduceTimeBar() {
-      if (this.timeBar < 1) {
-        this.timeBar += 0.00115;
-      }
-    },
-    startGameLoop() {
-      this.timeBarInterval = setInterval(this.reduceTimeBar, 10);
-      this.interval = setInterval(this.newRound, this.questionTime);
-    },
-    resetAll() {
-      this.disablePlayMode();
-      clearInterval(this.interval);
-      clearInterval(this.timeBarInterval);
-      this.timeBarInterval = '';
-      this.interval = '';
-      this.round = 0;
-    },
-    isGameOver() {
-      this.$store.commit('manager/setTotalScore', this.score);
-      this.gameOver = true;
-      this.resetAll();
-    },
-    quitGame() {
-      this.$router.push('/');
-    }
+import { useManagerStore } from '../stores/manager';
+import { useSettingsStore } from '../stores/settings';
+import { useTonesStore } from '../stores/tones';
+
+const { $pinia } = useNuxtApp();
+const managerStore = useManagerStore($pinia);
+const settingsStore = useSettingsStore($pinia);
+const tonesStore = useTonesStore($pinia);
+const router = useRouter();
+
+const isMobile = ref(false);
+const gameOver = ref(false);
+const settings = ref(true);
+const round = ref(0);
+const interval = ref<ReturnType<typeof setInterval> | null>(null);
+const questionTime = 10000;
+const timeBar = ref(0);
+const timeBarInterval = ref<ReturnType<typeof setInterval> | null>(null);
+const timeBarReady = ref(false);
+
+const { firstFretInput, lastFretInput, rounds } = storeToRefs(settingsStore);
+const { activeTone, askedTone } = storeToRefs(tonesStore);
+const { score, paused } = storeToRefs(managerStore);
+
+function enablePlayMode(): void {
+  managerStore.setPlayMode(true);
+}
+
+function disablePlayMode(): void {
+  managerStore.setPlayMode(false);
+}
+
+function determineAskedTone(): void {
+  if (!paused.value) {
+    tonesStore.determineAskedTone([firstFretInput.value, lastFretInput.value]);
+    timeBarReady.value = !timeBarReady.value;
+    timeBar.value = 0;
+    console.log('new tone');
   }
-};
+}
+
+function newRound(): void {
+  if (round.value < rounds.value - 1) {
+    managerStore.setToneTriggered(false);
+    if (!paused.value) {
+      tonesStore.setActiveTone({ name: '-', string: 0 });
+      determineAskedTone();
+      round.value++;
+      console.log(round.value);
+    }
+  } else {
+    isGameOver();
+  }
+}
+
+function reduceTimeBar(): void {
+  if (timeBar.value < 1) {
+    timeBar.value += 0.00115;
+  }
+}
+
+function startGameLoop(): void {
+  timeBarInterval.value = setInterval(reduceTimeBar, 10);
+  interval.value = setInterval(newRound, questionTime);
+}
+
+function resetAll(): void {
+  disablePlayMode();
+  if (interval.value) {
+    clearInterval(interval.value);
+  }
+  if (timeBarInterval.value) {
+    clearInterval(timeBarInterval.value);
+  }
+  timeBarInterval.value = null;
+  interval.value = null;
+  round.value = 0;
+}
+
+function isGameOver(): void {
+  gameOver.value = true;
+  resetAll();
+}
+
+function startGame(): void {
+  managerStore.resetScore();
+  gameOver.value = false;
+  settings.value = false;
+  tonesStore.setActiveTone({ name: '-', string: 0 });
+  managerStore.setPaused(false);
+  enablePlayMode();
+  determineAskedTone();
+  startGameLoop();
+}
+
+function quitGame(): void {
+  router.push('/');
+}
+
+onMounted(() => {
+  isMobile.value = window.innerWidth <= 900;
+});
+
+onBeforeUnmount(() => {
+  isGameOver();
+});
+
+watch(paused, () => {
+  if (paused.value) {
+    if (interval.value) {
+      clearInterval(interval.value);
+    }
+    if (timeBarInterval.value) {
+      clearInterval(timeBarInterval.value);
+    }
+    setTimeout(() => {
+      if (round.value < rounds.value - 1) {
+        managerStore.setPaused(false);
+        newRound();
+        startGameLoop();
+      } else {
+        isGameOver();
+      }
+    }, 2000);
+  }
+});
 </script>

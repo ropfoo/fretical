@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   srcDir: '.',
   compatibilityDate: '2026-08-05',
   app: {
@@ -29,8 +29,5 @@ export default defineNuxtConfig({
       ]
     }
   },
-  css: ['~/assets/scss/main.scss'],
-  vue: {
-    optionsApi: true
-  }
+  css: ['~/assets/scss/main.scss']
 });

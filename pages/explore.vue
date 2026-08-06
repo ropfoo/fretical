@@ -6,29 +6,24 @@
       <sound-toggle />
     </div>
     <filter-toggle />
-    <fretboard :firstFret="firstFret" :lastFret="lastFret" :showButtons="true" />
+    <fretboard
+      :firstFret="firstFret"
+      :lastFret="lastFret"
+      :showButtons="true"
+    />
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Fretboard from '../components/Fretboard.vue';
 import BackArrow from '../components/util/BackArrow.vue';
 import SoundToggle from '../components/util/SoundToggle.vue';
 import FilterToggle from '../components/util/FilterToggle.vue';
-import { mapGetters } from 'vuex';
-export default {
-  components: {
-    Fretboard,
-    BackArrow,
-    SoundToggle,
-    FilterToggle
-  },
-  computed: mapGetters({
-    activeTone: 'tones/getActiveTone',
-    firstFret: 'frets/getFirstFret',
-    lastFret: 'frets/getLastFret',
-    filterMenu: 'manager/getFilterMenu',
-    showAllTones: 'manager/getShowAllTones'
-  })
-};
+import { storeToRefs } from 'pinia';
+import { useFretsStore } from '../stores/frets';
+import { useTonesStore } from '../stores/tones';
+
+const { $pinia } = useNuxtApp();
+const { firstFret, lastFret } = storeToRefs(useFretsStore($pinia));
+const { activeTone } = storeToRefs(useTonesStore($pinia));
 </script>

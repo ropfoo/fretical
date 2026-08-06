@@ -15,8 +15,8 @@
   </NuxtLink>
 </template>
 
-<script>
-export default {
-  props: ['destination']
-};
+<script setup lang="ts">
+defineProps<{
+  destination: string;
+}>();
 </script>

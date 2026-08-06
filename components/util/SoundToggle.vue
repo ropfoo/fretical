@@ -3,10 +3,10 @@
     @click="toggleSound"
     class="c-fretboard-view__toggle-sound"
     :class="[
-          sound
-            ? 'c-fretboard-view__toggle-sound--on'
-            : 'c-fretboard-view__toggle-sound--off'
-        ]"
+      sound
+        ? 'c-fretboard-view__toggle-sound--on'
+        : 'c-fretboard-view__toggle-sound--off'
+    ]"
   >
     <svg
       version="1.2"
@@ -37,17 +37,15 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useTonesStore } from '../../stores/tones';
 
-export default {
-  computed: mapGetters({
-    sound: 'tones/getSound'
-  }),
-  methods: {
-    toggleSound() {
-      this.$store.commit('tones/toggleSound', !this.sound);
-    }
-  }
-};
+const { $pinia } = useNuxtApp();
+const tonesStore = useTonesStore($pinia);
+const { sound } = storeToRefs(tonesStore);
+
+function toggleSound(): void {
+  tonesStore.toggleSound(!sound.value);
+}
 </script>
