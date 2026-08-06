@@ -16,8 +16,10 @@
     "deploy": "gh-pages -d .output/public"
   },
   "dependencies": {
+    "@nuxt/ui": "^4.10.0",
     "nuxt": "4.5.1",
     "pinia": "^4.0.2",
+    "tailwindcss": "^4.3.3",
     "tone": "^13.8.25"
   },
   "devDependencies": {

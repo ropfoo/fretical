@@ -2,6 +2,10 @@ export default defineNuxtConfig({
   ssr: false,
   srcDir: '.',
   compatibilityDate: '2026-08-05',
+  modules: ['@nuxt/ui'],
+  fonts: {
+    families: [{ name: 'Source Sans Pro', provider: 'none' }]
+  },
   app: {
     baseURL: '/fretical/',
     head: {
@@ -29,5 +33,5 @@ export default defineNuxtConfig({
       ]
     }
   },
-  css: ['~/assets/scss/main.scss']
+  css: ['~/assets/css/nuxt-ui.css', '~/assets/scss/main.scss']
 });
