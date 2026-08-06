@@ -6,19 +6,17 @@
       <sound-toggle />
     </div>
     <filter-toggle />
-    <fretboard
-      :firstFret="firstFret"
-      :lastFret="lastFret"
-      :showButtons="true"
-    />
+    <fretboard :firstFret="firstFret" :lastFret="lastFret" />
+    <FretRangeControl />
   </div>
 </template>
 
 <script setup lang="ts">
-import Fretboard from '../components/Fretboard.vue';
-import BackArrow from '../components/util/BackArrow.vue';
-import SoundToggle from '../components/util/SoundToggle.vue';
-import FilterToggle from '../components/util/FilterToggle.vue';
+import FretRangeControl from '../components/FretRangeControl/FretRangeControl.vue';
+import Fretboard from '../components/Fretboard/Fretboard.vue';
+import BackArrow from '../components/util/BackArrow/BackArrow.vue';
+import SoundToggle from '../components/util/SoundToggle/SoundToggle.vue';
+import FilterToggle from '../components/util/FilterToggle/FilterToggle.vue';
 import { storeToRefs } from 'pinia';
 import { useFretsStore } from '../stores/frets';
 import { useTonesStore } from '../stores/tones';

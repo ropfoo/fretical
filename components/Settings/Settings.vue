@@ -141,10 +141,10 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import type { CSSProperties } from 'vue';
-import SettingsArrow from '../components/util/SettingsArrow.vue';
-import BackArrow from '../components/util/BackArrow.vue';
-import { useSettingsStore } from '../stores/settings';
-import type { FretStep } from '../types/app';
+import SettingsArrow from '../util/SettingsArrow/SettingsArrow.vue';
+import BackArrow from '../util/BackArrow/BackArrow.vue';
+import { useSettingsStore } from '../../stores/settings';
+import type { FretStep } from '../../types/app';
 
 const { $pinia } = useNuxtApp();
 const settingsStore = useSettingsStore($pinia);

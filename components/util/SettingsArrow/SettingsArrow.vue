@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Direction } from '../../types/app';
+import type { Direction } from '../../../types/app';
 
 defineProps<{
   direction: Direction;

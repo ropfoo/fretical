@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useTonesStore } from '../../stores/tones';
+import { useTonesStore } from '../../../stores/tones';
 
 const { $pinia } = useNuxtApp();
 const tonesStore = useTonesStore($pinia);

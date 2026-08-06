@@ -51,11 +51,7 @@
         </div>
       </div>
 
-      <fretboard
-        :firstFret="firstFretInput + 1"
-        :lastFret="lastFretInput + 1"
-        :showButtons="false"
-      />
+      <fretboard :firstFret="firstFretInput" :lastFret="lastFretInput" />
     </div>
   </div>
 </template>
@@ -64,9 +60,9 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
-import Fretboard from '../components/Fretboard.vue';
-import Settings from '../components/Settings.vue';
-import BackArrow from '../components/util/BackArrow.vue';
+import Fretboard from '../components/Fretboard/Fretboard.vue';
+import Settings from '../components/Settings/Settings.vue';
+import BackArrow from '../components/util/BackArrow/BackArrow.vue';
 import { useManagerStore } from '../stores/manager';
 import { useSettingsStore } from '../stores/settings';
 import { useTonesStore } from '../stores/tones';

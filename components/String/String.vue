@@ -24,9 +24,9 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useManagerStore } from '../stores/manager';
-import { useTonesStore } from '../stores/tones';
-import type { Tone } from '../types/app';
+import { useManagerStore } from '../../stores/manager';
+import { useTonesStore } from '../../stores/tones';
+import type { Tone } from '../../types/app';
 
 const props = defineProps<{
   tone: Tone;

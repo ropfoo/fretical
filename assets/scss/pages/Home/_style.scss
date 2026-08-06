@@ -1,3 +1,6 @@
+$padding-small: 3.5rem;
+$padding-mobile: 2rem;
+
 @mixin main-menu-item($background-color, $background-color-hover, $font-color) {
   background-color: $background-color;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
@@ -26,6 +29,64 @@
   }
 }
 
+.c-home {
+  padding: $padding-mobile;
+  display: flex;
+  height: 70vh;
+  flex-direction: column;
+
+  @include media-mobile {
+    padding: $padding-small;
+  }
+
+  @include media-small {
+    padding: $padding-small;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  @include media-medium {
+    padding: 2rem 5rem;
+    height: 80vh;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    color: $color-white;
+  }
+
+  &__menu-bar {
+    padding: $padding-mobile;
+    display: flex;
+    justify-content: space-between;
+
+    @include media-mobile {
+      padding: $padding-small;
+    }
+
+    @include media-small {
+      padding: $padding-small;
+    }
+
+    @include media-medium {
+      padding: 4rem 6rem 0rem 6rem;
+    }
+  }
+
+  &__user-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22vh;
+
+    @include media-small {
+      height: 100%;
+      width: 35vw;
+    }
+  }
+}
+
 .c-main-menu {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -37,6 +98,7 @@
 
     width: 50vw;
   }
+
   @include media-medium {
     width: 50vw;
   }
@@ -56,6 +118,7 @@
       padding-left: 40%;
     }
   }
+
   &__chords {
     @include main-menu-item(
       $color-dark-secondary,
@@ -72,6 +135,7 @@
       padding-top: 2.5rem;
     }
   }
+
   &__learn {
     @include main-menu-item(
       $color-light-secondary,

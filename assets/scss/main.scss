@@ -15,22 +15,25 @@
 @import './animations/_animation-settings-text.scss';
 
 // ====================================================================================
-// Components : Layout
+// Pages
 // ====================================================================================
 
-@import './components/layout/_home.scss';
-@import './components/layout/_main-menu.scss';
-@import './components/layout/_fretboard-view.scss';
-@import './components/layout/_game-ui.scss';
-@import './components/layout/_game-settings.scss';
+@import './pages/Home/style';
+@import './pages/FretboardView/style';
+@import './pages/Play/style';
 
 // ====================================================================================
-// Components : Modules
+// Components
 // ====================================================================================
 
-@import './components/modules/_fret.scss';
-@import './components/modules/_string.scss';
-@import './components/modules/_fretboard.scss';
-@import './components/modules/_filter-menu.scss';
-@import './components/modules/_time-bar.scss';
-@import './components/modules/_arrow-btn.scss';
+@import '../../components/Fret/Fret';
+@import '../../components/Fretboard/Fretboard';
+@import '../../components/FretRangeControl/FretRangeControl';
+@import '../../components/Settings/Settings';
+@import '../../components/String/String';
+@import '../../components/util/BackArrow/BackArrow';
+@import '../../components/util/FilterToggle/FilterToggle';
+@import '../../components/util/Logo/Logo';
+@import '../../components/util/Menu/Menu';
+@import '../../components/util/SettingsArrow/SettingsArrow';
+@import '../../components/util/SoundToggle/SoundToggle';

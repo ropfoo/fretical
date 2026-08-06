@@ -1,0 +1,21 @@
+.c-fretboard-view {
+  &__toggle-sound {
+    @include button-type;
+
+    svg {
+      fill: $color-white;
+    }
+
+    &--on {
+      svg:nth-child(1) {
+        display: none;
+      }
+    }
+
+    &--off {
+      svg:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+}

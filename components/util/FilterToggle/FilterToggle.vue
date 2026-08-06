@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useManagerStore } from '../../stores/manager';
+import { useManagerStore } from '../../../stores/manager';
 
 const { $pinia } = useNuxtApp();
 const managerStore = useManagerStore($pinia);

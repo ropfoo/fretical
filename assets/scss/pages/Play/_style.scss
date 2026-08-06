@@ -33,20 +33,25 @@
       margin-top: 3rem;
       font-size: 1.6rem;
     }
+
     &__active {
       color: $color-white;
       margin-bottom: 1rem;
+
       @include media-small {
         margin-bottom: 0;
         margin-right: 2rem;
       }
+
       &--success {
         color: $color-success;
       }
+
       &--fail {
         color: $color-fail;
       }
     }
+
     &__asked {
       color: $color-light-blue;
     }
@@ -81,8 +86,41 @@
     justify-content: center;
     margin-top: 3rem;
     width: 5rem;
+
     @include media-small {
       margin-left: 3rem;
+    }
+  }
+}
+
+.c-time-bar {
+  &__container {
+    background-color: $color-timebar-background;
+    border-radius: 1rem;
+    height: 10rem;
+    margin: auto;
+    position: relative;
+    transform-origin: bottom center;
+    width: 1rem;
+    z-index: 5;
+
+    @include media-small {
+      height: 1rem;
+      width: 50vw;
+    }
+  }
+
+  &__progress {
+    background-color: rgba($color: $color-timebar, $alpha: 1);
+    border-radius: 5rem;
+    height: 100%;
+    position: relative;
+    transform-origin: bottom center;
+    width: 100%;
+    z-index: 3;
+
+    @include media-small {
+      transform-origin: left center;
     }
   }
 }

@@ -1,21 +1,27 @@
 import { defineStore } from 'pinia';
-import type { FretStep } from '../types/app';
+
+export const MIN_FRET = 0;
+export const MAX_FRET = 12;
+
+function clampFret(value: number): number {
+  if (!Number.isFinite(value)) {
+    return MIN_FRET;
+  }
+
+  return Math.min(Math.max(Math.trunc(value), MIN_FRET), MAX_FRET);
+}
 
 export const useFretsStore = defineStore('frets', {
   state: () => ({
-    firstFret: 1,
-    lastFret: 11
+    firstFret: MIN_FRET,
+    lastFret: MAX_FRET
   }),
   actions: {
-    setFirstFret(amount: FretStep) {
-      if (Math.sign(amount) === -1 && this.firstFret === 1) {
-        this.firstFret = 1;
-      } else {
-        this.firstFret += amount;
-      }
+    setFirstFretValue(fret: number) {
+      this.firstFret = Math.min(clampFret(fret), this.lastFret);
     },
-    setLastFret(amount: FretStep) {
-      this.lastFret += amount;
+    setLastFretValue(fret: number) {
+      this.lastFret = Math.max(clampFret(fret), this.firstFret);
     }
   }
 });

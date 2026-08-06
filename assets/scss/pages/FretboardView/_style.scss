@@ -5,7 +5,9 @@
   grid-auto-flow: row;
   height: 85vh;
   max-width: 100vw;
+  position: relative;
   top: 0;
+
   @include media-mobile {
     margin-left: 15%;
   }
@@ -67,50 +69,6 @@
     &--fail {
       h1 {
         color: $color-fail;
-      }
-    }
-  }
-
-  &__toggle-sound {
-    @include button-type;
-    svg {
-      fill: $color-white;
-    }
-    &--on {
-      svg:nth-child(1) {
-        display: none;
-      }
-    }
-    &--off {
-      svg:nth-child(2) {
-        display: none;
-      }
-    }
-  }
-
-  &__back-button {
-    @include button-type;
-    align-items: flex-end;
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    right: 3rem;
-    top: 3rem;
-    transform: scale(1.3);
-    z-index: 5;
-    transition: 0.3s;
-    transform-origin: center center;
-
-    &:hover {
-      transform: scale(1.6);
-    }
-
-    @include media-mobile {
-      right: 6rem;
-      top: 4rem;
-      transform: scale(1.6);
-      &:hover {
-        transform: scale(1.9);
       }
     }
   }

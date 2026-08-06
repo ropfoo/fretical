@@ -45,8 +45,8 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '../components/util/Logo.vue';
-import Menu from '../components/util/Menu.vue';
+import Logo from '../components/util/Logo/Logo.vue';
+import Menu from '../components/util/Menu/Menu.vue';
 import { ref } from 'vue';
 import { useManagerStore } from '../stores/manager';
 

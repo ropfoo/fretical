@@ -1,27 +1,20 @@
 <template>
   <div class="c-fretboard">
     <template v-for="fret in visibleFrets" :key="fret.number">
-      <Fret
-        :isFirst="fret.fret === firstFret"
-        :isLast="fret.fret === lastFret"
-        :number="fret.number"
-        :tones="fret.tones"
-        :buttons="showButtons"
-      />
+      <Fret :number="fret.number" :tones="fret.tones" />
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue';
-import Fret from '../components/Fret.vue';
-import { DEFAULT_TONES } from '../data/defaultTones';
-import type { Tone } from '../types/app';
+import Fret from '../Fret/Fret.vue';
+import { DEFAULT_TONES } from '../../data/defaultTones';
+import type { Tone } from '../../types/app';
 
 const props = defineProps<{
   firstFret: number;
   lastFret: number;
-  showButtons: boolean;
 }>();
 
 const isMobile = ref(false);
@@ -38,12 +31,11 @@ const displayTones = computed<ReadonlyArray<ReadonlyArray<Tone>>>(() => {
 const visibleFrets = computed(() =>
   displayTones.value
     .map((tones, index) => ({
-      fret: index + 1,
       number: index,
       tones
     }))
     .filter(
-      (fret) => fret.fret >= props.firstFret && fret.fret <= props.lastFret
+      (fret) => fret.number >= props.firstFret && fret.number <= props.lastFret
     )
 );
 
