@@ -1,7 +1,6 @@
 <template>
   <div @click="returnTone" class="c-string">
     <hr class="line" :class="'line--string-' + thickness" />
-    <!-- <hr class="line--shadow" /> -->
     <div
       :class="[
         active
@@ -17,7 +16,7 @@
           : 'c-string__indicator--hidden'
       ]"
     >
-      {{ tone.name }}
+      {{ label }}
     </div>
   </div>
 </template>
@@ -29,6 +28,8 @@ import { useTonesStore } from '../../stores/tones';
 import type { Tone } from '../../types/app';
 
 const props = defineProps<{
+  fretNumber: number;
+  label: string;
   tone: Tone;
   thickness: number;
   active: boolean;
@@ -40,7 +41,10 @@ const { playMode, toneTriggered } = storeToRefs(managerStore);
 const { activeTone, askedTone, sound } = storeToRefs(tonesStore);
 
 async function returnTone(): Promise<void> {
-  tonesStore.setActiveTone(props.tone);
+  tonesStore.setSelectedTone({
+    ...props.tone,
+    fret: props.fretNumber
+  });
   if (props.tone.name === askedTone.value.name) {
     managerStore.setPaused(true);
     if (!toneTriggered.value) {

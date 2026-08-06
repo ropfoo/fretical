@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-else-if="!gameOver && !settings" class="c-fretboard-view">
-      <back-arrow @click="disablePlayMode" :destination="'/'" />
+      <AppHeader @back="disablePlayMode" />
 
       <div class="c-game-ui">
         <div class="c-game-ui__tone">
@@ -60,9 +60,9 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import AppHeader from '../components/AppHeader/AppHeader.vue';
 import Fretboard from '../components/Fretboard/Fretboard.vue';
 import Settings from '../components/Settings/Settings.vue';
-import BackArrow from '../components/util/BackArrow/BackArrow.vue';
 import { useManagerStore } from '../stores/manager';
 import { useSettingsStore } from '../stores/settings';
 import { useTonesStore } from '../stores/tones';

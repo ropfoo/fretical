@@ -11,7 +11,6 @@
         @change="setFirstFret"
       />
     </label>
-    <span class="c-fret-range-control__separator">-</span>
     <label class="c-fret-range-control__field">
       <span>To</span>
       <input

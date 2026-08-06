@@ -1,6 +1,6 @@
 <template>
   <div class="c-game-settings">
-    <back-arrow :destination="'/'" />
+    <AppHeader />
     <h1>Settings</h1>
     <div class="c-game-settings__config">
       <div class="c-game-settings__config__section">
@@ -10,14 +10,14 @@
         <div class="c-game-settings__config__fret-selection">
           <div
             class="c-SettingsArrow-up-btn"
-            :style="toggleButton(firstFretInput, false, 11)"
+            :style="toggleButton(firstFretInput, false, MAX_FIRST_FRET)"
             @click="[
               lastFretInput - 1 > firstFretInput
                 ? setSetting(
                     firstFretInput,
                     settingsStore.setFirstFretInput,
-                    1,
-                    11,
+                    MIN_FRET + 1,
+                    MAX_FIRST_FRET,
                     1
                   )
                 : ''
@@ -36,8 +36,8 @@
               setSetting(
                 firstFretInput,
                 settingsStore.setFirstFretInput,
-                0,
-                11,
+                MIN_FRET,
+                MAX_FIRST_FRET,
                 -1
               )
             "
@@ -48,13 +48,13 @@
         <div class="c-game-settings__config__fret-selection">
           <div
             class="c-SettingsArrow-up-btn"
-            :style="toggleButton(lastFretInput, false, 12)"
+            :style="toggleButton(lastFretInput, false, MAX_FRET)"
             @click="
               setSetting(
                 lastFretInput,
                 settingsStore.setLastFretInput,
-                1,
-                12,
+                MIN_LAST_FRET,
+                MAX_FRET,
                 1
               )
             "
@@ -67,14 +67,14 @@
 
           <div
             class="c-SettingsArrow-down-btn"
-            :style="toggleButton(lastFretInput, true, 1)"
+            :style="toggleButton(lastFretInput, true, MIN_LAST_FRET)"
             @click="[
               lastFretInput - 1 > firstFretInput
                 ? setSetting(
                     lastFretInput,
                     settingsStore.setLastFretInput,
-                    1,
-                    11,
+                    MIN_LAST_FRET,
+                    MAX_FRET,
                     -1
                   )
                 : ''
@@ -141,10 +141,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import type { CSSProperties } from 'vue';
+import AppHeader from '../AppHeader/AppHeader.vue';
 import SettingsArrow from '../util/SettingsArrow/SettingsArrow.vue';
-import BackArrow from '../util/BackArrow/BackArrow.vue';
+import { MAX_FRET, MIN_FRET } from '../../stores/frets';
 import { useSettingsStore } from '../../stores/settings';
 import type { FretStep } from '../../types/app';
+
+const MAX_FIRST_FRET = MAX_FRET - 1;
+const MIN_LAST_FRET = MIN_FRET + 1;
 
 const { $pinia } = useNuxtApp();
 const settingsStore = useSettingsStore($pinia);

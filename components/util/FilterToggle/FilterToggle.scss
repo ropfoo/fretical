@@ -12,9 +12,10 @@
 
   &__button {
     @include button-type;
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+    align-items: center;
+    display: flex;
+    min-height: 2.75rem;
+    position: relative;
     z-index: 12;
   }
 }

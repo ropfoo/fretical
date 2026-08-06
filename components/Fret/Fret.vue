@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <div class="c-fret">
-      <!-- Generate six strings -->
-      <div
-        :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']"
-        v-for="(tone, index) in tones"
-        :key="tone.name + tone.string"
-      >
-        <StringComponent
-          :tone="tone"
-          :thickness="index + 1"
-          :active="checkActive(tone)"
-        />
-      </div>
-      <!-- Check if there is a fretmarker beneath the string -->
-      <div v-if="checkDot()" class="c-fret__circle-container">
-        <div class="c-fret__circle-container--circle"></div>
-      </div>
+  <div class="c-fret">
+    <div
+      :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']"
+      v-for="(tone, index) in tones"
+      :key="tone.string"
+    >
+      <StringComponent
+        :active="checkActive(tone)"
+        :fret-number="number"
+        :label="getIndicatorLabel(tone)"
+        :tone="tone"
+        :thickness="index + 1"
+      />
+    </div>
+    <div v-if="checkDot()" class="c-fret__circle-container">
+      <div class="c-fret__circle-container--circle"></div>
     </div>
   </div>
 </template>
@@ -29,6 +27,8 @@ import { useTonesStore } from '../../stores/tones';
 import type { Tone } from '../../types/app';
 
 const props = defineProps<{
+  activeIndicatorLabel?: string | null;
+  activeIndicatorTone?: Tone | null;
   number: number;
   tones: ReadonlyArray<Tone>;
 }>();
@@ -41,7 +41,20 @@ function checkActive(tone: Tone): boolean {
     return activeTone.value.name === tone.name;
   }
 
-  return activeTone.value === tone;
+  return props.activeIndicatorTone === tone;
+}
+
+function getIndicatorLabel(tone: Tone): string {
+  if (
+    !showAllTones.value &&
+    props.activeIndicatorTone === tone &&
+    activeTone.value.name !== tone.name &&
+    props.activeIndicatorLabel
+  ) {
+    return props.activeIndicatorLabel;
+  }
+
+  return tone.name;
 }
 
 function checkDot(): boolean {

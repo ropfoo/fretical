@@ -13,6 +13,10 @@ export interface Tone {
   string: GuitarString;
 }
 
+export interface SelectedTone extends Tone {
+  fret: number;
+}
+
 export interface EmptyTone {
   name: '-';
   string: 0;
@@ -23,7 +27,7 @@ export interface InitialAskedTone {
   string: 0;
 }
 
-export type ActiveTone = Tone | EmptyTone;
+export type ActiveTone = SelectedTone | EmptyTone;
 
 export type AskedTone = Tone | InitialAskedTone;
 

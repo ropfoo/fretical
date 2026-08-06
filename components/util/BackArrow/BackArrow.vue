@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink class="c-fretboard-view__back-button" :to="destination">
+  <NuxtLink class="c-back-arrow" :to="destination">
     <svg
       width="21"
       height="16"

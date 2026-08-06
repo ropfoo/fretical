@@ -1,29 +1,22 @@
-.c-fretboard-view {
-  &__back-button {
-    @include button-type;
-    align-items: flex-end;
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    right: 3rem;
-    top: 3rem;
-    transform: scale(1.3);
-    z-index: 5;
-    transition: 0.3s;
-    transform-origin: center center;
+.c-back-arrow {
+  @include button-type;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  position: relative;
+  transition: transform 0.3s;
+  transform-origin: center center;
+  z-index: 5;
 
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  @include media-mobile {
     &:hover {
-      transform: scale(1.6);
-    }
-
-    @include media-mobile {
-      right: 6rem;
-      top: 4rem;
-      transform: scale(1.6);
-
-      &:hover {
-        transform: scale(1.9);
-      }
+      transform: scale(1.2);
     }
   }
 }

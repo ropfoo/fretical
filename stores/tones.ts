@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { DEFAULT_TONES } from '../data/defaultTones';
-import type { ActiveTone, AskedTone } from '../types/app';
+import type { ActiveTone, AskedTone, SelectedTone } from '../types/app';
 
 export const useTonesStore = defineStore('tones', {
   state: () => ({
@@ -12,11 +12,14 @@ export const useTonesStore = defineStore('tones', {
     setActiveTone(tone: ActiveTone) {
       this.activeTone = tone;
     },
+    setSelectedTone(tone: SelectedTone) {
+      this.activeTone = tone;
+    },
     toggleSound(toggle: boolean) {
       this.sound = toggle;
     },
     determineAskedTone([firstFret, lastFret]: [number, number]) {
-      const determinedTones = DEFAULT_TONES.slice(firstFret, lastFret);
+      const determinedTones = DEFAULT_TONES.slice(firstFret, lastFret + 1);
       const randomFret = Math.floor(Math.random() * determinedTones.length);
       const fretTones = determinedTones[randomFret];
 

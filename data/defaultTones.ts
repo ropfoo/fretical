@@ -1,6 +1,6 @@
 import type { FretTones } from '../types/app';
 
-export const DEFAULT_TONES = [
+const BASE_TONES = [
   [
     { name: 'E4', string: 6 },
     { name: 'B4', string: 5 },
@@ -106,3 +106,33 @@ export const DEFAULT_TONES = [
     { name: 'E3', string: 1 }
   ]
 ] satisfies readonly FretTones[];
+
+export const DEFAULT_TONES = [
+  ...BASE_TONES,
+  ...BASE_TONES.slice(1).map(incrementFretTonesOctave)
+] satisfies readonly FretTones[];
+
+function incrementOctave(tone: FretTones[number]): FretTones[number] {
+  return {
+    ...tone,
+    name: tone.name.replace(/\d+$/, (octave) => String(Number(octave) + 1))
+  };
+}
+
+function incrementFretTonesOctave([
+  first,
+  second,
+  third,
+  fourth,
+  fifth,
+  sixth
+]: FretTones): FretTones {
+  return [
+    incrementOctave(first),
+    incrementOctave(second),
+    incrementOctave(third),
+    incrementOctave(fourth),
+    incrementOctave(fifth),
+    incrementOctave(sixth)
+  ];
+}

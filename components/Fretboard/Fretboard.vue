@@ -1,54 +1,93 @@
 <template>
-  <div class="c-fretboard">
+  <div class="c-fretboard" :style="fretboardStyle">
     <template v-for="fret in visibleFrets" :key="fret.number">
-      <Fret :number="fret.number" :tones="fret.tones" />
+      <Fret
+        :active-indicator-label="activeIndicatorLabel"
+        :active-indicator-tone="activeIndicatorTone"
+        :number="fret.number"
+        :tones="fret.tones"
+      />
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed } from 'vue';
+import type { CSSProperties } from 'vue';
+import { storeToRefs } from 'pinia';
 import Fret from '../Fret/Fret.vue';
 import { DEFAULT_TONES } from '../../data/defaultTones';
-import type { Tone } from '../../types/app';
+import { useTonesStore } from '../../stores/tones';
+import type { ActiveTone, SelectedTone, Tone } from '../../types/app';
 
 const props = defineProps<{
   firstFret: number;
   lastFret: number;
 }>();
 
-const isMobile = ref(false);
-const mediaSmall = 900;
-
-const displayTones = computed<ReadonlyArray<ReadonlyArray<Tone>>>(() => {
-  if (!isMobile.value) {
-    return DEFAULT_TONES;
-  }
-
-  return DEFAULT_TONES.map((tones) => [...tones].reverse());
-});
+const { $pinia } = useNuxtApp();
+const { activeTone } = storeToRefs(useTonesStore($pinia));
 
 const visibleFrets = computed(() =>
-  displayTones.value
-    .map((tones, index) => ({
-      number: index,
-      tones
-    }))
-    .filter(
-      (fret) => fret.number >= props.firstFret && fret.number <= props.lastFret
-    )
+  DEFAULT_TONES.map((tones, index) => ({
+    number: index,
+    tones
+  })).filter(
+    (fret) => fret.number >= props.firstFret && fret.number <= props.lastFret
+  )
 );
 
-function calcIfMobile(): void {
-  isMobile.value = window.innerWidth <= mediaSmall;
+const visibleTones = computed(() =>
+  visibleFrets.value.flatMap((fret) => fret.tones)
+);
+
+const activeIndicatorLabel = computed(() =>
+  isSelectedTone(activeTone.value) ? activeTone.value.name : null
+);
+
+const activeIndicatorTone = computed<Tone | null>(() => {
+  const selectedTone = activeTone.value;
+
+  if (!isSelectedTone(selectedTone)) {
+    return null;
+  }
+
+  const exactMatch = visibleFrets.value
+    .find((fret) => fret.number === selectedTone.fret)
+    ?.tones.find(
+      (tone) =>
+        tone.name === selectedTone.name && tone.string === selectedTone.string
+    );
+
+  if (exactMatch) {
+    return exactMatch;
+  }
+
+  const sameNameMatch = visibleTones.value.find(
+    (tone) => tone.name === selectedTone.name
+  );
+
+  if (sameNameMatch) {
+    return sameNameMatch;
+  }
+
+  const activePitchClass = getPitchClass(selectedTone.name);
+  const samePitchClassMatch = visibleTones.value.find(
+    (tone) => getPitchClass(tone.name) === activePitchClass
+  );
+
+  return samePitchClassMatch ?? visibleTones.value[0] ?? null;
+});
+
+const fretboardStyle = computed<CSSProperties>(() => ({
+  '--visible-fret-count': visibleFrets.value.length
+}));
+
+function getPitchClass(noteName: string): string {
+  return noteName.replace(/\d+$/, '');
 }
 
-onMounted(() => {
-  calcIfMobile();
-  window.addEventListener('resize', calcIfMobile);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', calcIfMobile);
-});
+function isSelectedTone(tone: ActiveTone): tone is SelectedTone {
+  return 'fret' in tone;
+}
 </script>

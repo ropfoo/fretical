@@ -5,17 +5,6 @@
       <menu />
     </div>
     <div class="c-home">
-      <div v-if="loggedIn" class="c-home__user-content">
-        <h1>Fretical</h1>
-        <ul>
-          <li>Stats</li>
-          <li>Stats</li>
-          <li>Stats</li>
-        </ul>
-      </div>
-      <div v-else class="c-home__user-content">
-        <button>Login to use Stats</button>
-      </div>
       <div class="c-main-menu">
         <NuxtLink
           @click="toggleShowAllTones(true)"
@@ -46,13 +35,10 @@
 
 <script setup lang="ts">
 import Logo from '../components/util/Logo/Logo.vue';
-import Menu from '../components/util/Menu/Menu.vue';
-import { ref } from 'vue';
 import { useManagerStore } from '../stores/manager';
 
 const { $pinia } = useNuxtApp();
 const managerStore = useManagerStore($pinia);
-const loggedIn = ref(false);
 
 function toggleShowAllTones(status: boolean): void {
   managerStore.toggleShowAllTones(status);
