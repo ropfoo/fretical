@@ -42,7 +42,7 @@ const visibleTones = computed(() =>
 );
 
 const activeIndicatorLabel = computed(() =>
-  isSelectedTone(activeTone.value) ? activeTone.value.name : null
+  isSelectedTone(activeTone.value) ? activeTone.value.canonicalName : null
 );
 
 const activeIndicatorTone = computed<Tone | null>(() => {
@@ -56,24 +56,16 @@ const activeIndicatorTone = computed<Tone | null>(() => {
     .find((fret) => fret.number === selectedTone.fret)
     ?.tones.find(
       (tone) =>
-        tone.name === selectedTone.name && tone.string === selectedTone.string
+        tone.pitchClass === selectedTone.pitchClass &&
+        tone.string === selectedTone.string
     );
 
   if (exactMatch) {
     return exactMatch;
   }
 
-  const sameNameMatch = visibleTones.value.find(
-    (tone) => tone.name === selectedTone.name
-  );
-
-  if (sameNameMatch) {
-    return sameNameMatch;
-  }
-
-  const activePitchClass = getPitchClass(selectedTone.name);
   const samePitchClassMatch = visibleTones.value.find(
-    (tone) => getPitchClass(tone.name) === activePitchClass
+    (tone) => tone.pitchClass === selectedTone.pitchClass
   );
 
   return samePitchClassMatch ?? visibleTones.value[0] ?? null;
@@ -83,11 +75,7 @@ const fretboardStyle = computed<CSSProperties>(() => ({
   '--visible-fret-count': visibleFrets.value.length
 }));
 
-function getPitchClass(noteName: string): string {
-  return noteName.replace(/\d+$/, '');
-}
-
 function isSelectedTone(tone: ActiveTone): tone is SelectedTone {
-  return 'fret' in tone;
+  return tone !== null && 'fret' in tone;
 }
 </script>

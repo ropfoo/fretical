@@ -8,8 +8,28 @@ export type Difficulty = 'easy' | 'normal' | 'hard';
 
 export type DifficultyIndex = 0 | 1 | 2;
 
+export type PitchClass = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+export type NaturalNoteName = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
+
+export type SharpNoteName = 'A#' | 'C#' | 'D#' | 'F#' | 'G#';
+
+export type FlatNoteName = 'Bb' | 'Db' | 'Eb' | 'Gb' | 'Ab';
+
+export type CanonicalNoteName = NaturalNoteName | SharpNoteName;
+
+export type NoteDisplayName =
+  NaturalNoteName | `${SharpNoteName} / ${FlatNoteName}`;
+
+export type ToneSoundName = `${CanonicalNoteName}${number}`;
+
 export interface Tone {
-  name: string;
+  canonicalName: CanonicalNoteName;
+  displayName: NoteDisplayName;
+  enharmonicName?: FlatNoteName;
+  octave: number;
+  pitchClass: PitchClass;
+  soundName: ToneSoundName;
   string: GuitarString;
 }
 
@@ -17,18 +37,8 @@ export interface SelectedTone extends Tone {
   fret: number;
 }
 
-export interface EmptyTone {
-  name: '-';
-  string: 0;
-}
+export type ActiveTone = SelectedTone | null;
 
-export interface InitialAskedTone {
-  name: 'test';
-  string: 0;
-}
-
-export type ActiveTone = SelectedTone | EmptyTone;
-
-export type AskedTone = Tone | InitialAskedTone;
+export type AskedTone = Tone | null;
 
 export type FretTones = readonly [Tone, Tone, Tone, Tone, Tone, Tone];

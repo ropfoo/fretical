@@ -5,12 +5,16 @@ import type { ActiveTone, AskedTone, SelectedTone } from '../types/app';
 export const useTonesStore = defineStore('tones', {
   state: () => ({
     sound: false,
-    activeTone: { name: '-', string: 0 } as ActiveTone,
-    askedTone: { name: 'test', string: 0 } as AskedTone
+    activeTone: null as ActiveTone,
+    askedTone: null as AskedTone
   }),
+  getters: {
+    activeToneLabel: (state) => state.activeTone?.displayName ?? '-',
+    askedToneLabel: (state) => state.askedTone?.displayName ?? '-'
+  },
   actions: {
-    setActiveTone(tone: ActiveTone) {
-      this.activeTone = tone;
+    clearActiveTone() {
+      this.activeTone = null;
     },
     setSelectedTone(tone: SelectedTone) {
       this.activeTone = tone;

@@ -38,7 +38,7 @@ const { activeTone } = storeToRefs(useTonesStore($pinia));
 
 function checkActive(tone: Tone): boolean {
   if (showAllTones.value) {
-    return activeTone.value.name === tone.name;
+    return activeTone.value?.pitchClass === tone.pitchClass;
   }
 
   return props.activeIndicatorTone === tone;
@@ -48,13 +48,13 @@ function getIndicatorLabel(tone: Tone): string {
   if (
     !showAllTones.value &&
     props.activeIndicatorTone === tone &&
-    activeTone.value.name !== tone.name &&
+    activeTone.value?.pitchClass !== tone.pitchClass &&
     props.activeIndicatorLabel
   ) {
     return props.activeIndicatorLabel;
   }
 
-  return tone.name;
+  return tone.canonicalName;
 }
 
 function checkDot(): boolean {

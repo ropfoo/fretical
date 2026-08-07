@@ -20,46 +20,6 @@
     padding-top: 20%;
   }
 
-  &--explore {
-    align-items: center;
-    gap: 1rem;
-    grid-template-areas:
-      'note'
-      'fretboard'
-      'controls';
-    grid-template-rows: auto minmax(0, 1fr) auto;
-    height: calc(100dvh - var(--ui-header-height) - 3rem);
-    justify-items: center;
-    margin-left: 0;
-    overflow: hidden;
-    padding: 0;
-
-    @include media-mobile {
-      margin-left: 0;
-    }
-
-    @include media-small {
-      grid-template-areas:
-        'note'
-        'fretboard'
-        'controls';
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto minmax(0, 1fr) auto;
-    }
-
-    .c-fretboard {
-      grid-area: fretboard;
-    }
-
-    .c-fret-range-control {
-      grid-area: controls;
-    }
-
-    .c-fretboard-view__active-tone {
-      grid-area: note;
-    }
-  }
-
   &__active-tone {
     display: flex;
     align-items: center;
@@ -110,28 +70,6 @@
       h1 {
         color: $color-fail;
       }
-    }
-  }
-
-  &--explore &__active-tone {
-    height: auto;
-    justify-self: center;
-    margin: 0;
-    padding: 0;
-    position: static;
-    right: auto;
-    width: auto;
-
-    h1 {
-      margin-bottom: 0.5rem;
-    }
-
-    @include media-small {
-      align-self: end;
-      grid-column: auto;
-      grid-row: auto;
-      margin: 0;
-      padding: 0;
     }
   }
 }

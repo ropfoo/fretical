@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
+import { MAX_FRET, MIN_FRET } from '../data/defaultTones';
 import type { DifficultyIndex, FretStep } from '../types/app';
 
 const DIFFICULTIES = ['easy', 'normal', 'hard'] as const;
 
 export const useSettingsStore = defineStore('settings', {
   state: () => ({
-    firstFretInput: 0,
+    firstFretInput: MIN_FRET,
     lastFretInput: 12,
     rounds: 5,
     selectedDifficulty: 1 as DifficultyIndex

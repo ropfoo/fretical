@@ -18,13 +18,8 @@
         </NuxtLink>
       </template>
 
-      <div
-        v-if="$slots.actions || showExploreActions"
-        class="c-app-header__actions"
-      >
-        <slot name="actions">
-          <FilterToggle v-if="showExploreActions" />
-        </slot>
+      <div v-if="$slots.actions" class="c-app-header__actions">
+        <slot name="actions" />
       </div>
 
       <template #right>
@@ -71,9 +66,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import type { NavigationMenuItem } from '@nuxt/ui';
-import FilterToggle from '../util/FilterToggle/FilterToggle.vue';
 import Logo from '../util/Logo/Logo.vue';
 import { useManagerStore } from '../../stores/manager';
 
@@ -99,7 +93,6 @@ const { $pinia } = useNuxtApp();
 const route = useRoute();
 const managerStore = useManagerStore($pinia);
 const sidebarOpen = ref(false);
-const showExploreActions = computed(() => route.path === '/explore');
 
 const navigationItems: NavigationMenuItem[] = [
   {

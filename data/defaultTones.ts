@@ -1,138 +1,64 @@
-import type { FretTones } from '../types/app';
+import { getNoteDefinition, normalizePitchClass } from './notes';
+import type { FretTones, GuitarString, PitchClass, Tone } from '../types/app';
 
-const BASE_TONES = [
-  [
-    { name: 'E4', string: 6 },
-    { name: 'B4', string: 5 },
-    { name: 'G3', string: 4 },
-    { name: 'D3', string: 3 },
-    { name: 'A2', string: 2 },
-    { name: 'E2', string: 1 }
-  ],
-  [
-    { name: 'F4', string: 6 },
-    { name: 'C4', string: 5 },
-    { name: 'G#3', string: 4 },
-    { name: 'D#3', string: 3 },
-    { name: 'A#2', string: 2 },
-    { name: 'F2', string: 1 }
-  ],
-  [
-    { name: 'F#4', string: 6 },
-    { name: 'C#4', string: 5 },
-    { name: 'A3', string: 4 },
-    { name: 'E3', string: 3 },
-    { name: 'B2', string: 2 },
-    { name: 'F#2', string: 1 }
-  ],
-  [
-    { name: 'G4', string: 6 },
-    { name: 'D4', string: 5 },
-    { name: 'A#3', string: 4 },
-    { name: 'F3', string: 3 },
-    { name: 'C3', string: 2 },
-    { name: 'G2', string: 1 }
-  ],
-  [
-    { name: 'G#4', string: 6 },
-    { name: 'D#4', string: 5 },
-    { name: 'B3', string: 4 },
-    { name: 'F#3', string: 3 },
-    { name: 'C#3', string: 2 },
-    { name: 'G#2', string: 1 }
-  ],
-  [
-    { name: 'A4', string: 6 },
-    { name: 'E4', string: 5 },
-    { name: 'C4', string: 4 },
-    { name: 'G3', string: 3 },
-    { name: 'D3', string: 2 },
-    { name: 'A2', string: 1 }
-  ],
-  [
-    { name: 'A#4', string: 6 },
-    { name: 'F4', string: 5 },
-    { name: 'C#4', string: 4 },
-    { name: 'G#3', string: 3 },
-    { name: 'D#3', string: 2 },
-    { name: 'A#2', string: 1 }
-  ],
-  [
-    { name: 'B4', string: 6 },
-    { name: 'F#4', string: 5 },
-    { name: 'D4', string: 4 },
-    { name: 'A3', string: 3 },
-    { name: 'E3', string: 2 },
-    { name: 'B2', string: 1 }
-  ],
-  [
-    { name: 'C5', string: 6 },
-    { name: 'G4', string: 5 },
-    { name: 'D#4', string: 4 },
-    { name: 'A#3', string: 3 },
-    { name: 'F3', string: 2 },
-    { name: 'C3', string: 1 }
-  ],
-  [
-    { name: 'C#5', string: 6 },
-    { name: 'G#4', string: 5 },
-    { name: 'E4', string: 4 },
-    { name: 'B3', string: 3 },
-    { name: 'F#3', string: 2 },
-    { name: 'C#3', string: 1 }
-  ],
-  [
-    { name: 'D5', string: 6 },
-    { name: 'A4', string: 5 },
-    { name: 'F4', string: 4 },
-    { name: 'C4', string: 3 },
-    { name: 'G3', string: 2 },
-    { name: 'D3', string: 1 }
-  ],
-  [
-    { name: 'D#5', string: 6 },
-    { name: 'A#4', string: 5 },
-    { name: 'F#4', string: 4 },
-    { name: 'C#4', string: 3 },
-    { name: 'G#3', string: 2 },
-    { name: 'D#3', string: 1 }
-  ],
-  [
-    { name: 'E5', string: 6 },
-    { name: 'B4', string: 5 },
-    { name: 'G4', string: 4 },
-    { name: 'D4', string: 3 },
-    { name: 'A3', string: 2 },
-    { name: 'E3', string: 1 }
-  ]
-] satisfies readonly FretTones[];
+export const MIN_FRET = 0;
+export const MAX_FRET = 24;
 
-export const DEFAULT_TONES = [
-  ...BASE_TONES,
-  ...BASE_TONES.slice(1).map(incrementFretTonesOctave)
-] satisfies readonly FretTones[];
+interface OpenString {
+  midi: number;
+  string: GuitarString;
+}
 
-function incrementOctave(tone: FretTones[number]): FretTones[number] {
+const STANDARD_TUNING = [
+  { string: 1, midi: getMidiNote(4, 4) },
+  { string: 2, midi: getMidiNote(11, 3) },
+  { string: 3, midi: getMidiNote(7, 3) },
+  { string: 4, midi: getMidiNote(2, 3) },
+  { string: 5, midi: getMidiNote(9, 2) },
+  { string: 6, midi: getMidiNote(4, 2) }
+] as const satisfies readonly [
+  OpenString,
+  OpenString,
+  OpenString,
+  OpenString,
+  OpenString,
+  OpenString
+];
+
+export const DEFAULT_TONES = Array.from(
+  { length: MAX_FRET - MIN_FRET + 1 },
+  (_, fret) => createFretTones(fret)
+) satisfies readonly FretTones[];
+
+function createFretTones(fret: number): FretTones {
+  return [
+    createTone(STANDARD_TUNING[0], fret),
+    createTone(STANDARD_TUNING[1], fret),
+    createTone(STANDARD_TUNING[2], fret),
+    createTone(STANDARD_TUNING[3], fret),
+    createTone(STANDARD_TUNING[4], fret),
+    createTone(STANDARD_TUNING[5], fret)
+  ];
+}
+
+function createTone(openString: OpenString, fret: number): Tone {
+  const midi = openString.midi + fret;
+  const pitchClass = normalizePitchClass(midi);
+  const octave = getOctave(midi);
+  const note = getNoteDefinition(pitchClass);
+
   return {
-    ...tone,
-    name: tone.name.replace(/\d+$/, (octave) => String(Number(octave) + 1))
+    ...note,
+    octave,
+    soundName: `${note.canonicalName}${octave}`,
+    string: openString.string
   };
 }
 
-function incrementFretTonesOctave([
-  first,
-  second,
-  third,
-  fourth,
-  fifth,
-  sixth
-]: FretTones): FretTones {
-  return [
-    incrementOctave(first),
-    incrementOctave(second),
-    incrementOctave(third),
-    incrementOctave(fourth),
-    incrementOctave(fifth),
-    incrementOctave(sixth)
-  ];
+function getMidiNote(pitchClass: PitchClass, octave: number): number {
+  return (octave + 1) * 12 + pitchClass;
+}
+
+function getOctave(midi: number): number {
+  return Math.floor(midi / 12) - 1;
 }

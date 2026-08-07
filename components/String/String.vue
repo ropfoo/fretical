@@ -7,7 +7,7 @@
           ? [
               playMode
                 ? [
-                    activeTone.name === askedTone.name
+                    selectedCorrectTone
                       ? 'c-string__indicator--success'
                       : 'c-string__indicator--fail'
                   ]
@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useManagerStore } from '../../stores/manager';
 import { useTonesStore } from '../../stores/tones';
@@ -38,14 +39,19 @@ const { $pinia } = useNuxtApp();
 const managerStore = useManagerStore($pinia);
 const tonesStore = useTonesStore($pinia);
 const { playMode, toneTriggered } = storeToRefs(managerStore);
-const { activeTone, askedTone, sound } = storeToRefs(tonesStore);
+const { askedTone, sound } = storeToRefs(tonesStore);
+
+const selectedCorrectTone = computed(
+  () => askedTone.value?.pitchClass === props.tone.pitchClass
+);
 
 async function returnTone(): Promise<void> {
   tonesStore.setSelectedTone({
     ...props.tone,
     fret: props.fretNumber
   });
-  if (props.tone.name === askedTone.value.name) {
+
+  if (selectedCorrectTone.value) {
     managerStore.setPaused(true);
     if (!toneTriggered.value) {
       managerStore.setScore(10);
@@ -60,7 +66,7 @@ async function returnTone(): Promise<void> {
     } else {
       synth.toMaster();
     }
-    synth.triggerAttackRelease(`${props.tone.name}`, '8n');
+    synth.triggerAttackRelease(props.tone.soundName, '8n');
   }
 }
 </script>

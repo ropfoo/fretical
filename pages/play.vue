@@ -18,14 +18,14 @@
           <h1
             class="c-game-ui__tone__active"
             :class="[
-              activeTone.name === askedTone.name
+              selectedCorrectTone
                 ? 'c-game-ui__tone__active--success'
                 : 'c-game-ui__tone__active--fail'
             ]"
           >
-            {{ activeTone.name }}
+            {{ activeToneLabel }}
           </h1>
-          <h1 class="c-game-ui__tone__asked">{{ askedTone.name }}</h1>
+          <h1 class="c-game-ui__tone__asked">{{ askedToneLabel }}</h1>
         </div>
         <div class="c-game-ui__progress-ui">
           <div class="c-time-bar__container">
@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import Fretboard from '../components/Fretboard/Fretboard.vue';
@@ -81,8 +81,15 @@ const timeBarInterval = ref<ReturnType<typeof setInterval> | null>(null);
 const timeBarReady = ref(false);
 
 const { firstFretInput, lastFretInput, rounds } = storeToRefs(settingsStore);
-const { activeTone, askedTone } = storeToRefs(tonesStore);
+const { activeTone, activeToneLabel, askedTone, askedToneLabel } =
+  storeToRefs(tonesStore);
 const { score, paused } = storeToRefs(managerStore);
+const selectedCorrectTone = computed(
+  () =>
+    activeTone.value !== null &&
+    askedTone.value !== null &&
+    activeTone.value.pitchClass === askedTone.value.pitchClass
+);
 
 function enablePlayMode(): void {
   managerStore.setPlayMode(true);
@@ -105,7 +112,7 @@ function newRound(): void {
   if (round.value < rounds.value - 1) {
     managerStore.setToneTriggered(false);
     if (!paused.value) {
-      tonesStore.setActiveTone({ name: '-', string: 0 });
+      tonesStore.clearActiveTone();
       determineAskedTone();
       round.value++;
       console.log(round.value);
@@ -148,7 +155,7 @@ function startGame(): void {
   managerStore.resetScore();
   gameOver.value = false;
   settings.value = false;
-  tonesStore.setActiveTone({ name: '-', string: 0 });
+  tonesStore.clearActiveTone();
   managerStore.setPaused(false);
   enablePlayMode();
   determineAskedTone();

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
+import { MAX_FRET, MIN_FRET } from '../data/defaultTones';
 
-export const MIN_FRET = 0;
-export const MAX_FRET = 24;
+export { MAX_FRET, MIN_FRET };
 
 function clampFret(value: number): number {
   if (!Number.isFinite(value)) {
@@ -14,7 +14,7 @@ function clampFret(value: number): number {
 export const useFretsStore = defineStore('frets', {
   state: () => ({
     firstFret: MIN_FRET,
-    lastFret: 12
+    lastFret: MAX_FRET
   }),
   actions: {
     setFirstFretValue(fret: number) {

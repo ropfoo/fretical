@@ -2,13 +2,16 @@
   align-items: center;
   aspect-ratio: 1;
   border-radius: 100%;
+  box-sizing: border-box;
   color: $color-indicator-text;
   display: flex;
   font-size: clamp(0.65rem, 3.2vmin, 1rem);
   font-weight: bold;
+  height: var(--tone-indicator-size);
   justify-content: center;
   left: 50%;
   opacity: 1;
+  line-height: 1;
   padding: 0.25rem;
   position: absolute;
   text-align: center;
@@ -19,12 +22,13 @@
     opacity 0.15s,
     background-color 0.3s,
     transform 0.25s ease-out;
-  width: min(90%, 2.35rem);
+  width: var(--tone-indicator-size);
+  --tone-indicator-size: min(90cqw, 90cqh, 2.35rem);
   z-index: 3;
 
   @include media-small {
     font-size: clamp(0.65rem, 1.4vw, 1rem);
-    width: min(78%, 2.25rem, 72cqw, 170cqh);
+    --tone-indicator-size: min(72cqw, 170cqh, 2.25rem);
   }
 }
 
