@@ -1,6 +1,5 @@
 <template>
   <div class="c-game-settings">
-    <AppHeader />
     <h1>Settings</h1>
     <div class="c-game-settings__config">
       <div class="c-game-settings__config__section">
@@ -141,7 +140,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import type { CSSProperties } from 'vue';
-import AppHeader from '../AppHeader/AppHeader.vue';
 import SettingsArrow from '../util/SettingsArrow/SettingsArrow.vue';
 import { MAX_FRET, MIN_FRET } from '../../stores/frets';
 import { useSettingsStore } from '../../stores/settings';

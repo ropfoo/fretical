@@ -1,10 +1,5 @@
 <template>
   <div class="c-fretboard-view c-fretboard-view--explore">
-    <AppHeader>
-      <template #actions>
-        <FilterToggle />
-      </template>
-    </AppHeader>
     <div class="c-fretboard-view__active-tone">
       <h1>{{ activeTone.name }}</h1>
       <sound-toggle />
@@ -15,11 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import AppHeader from '../components/AppHeader/AppHeader.vue';
 import FretRangeControl from '../components/FretRangeControl/FretRangeControl.vue';
 import Fretboard from '../components/Fretboard/Fretboard.vue';
 import SoundToggle from '../components/util/SoundToggle/SoundToggle.vue';
-import FilterToggle from '../components/util/FilterToggle/FilterToggle.vue';
 import { storeToRefs } from 'pinia';
 import { useFretsStore } from '../stores/frets';
 import { useTonesStore } from '../stores/tones';

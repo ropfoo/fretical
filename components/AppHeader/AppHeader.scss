@@ -1,20 +1,38 @@
+.c-app-header-shell {
+  width: 100%;
+}
+
 .c-app-header {
-  align-items: center;
-  display: flex;
-  gap: 1rem;
-  position: fixed;
-  right: 1.25rem;
-  top: 1.25rem;
-  z-index: 30;
-
-  @include media-small {
-    right: 2rem;
-    top: 2rem;
-  }
-
   &__actions {
     align-items: center;
     display: flex;
     gap: 1rem;
+  }
+
+  &__sidebar-title {
+    color: $color-light-main;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &__logo {
+    align-items: center;
+    display: inline-flex;
+    min-height: 2.75rem;
+    padding: 0.25rem 0;
+    transition: transform 0.25s ease;
+    transform-origin: center center;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+  }
+
+  &__nav-toggle {
+    color: $color-red;
+
+    &:hover {
+      color: $color-red;
+    }
   }
 }

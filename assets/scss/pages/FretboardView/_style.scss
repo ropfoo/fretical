@@ -28,15 +28,14 @@
       'fretboard'
       'controls';
     grid-template-rows: auto minmax(0, 1fr) auto;
-    height: 100dvh;
+    height: calc(100dvh - var(--ui-header-height) - 3rem);
     justify-items: center;
     margin-left: 0;
     overflow: hidden;
-    padding: 4.75rem 1rem 1rem;
+    padding: 0;
 
     @include media-mobile {
       margin-left: 0;
-      padding: 5rem 1.5rem 1rem;
     }
 
     @include media-small {
@@ -46,7 +45,6 @@
         'controls';
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto minmax(0, 1fr) auto;
-      padding: 5rem 2rem 1.5rem;
     }
 
     .c-fretboard {

@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div class="c-home__menu-bar">
-      <logo />
-      <menu />
-    </div>
     <div class="c-home">
       <div class="c-main-menu">
         <NuxtLink
@@ -34,7 +30,6 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '../components/util/Logo/Logo.vue';
 import { useManagerStore } from '../stores/manager';
 
 const { $pinia } = useNuxtApp();
