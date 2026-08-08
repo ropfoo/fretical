@@ -14,7 +14,7 @@ function clampFret(value: number): number {
 export const useFretsStore = defineStore('frets', {
   state: () => ({
     firstFret: MIN_FRET,
-    lastFret: MAX_FRET
+    lastFret: 12
   }),
   actions: {
     setFirstFretValue(fret: number) {
