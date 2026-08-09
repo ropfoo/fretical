@@ -2,7 +2,7 @@
   <div class="c-fret">
     <div
       :class="[number === 0 ? 'c-fret--open' : 'c-fret--style']"
-      v-for="(tone, index) in tones"
+      v-for="tone in displayTones"
       :key="tone.string"
     >
       <StringComponent
@@ -10,7 +10,7 @@
         :fret-number="number"
         :label="getIndicatorLabel(tone)"
         :tone="tone"
-        :thickness="index + 1"
+        :thickness="tone.string"
       />
     </div>
     <div v-if="checkDot()" class="c-fret__circle-container">
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import StringComponent from '../String/String.vue';
 import { useManagerStore } from '../../stores/manager';
@@ -35,6 +36,12 @@ const props = defineProps<{
 const { $pinia } = useNuxtApp();
 const { showAllTones } = storeToRefs(useManagerStore($pinia));
 const { activeTone } = storeToRefs(useTonesStore($pinia));
+
+const displayTones = computed(() =>
+  [...props.tones].sort(
+    (currentTone, nextTone) => nextTone.string - currentTone.string
+  )
+);
 
 function checkActive(tone: Tone): boolean {
   if (showAllTones.value) {

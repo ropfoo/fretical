@@ -70,7 +70,6 @@
   }
 
   .line {
-    @include generate-string-thicknesses(1, 6, 3px, left);
     border: none;
     border-left: 0.1rem solid $color-white;
     height: 100%;
@@ -82,11 +81,60 @@
     z-index: 0;
 
     @include media-small {
-      @include generate-string-thicknesses(6, 1, 3px, bottom);
       border: none;
       border-bottom: 0.1rem solid $color-white;
       height: 0;
       width: 100%;
+    }
+
+    &--string-6 {
+      border-left-width: 3px;
+    }
+
+    &--string-5 {
+      border-left-width: 2.5px;
+    }
+
+    &--string-4 {
+      border-left-width: 2.1px;
+    }
+
+    &--string-3 {
+      border-left-width: 1.7px;
+    }
+
+    &--string-2 {
+      border-left-width: 1.35px;
+    }
+
+    &--string-1 {
+      border-left-width: 1px;
+    }
+
+    @include media-small {
+      &--string-6 {
+        border-bottom-width: 3px;
+      }
+
+      &--string-5 {
+        border-bottom-width: 2.5px;
+      }
+
+      &--string-4 {
+        border-bottom-width: 2.1px;
+      }
+
+      &--string-3 {
+        border-bottom-width: 1.7px;
+      }
+
+      &--string-2 {
+        border-bottom-width: 1.35px;
+      }
+
+      &--string-1 {
+        border-bottom-width: 1px;
+      }
     }
   }
 

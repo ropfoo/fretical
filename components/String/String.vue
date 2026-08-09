@@ -26,13 +26,13 @@ import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useManagerStore } from '../../stores/manager';
 import { useTonesStore } from '../../stores/tones';
-import type { Tone } from '../../types/app';
+import type { GuitarString, Tone } from '../../types/app';
 
 const props = defineProps<{
   fretNumber: number;
   label: string;
   tone: Tone;
-  thickness: number;
+  thickness: GuitarString;
   active: boolean;
 }>();
 const { $pinia } = useNuxtApp();
