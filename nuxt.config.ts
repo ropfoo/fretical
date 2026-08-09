@@ -1,3 +1,5 @@
+const baseURL = '/fretical/';
+
 export default defineNuxtConfig({
   ssr: false,
   srcDir: '.',
@@ -7,7 +9,7 @@ export default defineNuxtConfig({
     families: [{ name: 'Source Sans Pro', provider: 'none' }]
   },
   app: {
-    baseURL: '/fretical/',
+    baseURL,
     head: {
       title: 'Fretical',
       meta: [
@@ -28,7 +30,7 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           type: 'image/x-icon',
-          href: '/favicon.ico'
+          href: `${baseURL}favicon.ico`
         }
       ]
     }

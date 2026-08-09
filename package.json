@@ -13,7 +13,7 @@
     "format:check": "prettier --check .",
     "start": "nuxt preview",
     "generate": "nuxt generate",
-    "deploy": "gh-pages -d .output/public"
+    "deploy": "pnpm generate && gh-pages -d .output/public -t"
   },
   "dependencies": {
     "@nuxt/ui": "^4.10.0",
