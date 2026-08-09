@@ -1,0 +1,1 @@
+import{n as e}from"./BsCDOX1g.js";var t=e(`manager`,{state:()=>({playMode:!1,paused:!0,toneTriggered:!1,score:0}),actions:{setPlayMode(e){this.playMode=e},setScore(e){this.score+=e},resetScore(){this.score=0},setPaused(e){this.paused=e},setToneTriggered(e){this.toneTriggered=e}}});export{t};
