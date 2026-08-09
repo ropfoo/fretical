@@ -1,68 +1,49 @@
 <template>
-  <div class="c-app-header-shell">
-    <UHeader
-      class="c-app-header mx-4 w-auto rounded-b-xl sm:mx-6 lg:mx-8"
-      title="Fretical"
-      to="/"
-      :toggle="false"
-      :ui="headerUi"
-    >
-      <template #left>
-        <NuxtLink
-          aria-label="Fretical home"
-          class="c-app-header__logo"
-          to="/"
-          @click="handleLogoSelect"
-        >
-          <Logo />
-        </NuxtLink>
-      </template>
+  <UHeader title="Fretical" to="/" :toggle="false" :ui="headerUi">
+    <template #left>
+      <NuxtLink aria-label="Fretical home" to="/" @click="handleLogoSelect">
+        <Logo />
+      </NuxtLink>
+    </template>
 
-      <div v-if="$slots.actions" class="c-app-header__actions">
-        <slot name="actions" />
-      </div>
+    <div v-if="$slots.actions" class="c-app-header__actions">
+      <slot name="actions" />
+    </div>
 
-      <template #right>
-        <UButton
-          :aria-label="sidebarOpen ? 'Close navigation' : 'Open navigation'"
-          class="c-app-header__nav-toggle"
-          color="neutral"
-          icon="i-lucide-menu"
-          size="xl"
-          square
-          variant="ghost"
-          @click="toggleSidebar"
+    <template #right>
+      <UButton
+        :aria-label="sidebarOpen ? 'Close navigation' : 'Open navigation'"
+        color="neutral"
+        icon="i-lucide-menu"
+        size="xl"
+        square
+        variant="ghost"
+        @click="toggleSidebar"
+      />
+    </template>
+  </UHeader>
+
+  <USlideover
+    v-model:open="sidebarOpen"
+    close
+    side="right"
+    title="Navigation"
+    :ui="slideoverUi"
+  >
+    <template #body>
+      <USidebar collapsible="none" side="right" :ui="sidebarUi">
+        <template #header>
+          <span>Fretical</span>
+        </template>
+
+        <UNavigationMenu
+          :items="navigationItems"
+          orientation="vertical"
+          :ui="navigationUi"
         />
-      </template>
-    </UHeader>
-
-    <USlideover
-      v-model:open="sidebarOpen"
-      close
-      side="right"
-      title="Navigation"
-      :ui="slideoverUi"
-    >
-      <template #body>
-        <USidebar
-          class="c-app-header__sidebar"
-          collapsible="none"
-          side="right"
-          :ui="sidebarUi"
-        >
-          <template #header>
-            <span class="c-app-header__sidebar-title">Fretical</span>
-          </template>
-
-          <UNavigationMenu
-            :items="navigationItems"
-            orientation="vertical"
-            :ui="navigationUi"
-          />
-        </USidebar>
-      </template>
-    </USlideover>
-  </div>
+      </USidebar>
+    </template>
+  </USlideover>
 </template>
 
 <script setup lang="ts">

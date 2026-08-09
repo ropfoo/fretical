@@ -1,2 +1,36 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+
+@theme {
+  --color-fretical-white: #f1f1f1;
+  --color-fretical-green: #7eeb58;
+  --color-fretical-red: #e43f5a;
+  --color-fretical-red-hover: #ff4463;
+  --color-fretical-yellow: #ebd358;
+  --color-fretical-blue: #589aeb;
+  --color-fretical-dark: #111112;
+  --color-fretical-surface: #222836;
+  --color-fretical-dark-hover: #192c5c;
+  --color-fretical-string-highlight: lightgreen;
+  --color-fretical-fret-wood-light: #dca66c;
+  --color-fretical-fret-wood: #c28a50;
+  --color-fretical-fret-wood-dark: #a96f38;
+  --color-fretical-fret-primary: #eec595;
+}
+
+@layer theme {
+  .dark {
+    --ui-bg: var(--color-fretical-dark);
+    --ui-bg-muted: var(--color-fretical-surface);
+    --ui-bg-elevated: var(--color-fretical-surface);
+    --ui-bg-accented: var(--color-fretical-surface);
+    --ui-bg-inverted: var(--color-fretical-white);
+    --ui-border: var(--color-fretical-surface);
+    --ui-border-muted: color-mix(
+      in srgb,
+      var(--color-fretical-surface) 72%,
+      transparent
+    );
+    --ui-border-accented: var(--color-fretical-blue);
+  }
+}

@@ -5,14 +5,14 @@
   box-sizing: border-box;
   color: $color-indicator-text;
   display: flex;
-  font-size: clamp(0.65rem, 3.2vmin, 1rem);
+  font-size: clamp(0.95rem, 4.4vmin, 1.22rem);
   font-weight: bold;
   height: var(--tone-indicator-size);
   justify-content: center;
   left: 50%;
   opacity: 1;
   line-height: 1;
-  padding: 0.25rem;
+  padding: 0.2rem;
   position: absolute;
   text-align: center;
   top: 50%;
@@ -23,7 +23,7 @@
     background-color 0.3s,
     transform 0.25s ease-out;
   width: var(--tone-indicator-size);
-  --tone-indicator-size: min(90cqw, 90cqh, 2.35rem);
+  --tone-indicator-size: clamp(2.1rem, min(132cqw, 132cqh), 3rem);
   z-index: 3;
 
   @include media-small {

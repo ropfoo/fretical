@@ -1,9 +1,9 @@
 <template>
   <div
-    class="mx-auto grid h-[calc(100dvh-var(--ui-header-height)-3rem)] min-h-0 w-full max-w-[96rem] grid-rows-[auto_minmax(0,1fr)_auto] place-items-center gap-3 overflow-hidden"
+    class="mx-auto grid h-[calc(100dvh-var(--ui-header-height)-1rem)] min-h-0 w-full max-w-[96rem] grid-rows-[auto_minmax(0,1fr)_auto] place-items-center gap-3 overflow-hidden lg:h-[calc(100dvh-var(--ui-header-height)-3rem)]"
   >
     <div
-      class="row-start-1 flex w-full flex-col items-center justify-center text-[#589aeb]"
+      class="text-fretical-blue row-start-1 flex w-full flex-col items-center justify-center"
     >
       <h1 class="flex justify-center text-center text-4xl font-bold">
         {{ activeToneLabel }}

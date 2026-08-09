@@ -20,8 +20,8 @@
   min-height: 0;
   min-width: 0;
   overflow: hidden;
-  padding: clamp(0.3rem, 1.5vw, 0.6rem);
-  width: min(68vw, 13rem);
+  padding: clamp(0.35rem, 1.8vw, 0.7rem);
+  width: min(82vw, 17rem);
 
   @include media-small {
     align-self: center;
