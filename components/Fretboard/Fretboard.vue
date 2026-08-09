@@ -5,6 +5,7 @@
         :active-indicator-label="activeIndicatorLabel"
         :active-indicator-tone="activeIndicatorTone"
         :number="fret.number"
+        :show-all-tones="showAllTones"
         :tones="fret.tones"
       />
     </template>
@@ -20,10 +21,16 @@ import { DEFAULT_TONES } from '../../data/defaultTones';
 import { useTonesStore } from '../../stores/tones';
 import type { ActiveTone, SelectedTone, Tone } from '../../types/app';
 
-const props = defineProps<{
-  firstFret: number;
-  lastFret: number;
-}>();
+const props = withDefaults(
+  defineProps<{
+    firstFret: number;
+    lastFret: number;
+    showAllTones?: boolean;
+  }>(),
+  {
+    showAllTones: false
+  }
+);
 
 const { $pinia } = useNuxtApp();
 const { activeTone } = storeToRefs(useTonesStore($pinia));

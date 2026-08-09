@@ -1,9 +1,9 @@
 <template>
   <UApp>
-    <div class="dark min-h-screen bg-default text-default">
+    <div class="dark bg-default text-default min-h-screen">
       <AppHeader />
       <UMain>
-        <UContainer class="py-6">
+        <UContainer class="py-2 lg:py-6">
           <slot />
         </UContainer>
       </UMain>

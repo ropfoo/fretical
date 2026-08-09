@@ -32,9 +32,9 @@ const props = defineProps<{
   activeIndicatorTone?: Tone | null;
   number: number;
   tones: ReadonlyArray<Tone>;
+  showAllTones: boolean;
 }>();
 const { $pinia } = useNuxtApp();
-const { showAllTones } = storeToRefs(useManagerStore($pinia));
 const { activeTone } = storeToRefs(useTonesStore($pinia));
 
 const displayTones = computed(() =>
@@ -44,7 +44,7 @@ const displayTones = computed(() =>
 );
 
 function checkActive(tone: Tone): boolean {
-  if (showAllTones.value) {
+  if (props.showAllTones) {
     return activeTone.value?.pitchClass === tone.pitchClass;
   }
 
@@ -53,7 +53,7 @@ function checkActive(tone: Tone): boolean {
 
 function getIndicatorLabel(tone: Tone): string {
   if (
-    !showAllTones.value &&
+    !props.showAllTones &&
     props.activeIndicatorTone === tone &&
     activeTone.value?.pitchClass !== tone.pitchClass &&
     props.activeIndicatorLabel

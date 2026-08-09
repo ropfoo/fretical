@@ -1,12 +1,8 @@
 <template>
   <div>
-    <div class="c-home">
+    <div>
       <div class="c-main-menu">
-        <NuxtLink
-          @click="toggleShowAllTones(true)"
-          to="/explore"
-          class="c-main-menu__explore"
-        >
+        <NuxtLink to="/explore" class="c-main-menu__explore">
           <img src="../assets/img/svg/explore-icon.svg" alt />
           <h1>Explore</h1>
         </NuxtLink>
@@ -16,11 +12,7 @@
           </div>
           <h1>Chords</h1>
         </NuxtLink>
-        <NuxtLink
-          @click="toggleShowAllTones(false)"
-          to="/play"
-          class="c-main-menu__learn"
-        >
+        <NuxtLink to="/play" class="c-main-menu__learn">
           <img src="../assets/img/svg/learn-icon.svg" alt />
           <h1>Learn</h1>
         </NuxtLink>
@@ -28,14 +20,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useManagerStore } from '../stores/manager';
-
-const { $pinia } = useNuxtApp();
-const managerStore = useManagerStore($pinia);
-
-function toggleShowAllTones(status: boolean): void {
-  managerStore.toggleShowAllTones(status);
-}
-</script>

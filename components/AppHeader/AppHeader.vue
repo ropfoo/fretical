@@ -128,11 +128,9 @@ function handleLogoSelect(): void {
 
 function setExploreMode(): void {
   sidebarOpen.value = false;
-  managerStore.toggleShowAllTones(true);
 }
 
 function setPlayMode(): void {
   sidebarOpen.value = false;
-  managerStore.toggleShowAllTones(false);
 }
 </script>
